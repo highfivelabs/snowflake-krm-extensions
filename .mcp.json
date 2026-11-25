@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "snowflake-krm": {
+      "command": "go",
+      "args": ["run", "./cmd/mcp"]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+# Copyright 2026 High Five Labs
+# SPDX-License-Identifier: Apache-2.0
+#
+# Nightly re-record against the real Snowflake account: live tests, readiness,
+# a replay, and a pull request with the new records and cassettes. The steps
+# are krm-rest-runtime's live-rerecord workflow (docs/live.md, "Replay"); it
+# skips until the repository variables GCP_LIVE_WIF_PROVIDER and
+# GCP_LIVE_SERVICE_ACCOUNT are set.
+name: live
+
+on:
+  # No schedule: GitHub Actions is not used (see LIVEHOME on the Open
+  # decisions board); live runs go on an offload VM.
+  workflow_dispatch:
+    inputs:
+      kinds:
+        description: Only these kinds (KRM_LIVE_KINDS, comma-separated); empty for all
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-snowflake # one run at a time against the one account
+  cancel-in-progress: false
+
+jobs:
+  live:
+    uses: highfivelabs/krm-rest-runtime/.github/workflows/live-rerecord.yml@fad382d05df5a1b0a7c339f174ecd6a3abb06721 # krm-rest-runtime main
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    with:
+      display-name: Snowflake
+      kinds: ${{ inputs.kinds }}
+      wif-provider: ${{ vars.GCP_LIVE_WIF_PROVIDER }}
+      service-account: ${{ vars.GCP_LIVE_SERVICE_ACCOUNT }}
