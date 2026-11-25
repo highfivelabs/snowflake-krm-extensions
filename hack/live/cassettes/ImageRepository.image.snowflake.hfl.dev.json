@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:14Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/image-repositories",
+      "body": "{\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Image Repository {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/image-repositories/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"created_on\" : \"2026-11-20T23:57:14.364+00:00\",\n  \"repository_url\" : \"{{tenant}}.registry.snowflakecomputing.com/{{run_}}/public/{{name_}}\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/image-repositories/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/image-repositories/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nimage repository '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on stage {{run_}}.public.{{name_}}.\",\"request_id\":\"e28f1c12-bfaa-4e2e-9c26-ba17cda8c640\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

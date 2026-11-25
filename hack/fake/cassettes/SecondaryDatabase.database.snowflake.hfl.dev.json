@@ -1,0 +1,128 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE DATABASE \\\"EXAMPLE_REPLICA\\\" AS REPLICA OF \\\"EXAMPLE_ORG\\\".\\\"EXAMPLE_ACCOUNT\\\".\\\"EXAMPLE_DB\\\" COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000885\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000885\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000885",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000885\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000885\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000886\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000886\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000887\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000887\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000888\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000888\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER DATABASE \\\"EXAMPLE_REPLICA\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000889\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000889\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000890\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000890\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000891\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000891\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER DATABASE \\\"EXAMPLE_REPLICA\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000892\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000892\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000893\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000893\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER DATABASE \\\"EXAMPLE_REPLICA\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000894\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000894\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000895\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000895\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_REPLICA\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000896\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000896\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP DATABASE IF EXISTS \\\"EXAMPLE_REPLICA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000897\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000897\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW DATABASES LIKE 'EXAMPLE_REPLICA'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"retention_time\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000898\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000898\"}\n"
+    }
+  ]
+}

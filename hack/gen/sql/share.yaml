@@ -1,0 +1,21 @@
+kind: Share
+terraform: [snowflake_share]
+scope: account
+fields:
+  secure_objects_only: {type: boolean}
+  accounts: {type: names}
+  comment: {type: string}
+create: CREATE SHARE {@id}[ SECURE_OBJECTS_ONLY = {secure_objects_only}][ COMMENT = {comment}]
+read:
+- statement: SHOW SHARES LIKE {@like}
+  match: {name: "{name}", kind: OUTBOUND}
+  columns: {comment: comment}
+alter:
+  accounts: ALTER SHARE {@id} SET ACCOUNTS = {accounts}
+  comment: ALTER SHARE {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER SHARE {@id} UNSET COMMENT
+delete: DROP SHARE IF EXISTS {@id}
+sample:
+  name: example_share
+  comment: example-comment

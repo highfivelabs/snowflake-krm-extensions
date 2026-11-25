@@ -1,0 +1,16 @@
+kind: NetworkPolicyAttachment
+terraform: [snowflake_network_policy_attachment]
+mode: set
+group: network
+fields:
+  user: {type: identifier, required: true}
+  network_policy_name: {type: identifier, required: true}
+create: ALTER USER {user} SET NETWORK_POLICY = {network_policy_name}
+read:
+- statement: SHOW PARAMETERS LIKE 'NETWORK_POLICY' IN USER {user}
+  match: {key: NETWORK_POLICY, level: USER}
+  columns: {network_policy_name: value}
+delete: ALTER USER {user} UNSET NETWORK_POLICY
+sample:
+  user: example_user
+  network_policy_name: example_policy

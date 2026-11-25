@@ -1,0 +1,95 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks",
+      "body": "{\"comment\":\"first\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"comment\":\"second\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"comment\":\"second\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"definition\":\"SELECT 1\",\"last_committed_on\":\"2000-01-01T00:00:00Z\",\"last_suspended_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"schema_name\":\"example-schema-name\",\"state\":\"started\",\"task_relations\":\"example-task-relations\",\"warehouse\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+kind: ReplicationGroup
+terraform: [snowflake_replication_group]
+scope: account
+fields:
+  object_types: {type: keywords, required: true, enum: [ACCOUNT PARAMETERS, DATABASES, EXTERNAL VOLUMES, INTEGRATIONS, NETWORK POLICIES, RESOURCE MONITORS, ROLES, SHARES, USERS, WAREHOUSES]}
+  allowed_databases: {type: identifiers}
+  allowed_external_volumes: {type: identifiers}
+  allowed_shares: {type: identifiers}
+  allowed_integration_types: {type: keywords, enum: [SECURITY INTEGRATIONS, API INTEGRATIONS, STORAGE INTEGRATIONS, EXTERNAL ACCESS INTEGRATIONS, NOTIFICATION INTEGRATIONS]}
+  allowed_accounts: {type: names, required: true}
+  ignore_edition_check: {type: boolean}
+  replication_schedule: {type: string}
+  error_integration: {type: identifier}
+  comment: {type: string}
+create: CREATE REPLICATION GROUP {@id} OBJECT_TYPES = {object_types}[ ALLOWED_DATABASES = {allowed_databases}][ ALLOWED_EXTERNAL_VOLUMES = {allowed_external_volumes}][ ALLOWED_SHARES = {allowed_shares}][ ALLOWED_INTEGRATION_TYPES = {allowed_integration_types}] ALLOWED_ACCOUNTS = {allowed_accounts}[ IGNORE EDITION CHECK{?ignore_edition_check}][ REPLICATION_SCHEDULE = {replication_schedule}][ ERROR_INTEGRATION = {error_integration}]
+read:
+- statement: SHOW REPLICATION GROUPS
+  match: {name: "{name}", is_primary: "true"}
+  columns: {object_types: object_types, allowed_integration_types: allowed_integration_types, allowed_accounts: allowed_accounts, replication_schedule: replication_schedule, comment: comment}
+  without: {allowed_accounts: organization_name.account_name}
+alter:
+  object_types: ALTER REPLICATION GROUP {@id} SET OBJECT_TYPES = {object_types}
+  allowed_databases: ALTER REPLICATION GROUP {@id} SET ALLOWED_DATABASES = {allowed_databases}
+  allowed_external_volumes: ALTER REPLICATION GROUP {@id} SET ALLOWED_EXTERNAL_VOLUMES = {allowed_external_volumes}
+  allowed_shares: ALTER REPLICATION GROUP {@id} SET ALLOWED_SHARES = {allowed_shares}
+  allowed_integration_types: ALTER REPLICATION GROUP {@id} SET ALLOWED_INTEGRATION_TYPES = {allowed_integration_types}
+  replication_schedule: ALTER REPLICATION GROUP {@id} SET REPLICATION_SCHEDULE = {replication_schedule}
+  error_integration: ALTER REPLICATION GROUP {@id} SET ERROR_INTEGRATION = {error_integration}
+  comment: ALTER REPLICATION GROUP {@id} SET COMMENT = {comment}
+unset:
+  replication_schedule: ALTER REPLICATION GROUP {@id} UNSET REPLICATION_SCHEDULE
+  error_integration: ALTER REPLICATION GROUP {@id} UNSET ERROR_INTEGRATION
+  comment: ALTER REPLICATION GROUP {@id} UNSET COMMENT
+add:
+  allowed_accounts: ALTER REPLICATION GROUP {@id} ADD {allowed_accounts} TO ALLOWED_ACCOUNTS
+remove:
+  allowed_accounts: ALTER REPLICATION GROUP {@id} REMOVE {allowed_accounts} FROM ALLOWED_ACCOUNTS
+delete: DROP REPLICATION GROUP IF EXISTS {@id}
+sample:
+  name: example_replication_group
+  object_types: [DATABASES]
+  allowed_databases: [example_db]
+  allowed_accounts: [example_org.example_account]
+  comment: example-comment

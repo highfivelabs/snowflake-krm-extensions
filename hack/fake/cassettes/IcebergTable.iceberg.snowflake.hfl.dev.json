@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/iceberg-tables",
+      "body": "{\"name\":\"example-name\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"auto_refresh\":true,\"can_write_metadata\":\"example-can-write-metadata\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"iceberg_table_type\":\"example-iceberg-table-type\",\"name\":\"example-name\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schema_name\":\"example-schema-name\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/iceberg-tables/example-name",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_refresh\":true,\"can_write_metadata\":\"example-can-write-metadata\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"iceberg_table_type\":\"example-iceberg-table-type\",\"name\":\"example-name\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"schema_name\":\"example-schema-name\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/iceberg-tables/example-name",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/iceberg-tables/example-name",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+kind: GrantOwnership
+terraform: [snowflake_grant_ownership]
+mode: set
+group: grant
+fields:
+  object_type: {type: keyword, required: true}
+  object_name: {type: name, required: true}
+  account_role_name: {type: identifier, required: true}
+  outbound_privileges: {type: keyword, enum: [COPY, REVOKE]}
+  revertOwnershipToRole: {type: identifier, required: true}
+create: GRANT OWNERSHIP ON {object_type} {object_name} TO ROLE {account_role_name}[ {outbound_privileges} CURRENT GRANTS]
+read:
+- statement: SHOW GRANTS ON {object_type} {object_name}
+  match: {privilege: OWNERSHIP, granted_to: ROLE, grantee_name: "{account_role_name}"}
+delete: GRANT OWNERSHIP ON {object_type} {object_name} TO ROLE {revertOwnershipToRole} COPY CURRENT GRANTS
+sample:
+  object_type: TABLE
+  object_name: example_db.example_schema.example_table
+  account_role_name: example_owner
+  revertOwnershipToRole: example_admin

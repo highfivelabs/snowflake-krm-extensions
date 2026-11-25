@@ -1,0 +1,21 @@
+kind: TagAssociation
+terraform: [snowflake_tag_association]
+mode: set
+group: tag
+warehouse: true
+fields:
+  object_type: {type: keyword, required: true, enum: [DATABASE, SCHEMA, TABLE, WAREHOUSE, ROLE, USER, STAGE, TASK, PIPE, STREAM, INTEGRATION, COMPUTE POOL, SHARE]}
+  object_identifier: {type: name, required: true}
+  tag_id: {type: name, required: true}
+  tag_value: {type: string, required: true}
+create: ALTER {object_type} {object_identifier} SET TAG {tag_id} = {tag_value}
+read:
+- statement: SELECT SYSTEM$GET_TAG ({tag_id:namestring}, {object_identifier:namestring}, {object_type:string}) AS "TAG"
+  columns: {tag_value: TAG}
+delete: ALTER {object_type} {object_identifier} UNSET TAG {tag_id}
+sample:
+  object_type: TABLE
+  object_identifier: example_db.example_schema.example_table
+  tag_id: example_db.example_schema.example_tag
+  tag_value: example-value
+  warehouse: example_wh

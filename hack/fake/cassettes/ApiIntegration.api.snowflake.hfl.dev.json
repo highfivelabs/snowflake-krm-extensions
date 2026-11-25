@@ -1,0 +1,95 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/api-integrations",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"first\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"enabled\":false,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

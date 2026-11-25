@@ -1,0 +1,77 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements",
+      "body": "{\"statement\":\"CREATE SESSION POLICY {{run_}}.PUBLIC.{{name_}} SESSION_IDLE_TIMEOUT_MINS = 30\",\"timeout\":60}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000016,\"statement\":\"CREATE SESSION POLICY {{run_}}.PUBLIC.{{name_}} SESSION_IDLE_TIMEOUT_MINS = 30\",\"timeout\":60}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/users",
+      "body": "{\"comment\":\"krm live test; deleted after the kind\",\"disabled\":true,\"name\":\"{{name_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"comment\":\"krm live test; deleted after the kind\",\"disabled\":true,\"id\":280000017,\"name\":\"{{name_}}\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SESSION POLICIES ON USER \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000386\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000386\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER USER \\\"{{NAME_}}\\\" SET SESSION POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000387\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000387\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000387",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000387\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000387\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SESSION POLICIES ON USER \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000388\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000388\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER USER \\\"{{NAME_}}\\\" UNSET SESSION POLICY\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000389\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000389\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SESSION POLICIES ON USER \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000390\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000390\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 204
+    }
+  ]
+}

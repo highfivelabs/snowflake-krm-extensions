@@ -1,0 +1,119 @@
+kind: SemanticView
+terraform: [snowflake_semantic_view]
+scope: schema
+fields:
+  tables:
+    type: objects
+    required: true
+    item:
+      template: "{table_alias} AS {table_name}[ PRIMARY KEY ({primary_key})][ {unique}][ WITH SYNONYMS ({synonym})][ COMMENT = {comment}]"
+      fields:
+        table_alias: {type: identifier, required: true}
+        table_name: {type: name, required: true}
+        primary_key: {type: identifiers}
+        unique:
+          type: objects
+          item:
+            template: "UNIQUE ({values})"
+            sep: " "
+            fields:
+              values: {type: identifiers, required: true}
+        synonym: {type: strings}
+        comment: {type: string}
+  relationships:
+    type: objects
+    item:
+      template: "[{relationship_identifier} AS ]{table_name_or_alias} ({relationship_columns}) REFERENCES {referenced_table_name_or_alias}[ ({referenced_relationship_columns})]"
+      fields:
+        relationship_identifier: {type: identifier}
+        table_name_or_alias:
+          type: object
+          required: true
+          item:
+            template: "[{table_name}][{table_alias}]"
+            fields:
+              table_name: {type: name}
+              table_alias: {type: identifier}
+        relationship_columns: {type: identifiers, required: true, description: "Its columns."}
+        referenced_table_name_or_alias:
+          type: object
+          required: true
+          item:
+            template: "[{table_name}][{table_alias}]"
+            fields:
+              table_name: {type: name}
+              table_alias: {type: identifier}
+        referenced_relationship_columns: {type: identifiers, description: "The referenced columns."}
+  facts:
+    type: objects
+    item:
+      template: "[PRIVATE{?is_private} ]{qualified_expression_name} AS {sql_expression}[ WITH SYNONYMS ({synonym})][ COMMENT = {comment}]"
+      fields:
+        is_private: {type: boolean}
+        qualified_expression_name: {type: name, required: true}
+        sql_expression: {type: expression, required: true}
+        synonym: {type: strings, description: "Synonyms for it."}
+        comment: {type: string, description: "Its comment."}
+  dimensions:
+    type: objects
+    item:
+      template: "{qualified_expression_name} AS {sql_expression}[ WITH SYNONYMS ({synonym})][ COMMENT = {comment}]"
+      fields:
+        qualified_expression_name: {type: name, required: true}
+        sql_expression: {type: expression, required: true}
+        synonym: {type: strings, description: "Synonyms for it."}
+        comment: {type: string, description: "Its comment."}
+  metrics:
+    type: objects
+    item:
+      template: "[PRIVATE{?is_private} ][{semantic_expression}][{window_function}]"
+      fields:
+        is_private: {type: boolean}
+        semantic_expression:
+          type: object
+          item:
+            template: "{qualified_expression_name} AS {sql_expression}[ WITH SYNONYMS ({synonym})][ COMMENT = {comment}]"
+            fields:
+              qualified_expression_name: {type: name, required: true}
+              sql_expression: {type: expression, required: true}
+              synonym: {type: strings, description: "Synonyms for it."}
+              comment: {type: string, description: "Its comment."}
+        window_function:
+          type: object
+          item:
+            template: "{qualified_expression_name} AS {sql_expression} OVER ({over_clause})"
+            fields:
+              qualified_expression_name: {type: name, required: true}
+              sql_expression: {type: expression, required: true, description: "The window function."}
+              over_clause:
+                type: object
+                required: true
+                description: "Its OVER clause."
+                item:
+                  template: "[PARTITION BY {partition_by}][ ORDER BY {order_by}][ {window_frame_clause}]"
+                  fields:
+                    partition_by: {type: expression, description: "PARTITION BY's expressions."}
+                    order_by: {type: expression, description: "ORDER BY's expressions."}
+                    window_frame_clause: {type: expression, description: "The window frame (ROWS BETWEEN ...)."}
+  comment: {type: string}
+create: CREATE SEMANTIC VIEW {@id} TABLES ({tables})[ RELATIONSHIPS ({relationships})][ FACTS ({facts})][ DIMENSIONS ({dimensions})][ METRICS ({metrics})][ COMMENT = {comment}]
+read:
+- statement: SHOW SEMANTIC VIEWS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+alter:
+  comment: ALTER SEMANTIC VIEW {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER SEMANTIC VIEW {@id} UNSET COMMENT
+delete: DROP SEMANTIC VIEW IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_semantic_view
+  tables:
+  - {table_alias: orders, table_name: example_db.example_schema.orders, primary_key: [order_id], synonym: [purchases]}
+  dimensions:
+  - {qualified_expression_name: orders.order_date, sql_expression: orders.created_at}
+  metrics:
+  - semantic_expression: {qualified_expression_name: orders.order_count, sql_expression: COUNT(orders.order_id)}
+  comment: example-comment

@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\" AS (\\\"VAL\\\" VARCHAR) RETURNS VARCHAR -\\u003e CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END COMMENT = 'first'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000023\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000023\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000023",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000023\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000023\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000024\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000024\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000025\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000025\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000026\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000026\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000027\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000027\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000028\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000028\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000029\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000029\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000030\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000030\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000031\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000031\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000032\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000032\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000033\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000033\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000034\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000034\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000035\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000035\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000036\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000036\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000037\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000037\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000038\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000038\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000039\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000039\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000040\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000040\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"{{RUN_}}\",\"{{NAME_}}\",\"PUBLIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000041\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000041\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE MASKING POLICY \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"body\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000042\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000042\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP MASKING POLICY IF EXISTS \\\"{{RUN_}}\\\".\\\"PUBLIC\\\".\\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000043\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000043\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MASKING POLICIES LIKE '{{NAME_}}' IN SCHEMA \\\"{{RUN_}}\\\".\\\"PUBLIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000044\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000044\"}\n"
+    }
+  ]
+}

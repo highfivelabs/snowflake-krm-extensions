@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/external-volumes",
+      "body": "{\"allow_writes\":false,\"comment\":\"first\",\"name\":\"{{name_}}\",\"storage_locations\":[{\"name\":\"hfl-live\",\"storage_aws_role_arn\":\"arn:aws:iam::123456789012:role/hfl-live\",\"storage_base_url\":\"s3://hfl-live-nonexistent/\",\"storage_provider\":\"S3\"}]}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"allow_writes\":false,\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"storage_locations\":[{\"name\":\"hfl-live\",\"storage_aws_role_arn\":\"arn:aws:iam::123456789012:role/hfl-live\",\"storage_base_url\":\"s3://hfl-live-nonexistent/\",\"storage_provider\":\"S3\"}]}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"allow_writes\":false,\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"storage_locations\":[{\"name\":\"hfl-live\",\"storage_aws_role_arn\":\"arn:aws:iam::123456789012:role/hfl-live\",\"storage_base_url\":\"s3://hfl-live-nonexistent/\",\"storage_provider\":\"S3\"}]}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

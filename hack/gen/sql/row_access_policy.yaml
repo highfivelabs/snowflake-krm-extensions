@@ -1,0 +1,27 @@
+kind: RowAccessPolicy
+terraform: [snowflake_row_access_policy]
+scope: schema
+fields:
+  argument: {type: args, required: true}
+  body: {type: expression, required: true}
+  comment: {type: string}
+create: CREATE ROW ACCESS POLICY {@id} AS ({argument}) RETURNS BOOLEAN -> {body}[ COMMENT = {comment}]
+read:
+- statement: SHOW ROW ACCESS POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE ROW ACCESS POLICY {@id}
+  columns: {body: body}
+alter:
+  body: ALTER ROW ACCESS POLICY {@id} SET BODY -> {body}
+  comment: ALTER ROW ACCESS POLICY {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER ROW ACCESS POLICY {@id} UNSET COMMENT
+delete: DROP ROW ACCESS POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  argument: [{name: region, type: VARCHAR}]
+  body: "CURRENT_ROLE() = 'ADMIN' OR region = 'EU'"
+  comment: example-comment

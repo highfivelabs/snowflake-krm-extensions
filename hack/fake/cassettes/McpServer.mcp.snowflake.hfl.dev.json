@@ -1,0 +1,56 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE MCP SERVER \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_MCP_SERVER\\\" COMMENT = 'example-comment' FROM SPECIFICATION $$tools:\\n  - name: example_search\\n    type: CORTEX_SEARCH_SERVICE_QUERY\\n    identifier: example_db.example_schema.example_search\\n$$\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000660\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000660\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000660",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000660\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000660\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MCP SERVERS LIKE 'EXAMPLE_MCP_SERVER' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",\"EXAMPLE_MCP_SERVER\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000661\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000661\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MCP SERVERS LIKE 'EXAMPLE_MCP_SERVER' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",\"EXAMPLE_MCP_SERVER\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000662\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000662\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP MCP SERVER IF EXISTS \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_MCP_SERVER\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000663\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000663\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW MCP SERVERS LIKE 'EXAMPLE_MCP_SERVER' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000664\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000664\"}\n"
+    }
+  ]
+}

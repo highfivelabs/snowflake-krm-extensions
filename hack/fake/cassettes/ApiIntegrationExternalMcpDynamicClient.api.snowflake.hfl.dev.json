@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\" API_PROVIDER = external_mcp API_USER_AUTHENTICATION = (TYPE = OAUTH_DYNAMIC_CLIENT OAUTH_RESOURCE_URL = 'https://mcp.example.com/') API_ALLOWED_PREFIXES = ('https://mcp.example.com/') ENABLED = TRUE COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000462\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000462\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000462",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000462\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000462\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000463\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000463\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000464\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000464\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000465\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000465\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000466\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000466\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000467\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000467\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000468\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000468\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000469\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000469\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000470\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000470\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000471\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000471\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000472\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000472\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000473\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000473\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000474\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000474\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000475\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000475\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000476\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000476\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000477\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000477\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000478\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000478\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000479\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000479\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"true\",\"EXAMPLE_MCP_DYNAMIC\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000480\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000480\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE API INTEGRATION \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"API_ALLOWED_PREFIXES\",\"String\",\"[https://mcp.example.com/]\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000481\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000481\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP API INTEGRATION IF EXISTS \\\"EXAMPLE_MCP_DYNAMIC\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000482\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000482\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW API INTEGRATIONS LIKE 'EXAMPLE_MCP_DYNAMIC'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000483\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000483\"}\n"
+    }
+  ]
+}

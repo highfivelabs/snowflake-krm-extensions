@@ -1,0 +1,27 @@
+kind: CortexAgent
+terraform: [snowflake_cortex_agent]
+scope: schema
+fields:
+  specification: {type: dollarstring, required: true}
+  comment: {type: string}
+  profile: {type: string}
+create: CREATE AGENT {@id}[ COMMENT = {comment}][ PROFILE = {profile}] FROM SPECIFICATION {specification}
+read:
+- statement: SHOW AGENTS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+alter:
+  specification: ALTER AGENT {@id} MODIFY LIVE VERSION SET SPECIFICATION = {specification}
+  comment: ALTER AGENT {@id} SET COMMENT = {comment}
+  profile: ALTER AGENT {@id} SET PROFILE = {profile}
+delete: DROP AGENT IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_agent
+  comment: example-comment
+  specification: |
+    models:
+      orchestration: auto
+    instructions:
+      response: Answer briefly.

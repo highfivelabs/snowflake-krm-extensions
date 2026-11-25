@@ -1,0 +1,95 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/users",
+      "body": "{\"comment\":\"first\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"first\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"second\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"second\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"comment\":\"second\",\"created_on\":\"{{redacted}}\",\"custom_landing_page_url\":\"example-custom-landing-page-url\",\"custom_landing_page_url_flush_next_ui_load\":false,\"disabled\":true,\"expires_at\":\"{{redacted}}\",\"ext_authn_duo\":true,\"ext_authn_uid\":\"example-ext-authn-uid\",\"has_password\":true,\"has_rsa_public_key\":true,\"last_successful_login\":\"{{redacted}}\",\"locked_until\":\"{{redacted}}\",\"mins_to_bypass_network_policy\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"password_last_set\":\"{{redacted}}\",\"rsa_public_key_2_fp\":\"example-rsa-public-key-2-fp\",\"rsa_public_key_fp\":\"example-rsa-public-key-fp\",\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

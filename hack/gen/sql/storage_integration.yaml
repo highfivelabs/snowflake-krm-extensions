@@ -1,0 +1,62 @@
+kind: StorageIntegration
+terraform: [snowflake_storage_integration, snowflake_storage_integration_aws, snowflake_storage_integration_azure, snowflake_storage_integration_gcs]
+scope: account
+fields:
+  storage_provider: {type: string, required: true, enum: [S3, S3GOV, S3CHINA, GCS, AZURE]}
+  storage_aws_role_arn: {type: string}
+  storage_aws_external_id: {type: string}
+  storage_aws_object_acl: {type: string}
+  azure_tenant_id: {type: string}
+  use_privatelink_endpoint: {type: boolean}
+  enabled: {type: boolean, required: true}
+  storage_allowed_locations: {type: strings, required: true}
+  storage_blocked_locations: {type: strings}
+  comment: {type: string}
+  storage_aws_iam_user_arn: {type: string, output: true}
+  storage_gcp_service_account: {type: string, output: true}
+  azure_consent_url: {type: string, output: true}
+  azure_multi_tenant_app_name: {type: string, output: true}
+create: CREATE STORAGE INTEGRATION {@id} TYPE = EXTERNAL_STAGE STORAGE_PROVIDER = {storage_provider}[ STORAGE_AWS_ROLE_ARN = {storage_aws_role_arn}][ STORAGE_AWS_EXTERNAL_ID = {storage_aws_external_id}][ STORAGE_AWS_OBJECT_ACL = {storage_aws_object_acl}][ AZURE_TENANT_ID = {azure_tenant_id}][ USE_PRIVATELINK_ENDPOINT = {use_privatelink_endpoint}] ENABLED = {enabled} STORAGE_ALLOWED_LOCATIONS = ({storage_allowed_locations})[ STORAGE_BLOCKED_LOCATIONS = ({storage_blocked_locations})][ COMMENT = {comment}]
+read:
+- statement: SHOW STORAGE INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE STORAGE INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    storage_provider: STORAGE_PROVIDER
+    storage_aws_role_arn: STORAGE_AWS_ROLE_ARN
+    storage_aws_external_id: STORAGE_AWS_EXTERNAL_ID
+    storage_aws_object_acl: STORAGE_AWS_OBJECT_ACL
+    azure_tenant_id: AZURE_TENANT_ID
+    use_privatelink_endpoint: USE_PRIVATELINK_ENDPOINT
+    storage_allowed_locations: STORAGE_ALLOWED_LOCATIONS
+    storage_blocked_locations: STORAGE_BLOCKED_LOCATIONS
+    storage_aws_iam_user_arn: STORAGE_AWS_IAM_USER_ARN
+    storage_gcp_service_account: STORAGE_GCP_SERVICE_ACCOUNT
+    azure_consent_url: AZURE_CONSENT_URL
+    azure_multi_tenant_app_name: AZURE_MULTI_TENANT_APP_NAME
+alter:
+  storage_aws_role_arn: ALTER STORAGE INTEGRATION {@id} SET STORAGE_AWS_ROLE_ARN = {storage_aws_role_arn}
+  storage_aws_external_id: ALTER STORAGE INTEGRATION {@id} SET STORAGE_AWS_EXTERNAL_ID = {storage_aws_external_id}
+  storage_aws_object_acl: ALTER STORAGE INTEGRATION {@id} SET STORAGE_AWS_OBJECT_ACL = {storage_aws_object_acl}
+  azure_tenant_id: ALTER STORAGE INTEGRATION {@id} SET AZURE_TENANT_ID = {azure_tenant_id}
+  use_privatelink_endpoint: ALTER STORAGE INTEGRATION {@id} SET USE_PRIVATELINK_ENDPOINT = {use_privatelink_endpoint}
+  enabled: ALTER STORAGE INTEGRATION {@id} SET ENABLED = {enabled}
+  storage_allowed_locations: ALTER STORAGE INTEGRATION {@id} SET STORAGE_ALLOWED_LOCATIONS = ({storage_allowed_locations})
+  storage_blocked_locations: ALTER STORAGE INTEGRATION {@id} SET STORAGE_BLOCKED_LOCATIONS = ({storage_blocked_locations})
+  comment: ALTER STORAGE INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  storage_aws_external_id: ALTER STORAGE INTEGRATION {@id} UNSET STORAGE_AWS_EXTERNAL_ID
+  storage_aws_object_acl: ALTER STORAGE INTEGRATION {@id} UNSET STORAGE_AWS_OBJECT_ACL
+  use_privatelink_endpoint: ALTER STORAGE INTEGRATION {@id} UNSET USE_PRIVATELINK_ENDPOINT
+  storage_blocked_locations: ALTER STORAGE INTEGRATION {@id} UNSET STORAGE_BLOCKED_LOCATIONS
+  comment: ALTER STORAGE INTEGRATION {@id} UNSET COMMENT
+delete: DROP STORAGE INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_integration
+  storage_provider: S3
+  storage_aws_role_arn: "arn:aws:iam::000000000000:role/example"
+  enabled: true
+  storage_allowed_locations: ["s3://example-bucket/path/"]
+  comment: example-comment

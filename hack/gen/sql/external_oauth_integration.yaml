@@ -1,0 +1,67 @@
+kind: ExternalOauthIntegration
+terraform: [snowflake_external_oauth_integration]
+scope: account
+fields:
+  enabled: {required: true, type: boolean}
+  external_oauth_type: {enum: [OKTA, AZURE, PING_FEDERATE, CUSTOM], required: true, type: keyword}
+  external_oauth_issuer: {required: true, type: string}
+  external_oauth_token_user_mapping_claim: {required: true, type: strings}
+  external_oauth_snowflake_user_mapping_attribute: {enum: [LOGIN_NAME, EMAIL_ADDRESS], required: true, type: string}
+  external_oauth_jws_keys_url: {type: strings}
+  external_oauth_blocked_roles_list: {type: identifiers}
+  external_oauth_allowed_roles_list: {type: identifiers}
+  external_oauth_rsa_public_key: {type: string}
+  external_oauth_rsa_public_key_2: {type: string}
+  external_oauth_audience_list: {type: strings}
+  external_oauth_any_role_mode: {enum: [DISABLE, ENABLE, ENABLE_FOR_PRIVILEGE], type: keyword}
+  external_oauth_scope_delimiter: {type: string}
+  external_oauth_scope_mapping_attribute: {type: string}
+  comment: {type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = EXTERNAL_OAUTH ENABLED = {enabled} EXTERNAL_OAUTH_TYPE = {external_oauth_type} EXTERNAL_OAUTH_ISSUER = {external_oauth_issuer} EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM = ({external_oauth_token_user_mapping_claim}) EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE = {external_oauth_snowflake_user_mapping_attribute}[ EXTERNAL_OAUTH_JWS_KEYS_URL = ({external_oauth_jws_keys_url})][ EXTERNAL_OAUTH_BLOCKED_ROLES_LIST = ({external_oauth_blocked_roles_list})][ EXTERNAL_OAUTH_ALLOWED_ROLES_LIST = ({external_oauth_allowed_roles_list})][ EXTERNAL_OAUTH_RSA_PUBLIC_KEY = {external_oauth_rsa_public_key}][ EXTERNAL_OAUTH_RSA_PUBLIC_KEY_2 = {external_oauth_rsa_public_key_2}][ EXTERNAL_OAUTH_AUDIENCE_LIST = ({external_oauth_audience_list})][ EXTERNAL_OAUTH_ANY_ROLE_MODE = {external_oauth_any_role_mode}][ EXTERNAL_OAUTH_SCOPE_DELIMITER = {external_oauth_scope_delimiter}][ EXTERNAL_OAUTH_SCOPE_MAPPING_ATTRIBUTE = {external_oauth_scope_mapping_attribute}][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    external_oauth_type: EXTERNAL_OAUTH_TYPE
+    external_oauth_issuer: EXTERNAL_OAUTH_ISSUER
+    external_oauth_token_user_mapping_claim: EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM
+    external_oauth_snowflake_user_mapping_attribute: EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE
+    external_oauth_jws_keys_url: EXTERNAL_OAUTH_JWS_KEYS_URL
+    external_oauth_blocked_roles_list: EXTERNAL_OAUTH_BLOCKED_ROLES_LIST
+    external_oauth_allowed_roles_list: EXTERNAL_OAUTH_ALLOWED_ROLES_LIST
+    external_oauth_audience_list: EXTERNAL_OAUTH_AUDIENCE_LIST
+    external_oauth_any_role_mode: EXTERNAL_OAUTH_ANY_ROLE_MODE
+    external_oauth_scope_delimiter: EXTERNAL_OAUTH_SCOPE_DELIMITER
+    external_oauth_scope_mapping_attribute: EXTERNAL_OAUTH_SCOPE_MAPPING_ATTRIBUTE
+alter:
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  external_oauth_type: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_TYPE = {external_oauth_type}
+  external_oauth_issuer: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_ISSUER = {external_oauth_issuer}
+  external_oauth_token_user_mapping_claim: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM = ({external_oauth_token_user_mapping_claim})
+  external_oauth_snowflake_user_mapping_attribute: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE = {external_oauth_snowflake_user_mapping_attribute}
+  external_oauth_jws_keys_url: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_JWS_KEYS_URL = ({external_oauth_jws_keys_url})
+  external_oauth_blocked_roles_list: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_BLOCKED_ROLES_LIST = ({external_oauth_blocked_roles_list})
+  external_oauth_allowed_roles_list: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_ALLOWED_ROLES_LIST = ({external_oauth_allowed_roles_list})
+  external_oauth_rsa_public_key: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_RSA_PUBLIC_KEY = {external_oauth_rsa_public_key}
+  external_oauth_rsa_public_key_2: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_RSA_PUBLIC_KEY_2 = {external_oauth_rsa_public_key_2}
+  external_oauth_audience_list: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_AUDIENCE_LIST = ({external_oauth_audience_list})
+  external_oauth_any_role_mode: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_ANY_ROLE_MODE = {external_oauth_any_role_mode}
+  external_oauth_scope_delimiter: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_SCOPE_DELIMITER = {external_oauth_scope_delimiter}
+  external_oauth_scope_mapping_attribute: ALTER SECURITY INTEGRATION {@id} SET EXTERNAL_OAUTH_SCOPE_MAPPING_ATTRIBUTE = {external_oauth_scope_mapping_attribute}
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  enabled: ALTER SECURITY INTEGRATION {@id} UNSET ENABLED
+  external_oauth_audience_list: ALTER SECURITY INTEGRATION {@id} UNSET EXTERNAL_OAUTH_AUDIENCE_LIST
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_oauth
+  enabled: true
+  external_oauth_type: CUSTOM
+  external_oauth_issuer: https://idp.example.com/
+  external_oauth_token_user_mapping_claim: [sub]
+  external_oauth_snowflake_user_mapping_attribute: LOGIN_NAME
+  external_oauth_jws_keys_url: ['https://idp.example.com/keys']
+  comment: example-comment

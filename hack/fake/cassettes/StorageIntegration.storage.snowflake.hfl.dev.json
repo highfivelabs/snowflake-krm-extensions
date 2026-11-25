@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE STORAGE INTEGRATION \\\"{{NAME_}}\\\" TYPE = EXTERNAL_STAGE STORAGE_PROVIDER = 'S3' STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::123456789012:role/hfl-live' ENABLED = FALSE STORAGE_ALLOWED_LOCATIONS = ('s3://hfl-live-nonexistent/') COMMENT = 'first'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000359\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000359\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000359",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000359\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000359\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000360\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000360\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000361\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000361\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000362\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000362\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000363\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000363\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000364\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000364\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000365\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000365\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER STORAGE INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000366\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000366\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000367\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000367\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000368\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000368\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000369\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000369\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000370\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000370\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER STORAGE INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000371\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000371\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000372\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000372\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000373\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000373\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER STORAGE INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000374\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000374\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000375\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000375\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000376\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000376\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000377\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000377\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE STORAGE INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"AZURE_CONSENT_URL\",\"String\",\"example-azure-consent-url-24\",\"\"],[\"AZURE_MULTI_TENANT_APP_NAME\",\"String\",\"example-azure-multi-tenant-app-name-24\",\"\"],[\"STORAGE_ALLOWED_LOCATIONS\",\"String\",\"[s3://hfl-live-nonexistent/]\",\"\"],[\"STORAGE_AWS_IAM_USER_ARN\",\"String\",\"example-storage-aws-iam-user-arn-24\",\"\"],[\"STORAGE_AWS_ROLE_ARN\",\"String\",\"arn:aws:iam::123456789012:role/hfl-live\",\"\"],[\"STORAGE_GCP_SERVICE_ACCOUNT\",\"String\",\"example-storage-gcp-service-account-24\",\"\"],[\"STORAGE_PROVIDER\",\"String\",\"S3\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":7,\"partitionInfo\":[{\"rowCount\":7}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000378\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000378\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP STORAGE INTEGRATION IF EXISTS \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000379\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000379\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW STORAGE INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000380\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000380\"}\n"
+    }
+  ]
+}

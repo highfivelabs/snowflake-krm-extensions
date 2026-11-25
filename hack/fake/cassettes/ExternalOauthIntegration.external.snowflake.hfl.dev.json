@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE SECURITY INTEGRATION \\\"{{NAME_}}\\\" TYPE = EXTERNAL_OAUTH ENABLED = FALSE EXTERNAL_OAUTH_TYPE = CUSTOM EXTERNAL_OAUTH_ISSUER = 'https://hfl-live.example/' EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM = ('sub') EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE = 'LOGIN_NAME' EXTERNAL_OAUTH_JWS_KEYS_URL = ('https://hfl-live.example/keys') COMMENT = 'first'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000270\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000270\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000270",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000270\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000270\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000271\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000271\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000272\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000272\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000273\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000273\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000274\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000274\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000275\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000275\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000276\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000276\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000277\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000277\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000278\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000278\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000279\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000279\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000280\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000280\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000281\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000281\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000282\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000282\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000283\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000283\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000284\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000284\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000285\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000285\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000286\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000286\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000287\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000287\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000288\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000288\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXTERNAL_OAUTH_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"EXTERNAL_OAUTH_JWS_KEYS_URL\",\"String\",\"[https://hfl-live.example/keys]\",\"\"],[\"EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE\",\"String\",\"LOGIN_NAME\",\"\"],[\"EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM\",\"String\",\"[sub]\",\"\"],[\"EXTERNAL_OAUTH_TYPE\",\"String\",\"CUSTOM\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":5,\"partitionInfo\":[{\"rowCount\":5}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000289\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000289\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP SECURITY INTEGRATION IF EXISTS \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000290\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000290\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000291\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000291\"}\n"
+    }
+  ]
+}

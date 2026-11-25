@@ -1,0 +1,47 @@
+kind: ExternalFunction
+terraform: [snowflake_external_function]
+scope: schema
+fields:
+  arg: {type: args, required: true}
+  return_type: {type: datatype, required: true}
+  return_null_allowed: {type: boolean}
+  null_input_behavior: {type: keyword, enum: [CALLED ON NULL INPUT, RETURNS NULL ON NULL INPUT, STRICT]}
+  return_behavior: {type: keyword, required: true, enum: [VOLATILE, IMMUTABLE]}
+  comment: {type: string}
+  api_integration: {type: identifier, required: true}
+  header:
+    type: objects
+    item:
+      template: "{name} = {value}"
+      fields:
+        name: {type: string, required: true}
+        value: {type: string, required: true, description: "Its value."}
+  context_headers: {type: keywords}
+  max_batch_rows: {type: integer}
+  compression: {type: keyword, enum: [NONE, AUTO, GZIP, DEFLATE]}
+  request_translator: {type: name}
+  response_translator: {type: name}
+  url_of_proxy_and_resource: {type: string, required: true}
+create: CREATE EXTERNAL FUNCTION {@id}({arg}) RETURNS {return_type}[ NULL{?return_null_allowed}][ NOT NULL{!return_null_allowed}][ {null_input_behavior}] {return_behavior}[ COMMENT = {comment}] API_INTEGRATION = {api_integration}[ HEADERS = ({header})][ CONTEXT_HEADERS = ({context_headers})][ MAX_BATCH_ROWS = {max_batch_rows}][ COMPRESSION = {compression}][ REQUEST_TRANSLATOR = {request_translator}][ RESPONSE_TRANSLATOR = {response_translator}] AS {url_of_proxy_and_resource}
+read:
+- statement: SHOW EXTERNAL FUNCTIONS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", catalog_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: description}
+alter:
+  comment: ALTER FUNCTION {@id}({arg.type}) SET COMMENT = {comment}
+unset:
+  comment: ALTER FUNCTION {@id}({arg.type}) UNSET COMMENT
+delete: DROP FUNCTION IF EXISTS {@id}({arg.type})
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_function
+  arg: [{name: payload, type: VARCHAR}]
+  return_type: VARIANT
+  return_null_allowed: true
+  return_behavior: IMMUTABLE
+  api_integration: example_api_integration
+  header: [{name: x-example, value: example-value}]
+  context_headers: [CURRENT_ACCOUNT]
+  url_of_proxy_and_resource: https://example.execute-api.us-west-2.amazonaws.com/prod/example
+  comment: example-comment

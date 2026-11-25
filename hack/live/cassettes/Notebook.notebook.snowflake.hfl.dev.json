@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:16Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\",\"query_warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Notebook {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"version\" : null,\n  \"fromLocation\" : null,\n  \"main_file\" : \"notebook_app.ipynb\",\n  \"comment\" : \"first\",\n  \"default_version\" : \"LAST\",\n  \"query_warehouse\" : \"{{RUN_}}\",\n  \"created_on\" : \"2026-11-20T23:57:15.118+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"url_id\" : \"jgy3nhimtt3fyptpuxmb\",\n  \"title\" : null,\n  \"default_packages\" : \"python==3.10.*,streamlit==1.39.1,snowbooks==1.72.0\",\n  \"user_packages\" : \"\",\n  \"runtime_name\" : null,\n  \"compute_pool\" : null,\n  \"import_urls\" : [ ],\n  \"external_access_integrations\" : [ ],\n  \"external_access_secrets\" : null,\n  \"idle_auto_shutdown_time_seconds\" : 1800,\n  \"default_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://notebook/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : null,\n    \"git_commit_hash\" : null\n  },\n  \"last_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://notebook/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : null,\n    \"git_commit_hash\" : null\n  },\n  \"live_version_location_uri\" : null,\n  \"budget\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nnotebook '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on notebook {{run_}}.public.{{name_}}.\",\"request_id\":\"33e9d4fd-053b-4a39-ad57-2eab1910740d\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

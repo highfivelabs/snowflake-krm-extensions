@@ -1,0 +1,45 @@
+kind: PostgresInstance
+terraform: [snowflake_postgres_instance]
+scope: account
+group: postgres
+fields:
+  compute_family: {type: string, required: true, enum: [STANDARD_M, STANDARD_L, STANDARD_XL, STANDARD_2XL, STANDARD_4XL, STANDARD_8XL, STANDARD_12XL, STANDARD_24XL, HIGHMEM_L, HIGHMEM_XL, HIGHMEM_2XL, HIGHMEM_4XL, HIGHMEM_8XL, HIGHMEM_12XL, HIGHMEM_16XL, HIGHMEM_24XL, HIGHMEM_32XL, HIGHMEM_48XL, BURST_XS, BURST_S, BURST_M]}
+  storage_size_gb: {type: integer, required: true}
+  authentication_authority: {type: keyword, required: true, enum: [POSTGRES, POSTGRES_OR_SNOWFLAKE]}
+  postgres_version: {type: integer, required: true}
+  network_policy: {type: identifier}
+  high_availability: {type: boolean}
+  storage_integration: {type: identifier}
+  postgres_settings: {type: string}
+  maintenance_window_start: {type: integer}
+  comment: {type: string}
+create: CREATE POSTGRES INSTANCE {@id} COMPUTE_FAMILY = {compute_family} STORAGE_SIZE_GB = {storage_size_gb} AUTHENTICATION_AUTHORITY = {authentication_authority} POSTGRES_VERSION = {postgres_version}[ NETWORK_POLICY = {network_policy}][ HIGH_AVAILABILITY = {high_availability}][ STORAGE_INTEGRATION = {storage_integration}][ POSTGRES_SETTINGS = {postgres_settings}][ COMMENT = {comment}]
+read:
+- statement: SHOW POSTGRES INSTANCES LIKE {@like}
+  match: {name: "{name}"}
+  columns: {compute_family: compute_family, authentication_authority: authentication_authority, storage_size_gb: storage_size, postgres_version: postgres_version, comment: comment}
+alter:
+  compute_family: ALTER POSTGRES INSTANCE {@id} SET COMPUTE_FAMILY = {compute_family}
+  storage_size_gb: ALTER POSTGRES INSTANCE {@id} SET STORAGE_SIZE_GB = {storage_size_gb}
+  authentication_authority: ALTER POSTGRES INSTANCE {@id} SET AUTHENTICATION_AUTHORITY = {authentication_authority}
+  postgres_version: ALTER POSTGRES INSTANCE {@id} SET POSTGRES_VERSION = {postgres_version}
+  network_policy: ALTER POSTGRES INSTANCE {@id} SET NETWORK_POLICY = {network_policy}
+  high_availability: ALTER POSTGRES INSTANCE {@id} SET HIGH_AVAILABILITY = {high_availability}
+  storage_integration: ALTER POSTGRES INSTANCE {@id} SET STORAGE_INTEGRATION = {storage_integration}
+  postgres_settings: ALTER POSTGRES INSTANCE {@id} SET POSTGRES_SETTINGS = {postgres_settings}
+  maintenance_window_start: ALTER POSTGRES INSTANCE {@id} SET MAINTENANCE_WINDOW_START = {maintenance_window_start}
+  comment: ALTER POSTGRES INSTANCE {@id} SET COMMENT = {comment}
+unset:
+  network_policy: ALTER POSTGRES INSTANCE {@id} UNSET NETWORK_POLICY
+  storage_integration: ALTER POSTGRES INSTANCE {@id} UNSET STORAGE_INTEGRATION
+  postgres_settings: ALTER POSTGRES INSTANCE {@id} UNSET POSTGRES_SETTINGS
+  maintenance_window_start: ALTER POSTGRES INSTANCE {@id} UNSET MAINTENANCE_WINDOW_START
+  comment: ALTER POSTGRES INSTANCE {@id} UNSET COMMENT
+delete: DROP POSTGRES INSTANCE IF EXISTS {@id}
+sample:
+  name: example_postgres
+  compute_family: STANDARD_M
+  storage_size_gb: 10
+  authentication_authority: POSTGRES
+  postgres_version: 17
+  comment: example-comment

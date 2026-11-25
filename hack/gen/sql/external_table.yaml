@@ -1,0 +1,38 @@
+kind: ExternalTable
+terraform: [snowflake_external_table]
+scope: schema
+fields:
+  column:
+    type: objects
+    required: true
+    item:
+      template: "{name} {type} AS ({as})"
+      fields:
+        name: {type: identifier, required: true}
+        type: {type: datatype, required: true, description: "Its data type, VARIANT."}
+        as: {type: expression, required: true}
+  partition_by: {type: identifiers}
+  location: {type: expression, required: true}
+  refresh_on_create: {type: boolean}
+  auto_refresh: {type: boolean}
+  pattern: {type: string}
+  file_format: {type: expression, required: true}
+  table_format: {type: keyword, enum: [DELTA]}
+  aws_sns_topic: {type: string}
+  comment: {type: string}
+create: CREATE EXTERNAL TABLE {@id} ({column})[ PARTITION BY ({partition_by})] LOCATION = {location}[ REFRESH_ON_CREATE = {refresh_on_create}][ AUTO_REFRESH = {auto_refresh}][ PATTERN = {pattern}] FILE_FORMAT = ({file_format})[ TABLE_FORMAT = {table_format}][ AWS_SNS_TOPIC = {aws_sns_topic}][ COMMENT = {comment}]
+read:
+- statement: SHOW EXTERNAL TABLES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+delete: DROP EXTERNAL TABLE IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_external_table
+  column:
+  - {name: id, type: VARCHAR, as: "value:c1::varchar"}
+  location: "@example_db.example_schema.example_stage"
+  file_format: TYPE = CSV
+  auto_refresh: false
+  comment: example-comment

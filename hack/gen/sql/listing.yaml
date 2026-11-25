@@ -1,0 +1,39 @@
+kind: Listing
+terraform: [snowflake_listing]
+scope: account
+fields:
+  manifest:
+    type: object
+    required: true
+    item:
+      template: "[AS {from_string}][FROM {from_stage}]"
+      fields:
+        from_string: {type: dollarstring}
+        from_stage: {type: string}
+  share: {type: identifier}
+  application_package: {type: identifier}
+  publish: {type: boolean}
+  comment: {type: string}
+create: CREATE EXTERNAL LISTING {@id}[ SHARE {share}][ APPLICATION PACKAGE {application_package}] {manifest}[ PUBLISH = {publish}][ COMMENT = {comment}]
+read:
+- statement: SHOW LISTINGS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment}
+alter:
+  publish: ALTER LISTING {@id}[ PUBLISH{?publish}][ UNPUBLISH{!publish}]
+  comment: ALTER LISTING {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER LISTING {@id} UNSET COMMENT
+delete: DROP LISTING IF EXISTS {@id}
+sample:
+  name: example_listing
+  share: example_share
+  manifest:
+    from_string: |
+      title: Example listing
+      subtitle: Example data
+      description: Example data for consumers.
+      listing_terms:
+        type: OFFLINE
+  publish: false
+  comment: example-comment

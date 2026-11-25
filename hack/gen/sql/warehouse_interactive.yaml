@@ -1,0 +1,57 @@
+kind: WarehouseInteractive
+terraform: [snowflake_warehouse_interactive]
+scope: account
+group: warehouse
+fields:
+  tables: {type: names}
+  warehouse_size: {type: string, enum: [XSMALL, SMALL, MEDIUM, LARGE, XLARGE, XXLARGE, XXXLARGE, X4LARGE, X5LARGE, X6LARGE]}
+  max_cluster_count: {type: integer}
+  min_cluster_count: {type: integer}
+  auto_suspend: {type: integer}
+  auto_resume: {type: boolean}
+  initially_suspended: {type: boolean}
+  resource_monitor: {type: identifier}
+  comment: {type: string}
+  fallback_warehouse: {type: identifier}
+  max_concurrency_level: {type: integer}
+  statement_queued_timeout_in_seconds: {type: integer}
+  statement_timeout_in_seconds: {type: integer}
+create: CREATE INTERACTIVE WAREHOUSE {@id}[ TABLES ({tables})][ WAREHOUSE_SIZE = {warehouse_size}][ MAX_CLUSTER_COUNT = {max_cluster_count}][ MIN_CLUSTER_COUNT = {min_cluster_count}][ AUTO_SUSPEND = {auto_suspend}][ AUTO_RESUME = {auto_resume}][ INITIALLY_SUSPENDED = {initially_suspended}][ RESOURCE_MONITOR = {resource_monitor}][ COMMENT = {comment}][ FALLBACK_WAREHOUSE = {fallback_warehouse}][ MAX_CONCURRENCY_LEVEL = {max_concurrency_level}][ STATEMENT_QUEUED_TIMEOUT_IN_SECONDS = {statement_queued_timeout_in_seconds}][ STATEMENT_TIMEOUT_IN_SECONDS = {statement_timeout_in_seconds}]
+read:
+- statement: SHOW WAREHOUSES LIKE {@like}
+  match: {name: "{name}", type: INTERACTIVE}
+  columns: {tables: tables, max_cluster_count: max_cluster_count, min_cluster_count: min_cluster_count, auto_suspend: auto_suspend, auto_resume: auto_resume, resource_monitor: resource_monitor, comment: comment}
+alter:
+  warehouse_size: ALTER WAREHOUSE {@id} SET WAREHOUSE_SIZE = {warehouse_size}
+  max_cluster_count: ALTER WAREHOUSE {@id} SET MAX_CLUSTER_COUNT = {max_cluster_count}
+  min_cluster_count: ALTER WAREHOUSE {@id} SET MIN_CLUSTER_COUNT = {min_cluster_count}
+  auto_suspend: ALTER WAREHOUSE {@id} SET AUTO_SUSPEND = {auto_suspend}
+  auto_resume: ALTER WAREHOUSE {@id} SET AUTO_RESUME = {auto_resume}
+  resource_monitor: ALTER WAREHOUSE {@id} SET RESOURCE_MONITOR = {resource_monitor}
+  comment: ALTER WAREHOUSE {@id} SET COMMENT = {comment}
+  fallback_warehouse: ALTER WAREHOUSE {@id} SET FALLBACK_WAREHOUSE = {fallback_warehouse}
+  max_concurrency_level: ALTER WAREHOUSE {@id} SET MAX_CONCURRENCY_LEVEL = {max_concurrency_level}
+  statement_queued_timeout_in_seconds: ALTER WAREHOUSE {@id} SET STATEMENT_QUEUED_TIMEOUT_IN_SECONDS = {statement_queued_timeout_in_seconds}
+  statement_timeout_in_seconds: ALTER WAREHOUSE {@id} SET STATEMENT_TIMEOUT_IN_SECONDS = {statement_timeout_in_seconds}
+unset:
+  max_cluster_count: ALTER WAREHOUSE {@id} UNSET MAX_CLUSTER_COUNT
+  min_cluster_count: ALTER WAREHOUSE {@id} UNSET MIN_CLUSTER_COUNT
+  auto_suspend: ALTER WAREHOUSE {@id} UNSET AUTO_SUSPEND
+  auto_resume: ALTER WAREHOUSE {@id} UNSET AUTO_RESUME
+  resource_monitor: ALTER WAREHOUSE {@id} UNSET RESOURCE_MONITOR
+  comment: ALTER WAREHOUSE {@id} UNSET COMMENT
+  fallback_warehouse: ALTER WAREHOUSE {@id} UNSET FALLBACK_WAREHOUSE
+  max_concurrency_level: ALTER WAREHOUSE {@id} UNSET MAX_CONCURRENCY_LEVEL
+  statement_queued_timeout_in_seconds: ALTER WAREHOUSE {@id} UNSET STATEMENT_QUEUED_TIMEOUT_IN_SECONDS
+  statement_timeout_in_seconds: ALTER WAREHOUSE {@id} UNSET STATEMENT_TIMEOUT_IN_SECONDS
+add:
+  tables: ALTER WAREHOUSE {@id} ADD TABLES ({tables})
+remove:
+  tables: ALTER WAREHOUSE {@id} DROP TABLES ({tables})
+delete: DROP WAREHOUSE IF EXISTS {@id}
+sample:
+  name: example_interactive_warehouse
+  tables: [example_db.example_schema.example_table]
+  warehouse_size: XSMALL
+  auto_suspend: 86400
+  comment: example-comment

@@ -1,0 +1,19 @@
+kind: UserPublicKeySet
+terraform: [snowflake_user_public_keys]
+mode: set
+group: user
+fields:
+  name: {type: identifier, required: true}
+  rsa_public_key: {type: string, required: true}
+  rsa_public_key_2: {type: string}
+  rsa_public_key_fp: {type: string, output: true}
+  rsa_public_key_2_fp: {type: string, output: true}
+create: ALTER USER {name} SET RSA_PUBLIC_KEY = {rsa_public_key}[ RSA_PUBLIC_KEY_2 = {rsa_public_key_2}]
+read:
+- statement: DESCRIBE USER {name}
+  properties: {name: property, value: value, "null": "null"}
+  columns: {rsa_public_key_fp: RSA_PUBLIC_KEY_FP, rsa_public_key_2_fp: RSA_PUBLIC_KEY_2_FP}
+delete: ALTER USER {name} UNSET RSA_PUBLIC_KEY, RSA_PUBLIC_KEY_2
+sample:
+  name: example_user
+  rsa_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAexample

@@ -1,0 +1,1523 @@
+{
+ "provider": "snowflakedb/snowflake",
+ "resources": {
+  "snowflake_current_account": {
+   "attributes": {
+    "abort_detached_query": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "active_python_profiler": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "allow_bind_values_access": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allow_client_mfa_caching": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allow_id_token": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allowed_spcs_workload_types": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "authentication_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "autocommit": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "base_location_prefix": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "binary_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "binary_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "catalog": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "catalog_sync": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "client_enable_log_info_statement_parameters": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_encryption_key_size": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_memory_limit": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_metadata_request_use_connection_ctx": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_metadata_use_session_database": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_prefetch_threads": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_result_chunk_size": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_result_column_case_insensitive": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_session_keep_alive": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_session_keep_alive_heartbeat_frequency": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_timestamp_type_mapping": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "cortex_code_cli_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_code_desktop_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_code_snowsight_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_enabled_cross_region": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "cortex_models_allowlist": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "csv_timestamp_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "data_metric_schedule": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "data_retention_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "date_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "date_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_dbt_version": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_ddl_collation": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_notebook_compute_pool_cpu": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_notebook_compute_pool_gpu": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_null_ordering": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_streamlit_compute_pool": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_streamlit_notebook_warehouse": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "disable_ui_download_button": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "disable_user_privilege_grants": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "disallowed_spcs_workload_types": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "enable_automatic_sensitive_data_classification_log": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_budget_event_logging": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_cortex_analyst": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_data_compaction": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_egress_cost_optimizer": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_get_ddl_use_data_type_alias": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_iceberg_merge_on_read": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_identifier_first_login": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_internal_stages_privatelink": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_notebook_creation_in_personal_db": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_per_account_app_service_privatelink_url": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_spcs_block_storage_snowflake_full_encryption_enforcement": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tag_propagation_event_logging": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tri_secret_and_rekey_opt_out_for_image_repository": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unhandled_exceptions_reporting": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unload_physical_type_optimization": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unredacted_query_syntax_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unredacted_secure_object_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enforce_network_rules_for_internal_stages": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "error_on_nondeterministic_merge": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "error_on_nondeterministic_update": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "event_table": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "external_oauth_add_privileged_roles_to_blocked_list": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "external_volume": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "feature_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "geography_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "geometry_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "hybrid_table_lock_timeout": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "iceberg_version_default": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "id": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "initial_replication_size_limit_in_tb": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "jdbc_treat_decimal_as_int": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "jdbc_treat_timestamp_ntz_as_utc": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "jdbc_use_session_timezone": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "js_treat_integer_as_bigint": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "json_indent": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "listing_auto_fulfillment_replication_refresh_schedule": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "lock_timeout": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "log_event_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "log_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "max_concurrency_level": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "max_data_extension_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "metric_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "min_data_retention_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "multi_statement_count": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "network_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "noorder_sequence_as_default": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "oauth_add_privileged_roles_to_blocked_list": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "odbc_treat_decimal_as_int": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "packages_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "password_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "periodic_data_rekeying": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "pipe_execution_paused": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "prevent_unload_to_inline_url": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "prevent_unload_to_internal_stages": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "python_profiler_modules": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "python_profiler_target_stage": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "query_tag": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "quoted_identifiers_ignore_case": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "read_consistency_mode": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "replace_invalid_characters": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "require_storage_integration_for_stage_creation": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "require_storage_integration_for_stage_operation": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "resource_monitor": {
+     "optional": true,
+     "type": "string"
+    },
+    "row_timestamp_default": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "rows_per_resultset": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "s3_stage_vpce_dns_name": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "search_path": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "serverless_task_max_statement_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "serverless_task_min_statement_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "session_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "simulated_data_sharing_consumer": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "sql_trace_query_text": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "sso_login_page": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "statement_queued_timeout_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "statement_timeout_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "storage_serialization_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "strict_json_output": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "suspend_task_after_num_failures": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "task_auto_retry_attempts": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "time_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "time_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_day_is_always_24h": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "timestamp_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_ltz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_ntz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_type_mapping": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_tz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timezone": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "trace_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "transaction_abort_on_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "transaction_default_isolation_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "two_digit_century_start": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "unsupported_ddl_action": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "use_cached_result": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "use_workspaces_for_sql": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "user_task_managed_initial_warehouse_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "user_task_minimum_trigger_interval_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "user_task_timeout_ms": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "week_of_year_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "week_start": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    }
+   },
+   "block_types": {
+    "timeouts": {
+     "block": {
+      "attributes": {
+       "create": {
+        "optional": true,
+        "type": "string"
+       },
+       "delete": {
+        "optional": true,
+        "type": "string"
+       },
+       "read": {
+        "optional": true,
+        "type": "string"
+       },
+       "update": {
+        "optional": true,
+        "type": "string"
+       }
+      }
+     },
+     "nesting_mode": "single"
+    }
+   }
+  },
+  "snowflake_current_organization_account": {
+   "attributes": {
+    "abort_detached_query": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "active_python_profiler": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "allow_bind_values_access": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allow_client_mfa_caching": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allow_id_token": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "allowed_spcs_workload_types": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "autocommit": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "base_location_prefix": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "binary_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "binary_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "catalog": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "catalog_sync": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "client_enable_log_info_statement_parameters": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_encryption_key_size": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_memory_limit": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_metadata_request_use_connection_ctx": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_metadata_use_session_database": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_prefetch_threads": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_result_chunk_size": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_result_column_case_insensitive": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_session_keep_alive": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "client_session_keep_alive_heartbeat_frequency": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "client_timestamp_type_mapping": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "comment": {
+     "optional": true,
+     "type": "string"
+    },
+    "cortex_code_cli_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_code_desktop_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_code_snowsight_daily_est_credit_limit_per_user": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "cortex_enabled_cross_region": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "cortex_models_allowlist": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "csv_timestamp_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "data_metric_schedule": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "data_retention_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "date_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "date_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_dbt_version": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_ddl_collation": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_notebook_compute_pool_cpu": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_notebook_compute_pool_gpu": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_null_ordering": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_streamlit_compute_pool": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "default_streamlit_notebook_warehouse": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "disable_ui_download_button": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "disable_user_privilege_grants": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "disallowed_spcs_workload_types": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "enable_automatic_sensitive_data_classification_log": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_budget_event_logging": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_cortex_analyst": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_data_compaction": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_egress_cost_optimizer": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_get_ddl_use_data_type_alias": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_iceberg_merge_on_read": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_identifier_first_login": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_internal_stages_privatelink": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_notebook_creation_in_personal_db": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_per_account_app_service_privatelink_url": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_spcs_block_storage_snowflake_full_encryption_enforcement": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tag_propagation_event_logging": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tri_secret_and_rekey_opt_out_for_image_repository": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unhandled_exceptions_reporting": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unload_physical_type_optimization": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unredacted_query_syntax_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enable_unredacted_secure_object_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "enforce_network_rules_for_internal_stages": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "error_on_nondeterministic_merge": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "error_on_nondeterministic_update": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "event_table": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "external_oauth_add_privileged_roles_to_blocked_list": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "external_volume": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "geography_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "geometry_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "hybrid_table_lock_timeout": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "iceberg_version_default": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "id": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "initial_replication_size_limit_in_tb": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "jdbc_treat_decimal_as_int": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "jdbc_treat_timestamp_ntz_as_utc": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "jdbc_use_session_timezone": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "js_treat_integer_as_bigint": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "json_indent": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "listing_auto_fulfillment_replication_refresh_schedule": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "lock_timeout": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "log_event_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "log_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "max_concurrency_level": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "max_data_extension_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "metric_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "min_data_retention_time_in_days": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "multi_statement_count": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "name": {
+     "required": true,
+     "type": "string"
+    },
+    "network_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "noorder_sequence_as_default": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "oauth_add_privileged_roles_to_blocked_list": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "odbc_treat_decimal_as_int": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "password_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "periodic_data_rekeying": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "pipe_execution_paused": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "prevent_unload_to_inline_url": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "prevent_unload_to_internal_stages": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "python_profiler_modules": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "python_profiler_target_stage": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "query_tag": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "quoted_identifiers_ignore_case": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "read_consistency_mode": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "replace_invalid_characters": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "require_storage_integration_for_stage_creation": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "require_storage_integration_for_stage_operation": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "resource_monitor": {
+     "optional": true,
+     "type": "string"
+    },
+    "row_timestamp_default": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "rows_per_resultset": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "s3_stage_vpce_dns_name": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "search_path": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "serverless_task_max_statement_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "serverless_task_min_statement_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "session_policy": {
+     "optional": true,
+     "type": "string"
+    },
+    "show_output": {
+     "computed": true
+    },
+    "simulated_data_sharing_consumer": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "sql_trace_query_text": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "sso_login_page": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "statement_queued_timeout_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "statement_timeout_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "storage_serialization_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "strict_json_output": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "suspend_task_after_num_failures": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "task_auto_retry_attempts": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "time_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "time_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_day_is_always_24h": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "timestamp_input_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_ltz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_ntz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_type_mapping": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timestamp_tz_output_format": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "timezone": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "trace_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "transaction_abort_on_error": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "transaction_default_isolation_level": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "two_digit_century_start": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "unsupported_ddl_action": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "use_cached_result": {
+     "computed": true,
+     "optional": true,
+     "type": "bool"
+    },
+    "use_workspaces_for_sql": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "user_task_managed_initial_warehouse_size": {
+     "computed": true,
+     "optional": true,
+     "type": "string"
+    },
+    "user_task_minimum_trigger_interval_in_seconds": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "user_task_timeout_ms": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "week_of_year_policy": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    },
+    "week_start": {
+     "computed": true,
+     "optional": true,
+     "type": "number"
+    }
+   },
+   "block_types": {
+    "timeouts": {
+     "block": {
+      "attributes": {
+       "create": {
+        "optional": true,
+        "type": "string"
+       },
+       "delete": {
+        "optional": true,
+        "type": "string"
+       },
+       "read": {
+        "optional": true,
+        "type": "string"
+       },
+       "update": {
+        "optional": true,
+        "type": "string"
+       }
+      }
+     },
+     "nesting_mode": "single"
+    }
+   }
+  }
+ },
+ "source": "terraform providers schema -json (terraform 1.17.2); descriptions it lacks from https://registry.terraform.io/providers/snowflakedb/snowflake/2.23.0/docs",
+ "terraform": "1.17.2",
+ "version": "2.23.0"
+}

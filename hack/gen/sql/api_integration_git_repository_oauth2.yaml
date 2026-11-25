@@ -1,0 +1,45 @@
+kind: ApiIntegrationGitRepositoryOauth2
+terraform: [snowflake_api_integration_git_repository_oauth2]
+scope: account
+group: api
+fields:
+  oauth_authorization_endpoint: {type: string, required: true}
+  oauth_token_endpoint: {type: string, required: true}
+  oauth_client_id: {type: string, required: true}
+  oauth_client_secret: {type: string, required: true}
+  oauth_access_token_validity: {type: integer}
+  oauth_refresh_token_validity: {type: integer}
+  oauth_allowed_scopes: {type: strings}
+  oauth_username: {type: string}
+  api_allowed_prefixes: {type: strings, required: true}
+  api_blocked_prefixes: {type: strings}
+  enabled: {type: boolean, required: true}
+  comment: {type: string}
+create: CREATE API INTEGRATION {@id} API_PROVIDER = git_https_api API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret}[ OAUTH_ACCESS_TOKEN_VALIDITY = {oauth_access_token_validity}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}][ OAUTH_ALLOWED_SCOPES = ({oauth_allowed_scopes})][ OAUTH_USERNAME = {oauth_username}]) API_ALLOWED_PREFIXES = ({api_allowed_prefixes})[ API_BLOCKED_PREFIXES = ({api_blocked_prefixes})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW API INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE API INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    api_allowed_prefixes: API_ALLOWED_PREFIXES
+    api_blocked_prefixes: API_BLOCKED_PREFIXES
+alter:
+  enabled: ALTER API INTEGRATION {@id} SET ENABLED = {enabled}
+  api_allowed_prefixes: ALTER API INTEGRATION {@id} SET API_ALLOWED_PREFIXES = ({api_allowed_prefixes})
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} SET API_BLOCKED_PREFIXES = ({api_blocked_prefixes})
+  comment: ALTER API INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} UNSET API_BLOCKED_PREFIXES
+  comment: ALTER API INTEGRATION {@id} UNSET COMMENT
+delete: DROP API INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_git_oauth
+  api_allowed_prefixes: ["https://git.example.com/"]
+  enabled: true
+  oauth_authorization_endpoint: "https://git.example.com/oauth/authorize"
+  oauth_token_endpoint: "https://git.example.com/oauth/token"
+  oauth_client_id: example-client
+  oauth_client_secret: example-secret
+  comment: example-comment

@@ -1,0 +1,28 @@
+kind: BackupPolicy
+terraform: [snowflake_backup_policy]
+scope: schema
+fields:
+  schedule: {type: string}
+  expire_after_days: {type: integer}
+  comment: {type: string}
+create: CREATE BACKUP POLICY {@id}[ SCHEDULE = {schedule}][ EXPIRE_AFTER_DAYS = {expire_after_days}][ COMMENT = {comment}]
+read:
+- statement: SHOW BACKUP POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {schedule: schedule, expire_after_days: expire_after_days, comment: comment}
+alter:
+  schedule: ALTER BACKUP POLICY {@id} SET SCHEDULE = {schedule}
+  expire_after_days: ALTER BACKUP POLICY {@id} SET EXPIRE_AFTER_DAYS = {expire_after_days}
+  comment: ALTER BACKUP POLICY {@id} SET COMMENT = {comment}
+unset:
+  schedule: ALTER BACKUP POLICY {@id} UNSET SCHEDULE
+  expire_after_days: ALTER BACKUP POLICY {@id} UNSET EXPIRE_AFTER_DAYS
+  comment: ALTER BACKUP POLICY {@id} UNSET COMMENT
+delete: DROP BACKUP POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  schedule: "USING CRON 0 2 * * * UTC"
+  expire_after_days: 30
+  comment: example-comment

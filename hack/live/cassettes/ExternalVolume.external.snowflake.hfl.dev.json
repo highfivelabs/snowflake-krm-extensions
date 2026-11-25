@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:14Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/external-volumes",
+      "body": "{\"allow_writes\":false,\"comment\":\"first\",\"name\":\"{{name_}}\",\"storage_locations\":[{\"name\":\"hfl-live\",\"storage_aws_role_arn\":\"arn:aws:iam::123456789012:role/hfl-live\",\"storage_base_url\":\"s3://hfl-live-nonexistent/\",\"storage_provider\":\"S3\"}]}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"storage_locations\" : [ {\n    \"storage_provider\" : \"S3\",\n    \"storage_aws_role_arn\" : \"arn:aws:iam::123456789012:role/hfl-live\",\n    \"storage_base_url\" : \"s3://hfl-live-nonexistent/\",\n    \"storage_aws_external_id\" : \"JA15367_SFCRole=2_8UDsCbsT1fhb0rvc9a1N332o8JE=\",\n    \"encryption\" : {\n      \"type\" : \"NONE\",\n      \"kms_key_id\" : null\n    },\n    \"name\" : \"hfl-live\"\n  } ],\n  \"allow_writes\" : false,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:57:13.448+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/external-volumes/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nexternal volume '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on volume {{name_}}.\",\"request_id\":\"c8e2daa4-6688-4041-97cd-f23e53f9d524\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

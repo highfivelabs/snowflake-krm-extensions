@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions",
+      "body": "{\"arguments\":[],\"body\":\"1\",\"comment\":\"first\",\"language_config\":{\"language\":\"SQL\"},\"name\":\"{{name_}}\",\"return_type\":{\"datatype\":\"NUMBER\",\"type\":\"DATATYPE\"}}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"arguments\":[],\"body\":\"1\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"is_builtin\":true,\"is_table_function\":true,\"language_config\":{\"language\":\"SQL\"},\"log_level\":\"example-log-level\",\"max_num_arguments\":1,\"min_num_arguments\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"return_type\":{\"datatype\":\"NUMBER\",\"type\":\"DATATYPE\"},\"schema_name\":\"example-schema-name\",\"trace_level\":\"example-trace-level\",\"valid_for_clustering\":true}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"arguments\":[],\"body\":\"1\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"is_builtin\":true,\"is_table_function\":true,\"language_config\":{\"language\":\"SQL\"},\"log_level\":\"example-log-level\",\"max_num_arguments\":1,\"min_num_arguments\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"return_type\":{\"datatype\":\"NUMBER\",\"type\":\"DATATYPE\"},\"schema_name\":\"example-schema-name\",\"trace_level\":\"example-trace-level\",\"valid_for_clustering\":true}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

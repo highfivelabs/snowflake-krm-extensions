@@ -1,0 +1,33 @@
+kind: UserProgrammaticAccessToken
+terraform: [snowflake_user_programmatic_access_token]
+id: [user, name]
+group: user
+fields:
+  user: {type: identifier}
+  name: {type: identifier}
+  role_restriction: {type: identifier}
+  days_to_expiry: {type: integer}
+  mins_to_bypass_network_policy_requirement: {type: integer}
+  disabled: {type: boolean}
+  comment: {type: string}
+  token: {type: string, output: true, secret: true}
+create: ALTER USER {user} ADD PROGRAMMATIC ACCESS TOKEN {name}[ ROLE_RESTRICTION = {role_restriction}][ DAYS_TO_EXPIRY = {days_to_expiry}][ MINS_TO_BYPASS_NETWORK_POLICY_REQUIREMENT = {mins_to_bypass_network_policy_requirement}][ COMMENT = {comment}]
+createColumns: {token: token_secret}
+read:
+- statement: SHOW USER PROGRAMMATIC ACCESS TOKENS FOR USER {user}
+  match: {name: "{name}"}
+  columns: {comment: comment, role_restriction: role_restriction, mins_to_bypass_network_policy_requirement: mins_to_bypass_network_policy_requirement}
+alter:
+  disabled: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} SET DISABLED = {disabled}
+  mins_to_bypass_network_policy_requirement: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} SET MINS_TO_BYPASS_NETWORK_POLICY_REQUIREMENT = {mins_to_bypass_network_policy_requirement}
+  comment: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} SET COMMENT = {comment}
+unset:
+  disabled: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} UNSET DISABLED
+  mins_to_bypass_network_policy_requirement: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} UNSET MINS_TO_BYPASS_NETWORK_POLICY_REQUIREMENT
+  comment: ALTER USER {user} MODIFY PROGRAMMATIC ACCESS TOKEN {name} UNSET COMMENT
+delete: ALTER USER IF EXISTS {user} REMOVE PROGRAMMATIC ACCESS TOKEN {name}
+sample:
+  user: example_user
+  name: example_token
+  days_to_expiry: 30
+  comment: example-comment

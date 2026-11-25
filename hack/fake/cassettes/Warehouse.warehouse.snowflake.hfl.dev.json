@@ -1,0 +1,95 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/warehouses",
+      "body": "{\"auto_suspend\":60,\"comment\":\"first\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_suspend\":60,\"comment\":\"second\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"initially_suspended\":\"true\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_suspend\":60,\"comment\":\"second\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"auto_suspend\":60,\"available\":\"example-available\",\"budget\":\"example-budget\",\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"is_current\":true,\"is_default\":true,\"kind\":\"example-kind\",\"name\":\"{{name_}}\",\"other\":\"example-other\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"provisioning\":\"example-provisioning\",\"queued\":1,\"quiescing\":\"example-quiescing\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"running\":1,\"started_clusters\":1,\"state\":\"example-state\",\"updated_on\":\"2000-01-01T00:00:00Z\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

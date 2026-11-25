@@ -1,0 +1,51 @@
+kind: OpenflowRuntime
+terraform: [snowflake_openflow_runtime]
+scope: schema
+group: openflow
+fields:
+  deployment: {type: identifier, required: true}
+  node_type: {type: string, required: true, enum: [SMALL, MEDIUM, LARGE]}
+  min_nodes: {type: integer, required: true}
+  max_nodes: {type: integer, required: true}
+  execute_as_role: {type: identifier, required: true}
+  external_access_integrations: {type: identifiers}
+  display_name: {type: string}
+  comment: {type: string}
+  status: {type: string, output: true}
+create: CREATE OPENFLOW RUNTIME {@id} IN DEPLOYMENT {deployment} NODE_TYPE = {node_type} MIN_NODES = {min_nodes} MAX_NODES = {max_nodes} EXECUTE_AS_ROLE = {execute_as_role}[ EXTERNAL_ACCESS_INTEGRATIONS = ({external_access_integrations})][ DISPLAY_NAME = {display_name}][ COMMENT = {comment}]
+read:
+- statement: SHOW OPENFLOW RUNTIMES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {status: status, deployment: deployment, node_type: node_type, min_nodes: min_nodes, max_nodes: max_nodes, execute_as_role: execute_as_role, external_access_integrations: external_access_integrations, display_name: display_name, comment: comment}
+alter:
+  min_nodes: ALTER OPENFLOW RUNTIME {@id} SET MIN_NODES = {min_nodes}
+  max_nodes: ALTER OPENFLOW RUNTIME {@id} SET MAX_NODES = {max_nodes}
+  execute_as_role: ALTER OPENFLOW RUNTIME {@id} SET EXECUTE_AS_ROLE = {execute_as_role}
+  external_access_integrations: ALTER OPENFLOW RUNTIME {@id} SET EXTERNAL_ACCESS_INTEGRATIONS = ({external_access_integrations})
+  display_name: ALTER OPENFLOW RUNTIME {@id} SET DISPLAY_NAME = {display_name}
+  comment: ALTER OPENFLOW RUNTIME {@id} SET COMMENT = {comment}
+unset:
+  external_access_integrations: ALTER OPENFLOW RUNTIME {@id} UNSET EXTERNAL_ACCESS_INTEGRATIONS
+  display_name: ALTER OPENFLOW RUNTIME {@id} UNSET DISPLAY_NAME
+  comment: ALTER OPENFLOW RUNTIME {@id} UNSET COMMENT
+delete: DROP OPENFLOW RUNTIME IF EXISTS {@id}
+settle:
+  field: status
+  ready: [ACTIVE, SUSPENDED]
+  failed: [CREATE_FAILED, UPDATE_FAILED, SUSPEND_FAILED, ACTIVATE_FAILED, RESTART_FAILED, UPGRADE_FAILED, MIGRATION_FAILED, ROLLBACK_FAILED]
+  busy: [CREATING, UPDATING, SUSPENDING, ACTIVATING, RESTARTING, UPGRADING, CLEANING_UP, CANCEL_REQUESTED, GENERATING_DIAGNOSTIC_BUNDLE]
+  teardown:
+  - when: [DELETING]
+  - run: ALTER OPENFLOW RUNTIME IF EXISTS {@id} TERMINATE
+  gone: [DELETED]
+  timeout: 30m
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_runtime
+  deployment: example_deployment
+  node_type: SMALL
+  min_nodes: 1
+  max_nodes: 3
+  execute_as_role: example_role
+  comment: example-comment

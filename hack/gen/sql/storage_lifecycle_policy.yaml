@@ -1,0 +1,32 @@
+kind: StorageLifecyclePolicy
+terraform: [snowflake_storage_lifecycle_policy]
+scope: schema
+fields:
+  argument: {type: args, required: true}
+  body: {type: expression, required: true}
+  archive_tier: {type: keyword, enum: [COLD, COOL]}
+  archive_for_days: {type: integer}
+  comment: {type: string}
+create: CREATE STORAGE LIFECYCLE POLICY {@id} AS ({argument}) RETURNS BOOLEAN -> {body}[ ARCHIVE_TIER = {archive_tier}][ ARCHIVE_FOR_DAYS = {archive_for_days}][ COMMENT = {comment}]
+read:
+- statement: SHOW STORAGE LIFECYCLE POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE STORAGE LIFECYCLE POLICY {@id}
+  columns: {body: body, archive_tier: archive_tier, archive_for_days: archive_for_days}
+alter:
+  body: ALTER STORAGE LIFECYCLE POLICY {@id} SET BODY -> {body}
+  archive_tier: ALTER STORAGE LIFECYCLE POLICY {@id} SET ARCHIVE_TIER = {archive_tier}
+  archive_for_days: ALTER STORAGE LIFECYCLE POLICY {@id} SET ARCHIVE_FOR_DAYS = {archive_for_days}
+  comment: ALTER STORAGE LIFECYCLE POLICY {@id} SET COMMENT = {comment}
+unset:
+  archive_for_days: ALTER STORAGE LIFECYCLE POLICY {@id} UNSET ARCHIVE_FOR_DAYS
+  comment: ALTER STORAGE LIFECYCLE POLICY {@id} UNSET COMMENT
+delete: DROP STORAGE LIFECYCLE POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  argument: [{name: created_at, type: TIMESTAMP_NTZ}]
+  body: "created_at < DATEADD(year, -1, CURRENT_TIMESTAMP())"
+  comment: example-comment

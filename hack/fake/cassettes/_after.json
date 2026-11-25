@@ -1,0 +1,29 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "DELETE",
+      "path": "/api/v2/users/{{run_}}",
+      "status": 204
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/roles/{{run_}}",
+      "status": 204
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/warehouses/{{run_}}",
+      "status": 204
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}",
+      "status": 204
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:01:15Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE OPENFLOW DEPLOYMENT \\\"EXAMPLE_BYOC_DEPLOYMENT\\\" DEPLOYMENT_TYPE = 'BYOC' VPC_TYPE = 'MANAGED' COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000721\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000721\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000721",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000721\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000721\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"CREATING\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000722\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000722\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000723\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000723\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000724\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000724\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000725\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000725\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW DEPLOYMENT \\\"EXAMPLE_BYOC_DEPLOYMENT\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000726\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000726\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"CREATING\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000727\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000727\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000728\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000728\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000729\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000729\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW DEPLOYMENT \\\"EXAMPLE_BYOC_DEPLOYMENT\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000730\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000730\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"CREATING\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000731\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000731\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000732\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000732\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW DEPLOYMENT \\\"EXAMPLE_BYOC_DEPLOYMENT\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000733\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000733\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"CREATING\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000734\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000734\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000735\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000735\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000736\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000736\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"INACTIVE\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000737\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000737\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW DEPLOYMENT IF EXISTS \\\"EXAMPLE_BYOC_DEPLOYMENT\\\" TERMINATE\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000738\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000738\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"DELETING\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000739\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000739\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",null,null,\"EXAMPLE_BYOC_DEPLOYMENT\",\"DELETED\",\"BYOC\",null,null,\"MANAGED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000740\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000740\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP OPENFLOW DEPLOYMENT IF EXISTS \\\"EXAMPLE_BYOC_DEPLOYMENT\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000741\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000741\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW DEPLOYMENTS LIKE 'EXAMPLE_BYOC_DEPLOYMENT'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"custom_ingress_hostname\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"use_user_auth_over_private_link\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"vpc_type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000742\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000742\"}\n"
+    }
+  ]
+}

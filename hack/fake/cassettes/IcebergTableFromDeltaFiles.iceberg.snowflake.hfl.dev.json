@@ -1,0 +1,128 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE ICEBERG TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_ICEBERG_TABLE\\\" EXTERNAL_VOLUME = '\\\"EXAMPLE_VOLUME\\\"' CATALOG = '\\\"EXAMPLE_CATALOG_INTEGRATION\\\"' BASE_LOCATION = 'example/delta' COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000598\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000598\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000598",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000598\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000598\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000599\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000599\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000600\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000600\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000601\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000601\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ICEBERG TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_ICEBERG_TABLE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000602\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000602\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000603\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000603\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000604\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000604\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ICEBERG TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_ICEBERG_TABLE\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000605\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000605\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000606\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000606\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ICEBERG TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_ICEBERG_TABLE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000607\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000607\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000608\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000608\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",\"EXAMPLE_ICEBERG_TABLE\",\"EXAMPLE_SCHEMA\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000609\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000609\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP ICEBERG TABLE IF EXISTS \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_ICEBERG_TABLE\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000610\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000610\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ICEBERG TABLES LIKE 'EXAMPLE_ICEBERG_TABLE' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"catalog_namespace\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"catalog_table_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000611\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000611\"}\n"
+    }
+  ]
+}

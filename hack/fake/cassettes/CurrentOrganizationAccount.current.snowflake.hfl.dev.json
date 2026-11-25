@@ -1,0 +1,321 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",null,\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001053\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001053\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001054\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001054\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001055\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001055\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001056\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001056\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT SET COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001057\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001057\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT SET TIMEZONE = 'Europe/London'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001058\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001058\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"example-comment\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001059\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001059\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001060\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001060\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001061\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001061\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001062\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001062\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"example-comment\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001063\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001063\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001064\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001064\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001065\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001065\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001066\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001066\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001067\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001067\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"changed-comment\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001068\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001068\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001069\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001069\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001070\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001070\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001071\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001071\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001072\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001072\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"hfl-live-drift\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001073\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001073\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001074\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001074\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001075\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001075\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001076\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001076\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001077\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001077\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"changed-comment\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001078\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001078\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001079\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001079\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001080\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001080\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001081\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001081\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",\"changed-comment\",\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001082\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001082\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"TIMEZONE\",\"String\",\"Europe/London\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001083\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001083\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001084\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001084\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001085\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001085\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT UNSET COMMENT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001086\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001086\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER ORGANIZATION ACCOUNT UNSET TIMEZONE\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001087\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001087\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW ORGANIZATION ACCOUNTS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_ORG_ACCOUNT\",null,\"true\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"account_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"is_organization_account\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001088\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001088\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW PARAMETERS IN ACCOUNT\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"key\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001089\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001089\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN =\\u003e 'ACCOUNT'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001090\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001090\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001091\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001091\"}\n"
+    }
+  ]
+}

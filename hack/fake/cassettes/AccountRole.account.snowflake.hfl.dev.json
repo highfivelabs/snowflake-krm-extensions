@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/roles",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"assigned_to_users\":1,\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"granted_roles\":1,\"granted_to_roles\":1,\"is_current\":true,\"is_default\":true,\"is_inherited\":true,\"name\":\"{{name_}}\",\"owner\":\"example-owner\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[{\"comment\":\"first\",\"name\":\"{{name_}}\"}]\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/roles/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[]\n"
+    }
+  ]
+}

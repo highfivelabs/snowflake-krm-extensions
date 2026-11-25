@@ -1,0 +1,97 @@
+{
+  "recorded": "2026-11-20T23:57:11Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/api-integrations",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"first\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Integration {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_blocked_prefixes\":null,\"api_hook\":{\"allow_any_secret\":false,\"allowed_api_authentication_integrations\":null,\"allowed_authentication_secrets\":null,\"type\":\"GIT\"},\"comment\":\"hfl-live-drift\",\"created_on\":\"2026-11-20T23:57:09.238+00:00\",\"enabled\":false,\"name\":\"{{NAME_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"hfl-live-drift\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "body": "{\"api_allowed_prefixes\":[\"https://github.com/hfl-live-nonexistent\"],\"api_hook\":{\"type\":\"GIT\"},\"comment\":\"second\",\"enabled\":false,\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"api_hook\" : {\n    \"type\" : \"GIT\",\n    \"allow_any_secret\" : false,\n    \"allowed_authentication_secrets\" : null,\n    \"allowed_api_authentication_integrations\" : null\n  },\n  \"api_allowed_prefixes\" : [ \"https://github.com/hfl-live-nonexistent\" ],\n  \"api_blocked_prefixes\" : null,\n  \"enabled\" : false,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:57:09.238+00:00\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/api-integrations/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nintegration '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on integration {{name_}}.\",\"request_id\":\"8b89788f-4944-4a87-94f2-416867c8c3bd\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

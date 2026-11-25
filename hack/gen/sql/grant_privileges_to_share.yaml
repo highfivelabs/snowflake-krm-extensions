@@ -1,0 +1,19 @@
+kind: GrantPrivilegesToShare
+terraform: [snowflake_grant_privileges_to_share]
+mode: grant
+group: grant
+fields:
+  privileges: {type: keywords, required: true}
+  object_type: {type: keyword, required: true, enum: [DATABASE, SCHEMA, TABLE, VIEW, TAG]}
+  object_name: {type: name, required: true}
+  to_share: {type: identifier, required: true}
+create: GRANT {privileges} ON {object_type} {object_name} TO SHARE {to_share}
+read:
+- statement: SHOW GRANTS TO SHARE {to_share}
+  match: {privilege: "{privileges}", granted_on: "{object_type}", name: "{object_name}"}
+delete: REVOKE {privileges} ON {object_type} {object_name} FROM SHARE {to_share}
+sample:
+  privileges: [USAGE]
+  object_type: DATABASE
+  object_name: example_db
+  to_share: example_share

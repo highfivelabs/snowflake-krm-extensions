@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/managed-accounts",
+      "body": "{\"account_type\":\"READER\",\"admin_name\":\"example-admin-name\",\"admin_password\":\"{{redacted}}\",\"name\":\"TEST_NAME\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"account_locator_url\":\"example-account-locator-url\",\"account_type\":\"READER\",\"cloud\":\"example-cloud\",\"created_on\":\"2000-01-01T00:00:00Z\",\"locator\":\"example-locator\",\"name\":\"TEST_NAME\",\"region\":\"example-region\",\"url\":\"example-url\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/managed-accounts",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[{\"account_type\":\"READER\",\"admin_name\":\"example-admin-name\",\"admin_password\":\"{{redacted}}\",\"name\":\"TEST_NAME\"}]"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/managed-accounts/TEST_NAME",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/managed-accounts",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[]\n"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+kind: ObjectParameter
+terraform: [snowflake_object_parameter]
+mode: set
+group: object
+fields:
+  key: {type: keyword, required: true}
+  value: {type: value, required: true}
+  object_type: {type: keyword, required: true, enum: [USER, WAREHOUSE, DATABASE, SCHEMA, TASK, TABLE, SERVICE, PIPE]}
+  object_name: {type: name, required: true}
+create: ALTER {object_type} {object_name} SET {key} = {value}
+read:
+- statement: SHOW PARAMETERS LIKE {key:string} IN {object_type} {object_name}
+  match: {key: "{key}", level: "{object_type}"}
+  columns: {value: value}
+delete: ALTER {object_type} {object_name} UNSET {key}
+sample:
+  key: DATA_RETENTION_TIME_IN_DAYS
+  value: 7
+  object_type: DATABASE
+  object_name: example_db

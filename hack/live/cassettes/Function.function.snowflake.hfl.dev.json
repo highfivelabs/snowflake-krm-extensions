@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:08Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions",
+      "body": "{\"arguments\":[],\"body\":\"1\",\"comment\":\"first\",\"language_config\":{\"language\":\"SQL\"},\"name\":\"{{name_}}\",\"return_type\":{\"datatype\":\"NUMBER\",\"type\":\"DATATYPE\"}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Function {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"is_temporary\" : false,\n  \"is_aggregate\" : false,\n  \"is_memoizable\" : false,\n  \"is_table_function\" : false,\n  \"valid_for_clustering\" : null,\n  \"is_secure\" : false,\n  \"arguments\" : [ ],\n  \"return_type\" : {\n    \"type\" : \"DATATYPE\",\n    \"datatype\" : \"NUMBER\",\n    \"nullable\" : true\n  },\n  \"language_config\" : {\n    \"language\" : \"SQL\",\n    \"called_on_null_input\" : true,\n    \"is_volatile\" : true\n  },\n  \"comment\" : \"first\",\n  \"body\" : \"1\",\n  \"created_on\" : \"2026-11-20T23:57:07.532+00:00\",\n  \"schema_name\" : \"PUBLIC\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"min_num_arguments\" : 0,\n  \"max_num_arguments\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"is_builtin\" : false,\n  \"log_level\" : \"OFF\",\n  \"trace_level\" : \"OFF\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/user-defined-functions/{{name_}}%28%29",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nfunction '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on function {{run_}}.public.{{name_}}.\",\"request_id\":\"adea9ed3-09a8-4081-9c4e-42dc832995cb\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

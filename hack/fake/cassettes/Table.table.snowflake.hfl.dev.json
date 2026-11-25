@@ -1,0 +1,95 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables",
+      "body": "{\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "body": "{\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "body": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "body": "{\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"automatic_clustering\":true,\"budget\":\"example-budget\",\"bytes\":1,\"cluster_by_raw\":\"example-cluster-by-raw\",\"columns\":[{\"datatype\":\"NUMBER(38,0)\",\"name\":\"ID\"}],\"comment\":\"second\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"rows\":1,\"schema_name\":\"example-schema-name\",\"search_optimization\":true,\"search_optimization_bytes\":1,\"search_optimization_configuration\":[],\"search_optimization_progress\":1,\"table_type\":\"NORMAL\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

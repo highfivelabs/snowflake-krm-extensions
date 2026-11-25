@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:12Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/notification-integrations",
+      "body": "{\"comment\":\"first\",\"enabled\":false,\"name\":\"{{name_}}\",\"notification_hook\":{\"type\":\"EMAIL\"}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Integration {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/notification-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"enabled\" : false,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:57:11.886+00:00\",\n  \"notification_hook\" : {\n    \"type\" : \"EMAIL\",\n    \"allowed_recipients\" : null,\n    \"default_recipients\" : null,\n    \"default_subject\" : null\n  }\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/notification-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/notification-integrations/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nintegration '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on integration {{name_}}.\",\"request_id\":\"c3c8fb78-22a3-459b-9a38-b8f893bb24b6\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

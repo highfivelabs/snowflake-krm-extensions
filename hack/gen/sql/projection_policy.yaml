@@ -1,0 +1,25 @@
+kind: ProjectionPolicy
+terraform: [snowflake_projection_policy]
+scope: schema
+fields:
+  body: {type: expression, required: true}
+  comment: {type: string}
+create: CREATE PROJECTION POLICY {@id} AS () RETURNS PROJECTION_CONSTRAINT -> {body}[ COMMENT = {comment}]
+read:
+- statement: SHOW PROJECTION POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE PROJECTION POLICY {@id}
+  columns: {body: body}
+alter:
+  body: ALTER PROJECTION POLICY {@id} SET BODY -> {body}
+  comment: ALTER PROJECTION POLICY {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER PROJECTION POLICY {@id} UNSET COMMENT
+delete: DROP PROJECTION POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  body: "PROJECTION_CONSTRAINT(ALLOW => false)"
+  comment: example-comment

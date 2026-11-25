@@ -1,0 +1,36 @@
+kind: ExternalAccessIntegration
+terraform: [snowflake_external_access_integration]
+scope: account
+fields:
+  allowed_network_rules: {required: true, type: names}
+  allowed_api_authentication_integrations: {type: identifiers}
+  allowed_authentication_secrets: {type: names}
+  enabled: {required: true, type: boolean}
+  comment: {type: string}
+create: CREATE EXTERNAL ACCESS INTEGRATION {@id} ALLOWED_NETWORK_RULES = ({allowed_network_rules})[ ALLOWED_API_AUTHENTICATION_INTEGRATIONS = ({allowed_api_authentication_integrations})][ ALLOWED_AUTHENTICATION_SECRETS = ({allowed_authentication_secrets})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW EXTERNAL ACCESS INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE EXTERNAL ACCESS INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    allowed_network_rules: ALLOWED_NETWORK_RULES
+    allowed_api_authentication_integrations: ALLOWED_API_AUTHENTICATION_INTEGRATIONS
+    allowed_authentication_secrets: ALLOWED_AUTHENTICATION_SECRETS
+alter:
+  allowed_network_rules: ALTER EXTERNAL ACCESS INTEGRATION {@id} SET ALLOWED_NETWORK_RULES = ({allowed_network_rules})
+  allowed_api_authentication_integrations: ALTER EXTERNAL ACCESS INTEGRATION {@id} SET ALLOWED_API_AUTHENTICATION_INTEGRATIONS = ({allowed_api_authentication_integrations})
+  allowed_authentication_secrets: ALTER EXTERNAL ACCESS INTEGRATION {@id} SET ALLOWED_AUTHENTICATION_SECRETS = ({allowed_authentication_secrets})
+  enabled: ALTER EXTERNAL ACCESS INTEGRATION {@id} SET ENABLED = {enabled}
+  comment: ALTER EXTERNAL ACCESS INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  allowed_api_authentication_integrations: ALTER EXTERNAL ACCESS INTEGRATION {@id} UNSET ALLOWED_API_AUTHENTICATION_INTEGRATIONS
+  allowed_authentication_secrets: ALTER EXTERNAL ACCESS INTEGRATION {@id} UNSET ALLOWED_AUTHENTICATION_SECRETS
+  comment: ALTER EXTERNAL ACCESS INTEGRATION {@id} UNSET COMMENT
+delete: DROP EXTERNAL ACCESS INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_access
+  allowed_network_rules: [example_db.example_schema.example_rule]
+  enabled: true
+  comment: example-comment

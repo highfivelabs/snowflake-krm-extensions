@@ -1,0 +1,33 @@
+kind: ApiIntegrationGitRepositoryGithubApp
+terraform: [snowflake_api_integration_git_repository_github_app]
+scope: account
+group: api
+fields:
+  api_allowed_prefixes: {type: strings, required: true}
+  api_blocked_prefixes: {type: strings}
+  enabled: {type: boolean, required: true}
+  comment: {type: string}
+create: CREATE API INTEGRATION {@id} API_PROVIDER = git_https_api API_USER_AUTHENTICATION = (TYPE = SNOWFLAKE_GITHUB_APP) API_ALLOWED_PREFIXES = ({api_allowed_prefixes})[ API_BLOCKED_PREFIXES = ({api_blocked_prefixes})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW API INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE API INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    api_allowed_prefixes: API_ALLOWED_PREFIXES
+    api_blocked_prefixes: API_BLOCKED_PREFIXES
+alter:
+  enabled: ALTER API INTEGRATION {@id} SET ENABLED = {enabled}
+  api_allowed_prefixes: ALTER API INTEGRATION {@id} SET API_ALLOWED_PREFIXES = ({api_allowed_prefixes})
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} SET API_BLOCKED_PREFIXES = ({api_blocked_prefixes})
+  comment: ALTER API INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} UNSET API_BLOCKED_PREFIXES
+  comment: ALTER API INTEGRATION {@id} UNSET COMMENT
+delete: DROP API INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_github
+  api_allowed_prefixes: ["https://github.com/example-org/"]
+  enabled: true
+  comment: example-comment

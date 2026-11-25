@@ -1,0 +1,40 @@
+kind: ResourceMonitor
+terraform: [snowflake_resource_monitor]
+scope: account
+fields:
+  credit_quota: {type: integer}
+  frequency: {type: keyword, enum: [MONTHLY, DAILY, WEEKLY, YEARLY, NEVER]}
+  start_timestamp: {type: string}
+  end_timestamp: {type: string}
+  notify_users: {type: identifiers}
+  suspend_trigger: {type: integer}
+  suspend_immediate_trigger: {type: integer}
+create: CREATE RESOURCE MONITOR {@id}[ WITH[ CREDIT_QUOTA = {credit_quota}][ FREQUENCY = {frequency}][ START_TIMESTAMP = {start_timestamp}][ END_TIMESTAMP = {end_timestamp}][ NOTIFY_USERS = ({notify_users})][ TRIGGERS[ ON {suspend_trigger} PERCENT DO SUSPEND][ ON {suspend_immediate_trigger} PERCENT DO SUSPEND_IMMEDIATE]]]
+read:
+- statement: SHOW RESOURCE MONITORS LIKE {@like}
+  match: {name: "{name}"}
+  columns:
+    credit_quota: credit_quota
+    frequency: frequency
+    notify_users: notify_users
+    suspend_trigger: suspend_at
+    suspend_immediate_trigger: suspend_immediately_at
+alter:
+  credit_quota: ALTER RESOURCE MONITOR {@id} SET CREDIT_QUOTA = {credit_quota}
+  frequency: ALTER RESOURCE MONITOR {@id} SET FREQUENCY = {frequency} START_TIMESTAMP = {start_timestamp}
+  start_timestamp: ALTER RESOURCE MONITOR {@id} SET FREQUENCY = {frequency} START_TIMESTAMP = {start_timestamp}
+  end_timestamp: ALTER RESOURCE MONITOR {@id} SET END_TIMESTAMP = {end_timestamp}
+  notify_users: ALTER RESOURCE MONITOR {@id} SET NOTIFY_USERS = ({notify_users})
+  suspend_trigger: ALTER RESOURCE MONITOR {@id} TRIGGERS ON {suspend_trigger} PERCENT DO SUSPEND[ ON {suspend_immediate_trigger} PERCENT DO SUSPEND_IMMEDIATE]
+  suspend_immediate_trigger: ALTER RESOURCE MONITOR {@id} TRIGGERS[ ON {suspend_trigger} PERCENT DO SUSPEND] ON {suspend_immediate_trigger} PERCENT DO SUSPEND_IMMEDIATE
+unset:
+  credit_quota: ALTER RESOURCE MONITOR {@id} SET CREDIT_QUOTA = null
+  end_timestamp: ALTER RESOURCE MONITOR {@id} SET END_TIMESTAMP = null
+  notify_users: ALTER RESOURCE MONITOR {@id} SET NOTIFY_USERS = ()
+delete: DROP RESOURCE MONITOR IF EXISTS {@id}
+sample:
+  name: example_monitor
+  credit_quota: 100
+  frequency: MONTHLY
+  start_timestamp: IMMEDIATELY
+  suspend_trigger: 90

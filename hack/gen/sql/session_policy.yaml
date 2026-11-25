@@ -1,0 +1,40 @@
+kind: SessionPolicy
+terraform: [snowflake_session_policy]
+scope: schema
+fields:
+  session_idle_timeout_mins: {type: integer}
+  session_ui_idle_timeout_mins: {type: integer}
+  allowed_secondary_roles: {type: identifiers}
+  blocked_secondary_roles: {type: identifiers}
+  comment: {type: string}
+create: CREATE SESSION POLICY {@id}[ SESSION_IDLE_TIMEOUT_MINS = {session_idle_timeout_mins}][ SESSION_UI_IDLE_TIMEOUT_MINS = {session_ui_idle_timeout_mins}][ ALLOWED_SECONDARY_ROLES = ({allowed_secondary_roles})][ BLOCKED_SECONDARY_ROLES = ({blocked_secondary_roles})][ COMMENT = {comment}]
+read:
+- statement: SHOW SESSION POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE SESSION POLICY {@id}
+  properties: {name: property, value: value}
+  columns:
+    session_idle_timeout_mins: SESSION_IDLE_TIMEOUT_MINS
+    session_ui_idle_timeout_mins: SESSION_UI_IDLE_TIMEOUT_MINS
+    allowed_secondary_roles: ALLOWED_SECONDARY_ROLES
+    blocked_secondary_roles: BLOCKED_SECONDARY_ROLES
+alter:
+  session_idle_timeout_mins: ALTER SESSION POLICY {@id} SET SESSION_IDLE_TIMEOUT_MINS = {session_idle_timeout_mins}
+  session_ui_idle_timeout_mins: ALTER SESSION POLICY {@id} SET SESSION_UI_IDLE_TIMEOUT_MINS = {session_ui_idle_timeout_mins}
+  allowed_secondary_roles: ALTER SESSION POLICY {@id} SET ALLOWED_SECONDARY_ROLES = ({allowed_secondary_roles})
+  blocked_secondary_roles: ALTER SESSION POLICY {@id} SET BLOCKED_SECONDARY_ROLES = ({blocked_secondary_roles})
+  comment: ALTER SESSION POLICY {@id} SET COMMENT = {comment}
+unset:
+  session_idle_timeout_mins: ALTER SESSION POLICY {@id} UNSET SESSION_IDLE_TIMEOUT_MINS
+  session_ui_idle_timeout_mins: ALTER SESSION POLICY {@id} UNSET SESSION_UI_IDLE_TIMEOUT_MINS
+  allowed_secondary_roles: ALTER SESSION POLICY {@id} UNSET ALLOWED_SECONDARY_ROLES
+  blocked_secondary_roles: ALTER SESSION POLICY {@id} UNSET BLOCKED_SECONDARY_ROLES
+  comment: ALTER SESSION POLICY {@id} UNSET COMMENT
+delete: DROP SESSION POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  session_idle_timeout_mins: 30
+  comment: example-comment

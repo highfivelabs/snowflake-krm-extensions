@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits",
+      "body": "{\"comment\":\"first\",\"main_file\":\"streamlit_app.py\",\"name\":\"{{name_}}\",\"query_warehouse\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"artifact_repositories\":[],\"code_warehouse\":\"example-code-warehouse\",\"comment\":\"first\",\"compute_pool\":\"example-compute-pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"default_packages\":[],\"execute_as\":\"OWNER\",\"execute_as_role\":\"example-execute-as-role\",\"external_access_secrets\":\"{{redacted}}\",\"idle_auto_shutdown_time_seconds\":1,\"live_version_location_uri\":\"example-live-version-location-uri\",\"main_file\":\"streamlit_app.py\",\"max_instances\":1,\"min_instances\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query_warehouse\":\"{{run_}}\",\"runtime_environment_version\":\"example-runtime-environment-version\",\"runtime_name\":\"example-runtime-name\",\"scheduled_tasks\":[],\"schema_name\":\"example-schema-name\",\"url_id\":\"example-url-id\",\"user_packages\":[]}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"artifact_repositories\":[],\"code_warehouse\":\"example-code-warehouse\",\"comment\":\"first\",\"compute_pool\":\"example-compute-pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"default_packages\":[],\"execute_as\":\"OWNER\",\"execute_as_role\":\"example-execute-as-role\",\"external_access_secrets\":\"{{redacted}}\",\"idle_auto_shutdown_time_seconds\":1,\"live_version_location_uri\":\"example-live-version-location-uri\",\"main_file\":\"streamlit_app.py\",\"max_instances\":1,\"min_instances\":1,\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query_warehouse\":\"{{run_}}\",\"runtime_environment_version\":\"example-runtime-environment-version\",\"runtime_name\":\"example-runtime-name\",\"scheduled_tasks\":[],\"schema_name\":\"example-schema-name\",\"url_id\":\"example-url-id\",\"user_packages\":[]}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

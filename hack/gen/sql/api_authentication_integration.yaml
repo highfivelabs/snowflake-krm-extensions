@@ -1,0 +1,55 @@
+kind: ApiAuthenticationIntegration
+terraform: [snowflake_api_authentication_integration_with_authorization_code_grant, snowflake_api_authentication_integration_with_client_credentials, snowflake_api_authentication_integration_with_jwt_bearer]
+scope: account
+fields:
+  enabled: {required: true, type: boolean}
+  oauth_assertion_issuer: {type: string}
+  oauth_authorization_endpoint: {type: string}
+  oauth_token_endpoint: {type: string}
+  oauth_client_auth_method: {enum: [CLIENT_SECRET_POST], type: keyword}
+  oauth_client_id: {required: true, type: string}
+  oauth_client_secret: {required: true, type: string}
+  oauth_grant: {enum: [CLIENT_CREDENTIALS, AUTHORIZATION_CODE, JWT_BEARER], type: keyword}
+  oauth_access_token_validity: {type: integer}
+  oauth_refresh_token_validity: {type: integer}
+  oauth_allowed_scopes: {type: strings}
+  comment: {type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = API_AUTHENTICATION AUTH_TYPE = OAUTH2 ENABLED = {enabled}[ OAUTH_ASSERTION_ISSUER = {oauth_assertion_issuer}][ OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}][ OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint}][ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}] OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret}[ OAUTH_GRANT = {oauth_grant}][ OAUTH_ACCESS_TOKEN_VALIDITY = {oauth_access_token_validity}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}][ OAUTH_ALLOWED_SCOPES = ({oauth_allowed_scopes})][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    oauth_assertion_issuer: OAUTH_ASSERTION_ISSUER
+    oauth_authorization_endpoint: OAUTH_AUTHORIZATION_ENDPOINT
+    oauth_token_endpoint: OAUTH_TOKEN_ENDPOINT
+    oauth_client_auth_method: OAUTH_CLIENT_AUTH_METHOD
+    oauth_client_id: OAUTH_CLIENT_ID
+    oauth_grant: OAUTH_GRANT
+    oauth_access_token_validity: OAUTH_ACCESS_TOKEN_VALIDITY
+    oauth_refresh_token_validity: OAUTH_REFRESH_TOKEN_VALIDITY
+    oauth_allowed_scopes: OAUTH_ALLOWED_SCOPES
+alter:
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  oauth_token_endpoint: ALTER SECURITY INTEGRATION {@id} SET OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint}
+  oauth_client_auth_method: ALTER SECURITY INTEGRATION {@id} SET OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}
+  oauth_client_id: ALTER SECURITY INTEGRATION {@id} SET OAUTH_CLIENT_ID = {oauth_client_id}
+  oauth_client_secret: ALTER SECURITY INTEGRATION {@id} SET OAUTH_CLIENT_SECRET = {oauth_client_secret}
+  oauth_grant: ALTER SECURITY INTEGRATION {@id} SET OAUTH_GRANT = {oauth_grant}
+  oauth_access_token_validity: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ACCESS_TOKEN_VALIDITY = {oauth_access_token_validity}
+  oauth_refresh_token_validity: ALTER SECURITY INTEGRATION {@id} SET OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}
+  oauth_allowed_scopes: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ALLOWED_SCOPES = ({oauth_allowed_scopes})
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  enabled: ALTER SECURITY INTEGRATION {@id} UNSET ENABLED
+  comment: ALTER SECURITY INTEGRATION {@id} UNSET COMMENT
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_api_auth
+  enabled: true
+  oauth_client_id: example-client
+  oauth_client_secret: example-secret
+  oauth_grant: CLIENT_CREDENTIALS
+  comment: example-comment

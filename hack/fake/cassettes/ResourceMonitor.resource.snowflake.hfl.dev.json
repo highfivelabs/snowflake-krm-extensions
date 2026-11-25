@@ -1,0 +1,136 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE RESOURCE MONITOR \\\"{{NAME_}}\\\" WITH CREDIT_QUOTA = 1 FREQUENCY = MONTHLY START_TIMESTAMP = 'IMMEDIATELY' TRIGGERS ON 90 PERCENT DO SUSPEND\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000188\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000188\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000188",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000188\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000188\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"1\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000189\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000189\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"1\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000190\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000190\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"1\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000191\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000191\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER RESOURCE MONITOR \\\"{{NAME_}}\\\" SET CREDIT_QUOTA = 2\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000192\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000192\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER RESOURCE MONITOR \\\"{{NAME_}}\\\" SET FREQUENCY = MONTHLY START_TIMESTAMP = 'IMMEDIATELY'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000193\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000193\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"2\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000194\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000194\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"2\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000195\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000195\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER RESOURCE MONITOR \\\"{{NAME_}}\\\" SET CREDIT_QUOTA = 3\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000196\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000196\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"3\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000197\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000197\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER RESOURCE MONITOR \\\"{{NAME_}}\\\" SET CREDIT_QUOTA = 2\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000198\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000198\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"2\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000199\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000199\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"2\",\"MONTHLY\",\"{{NAME_}}\",null,\"90\",null]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000200\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000200\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP RESOURCE MONITOR IF EXISTS \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000201\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000201\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW RESOURCE MONITORS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"credit_quota\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"frequency\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"notify_users\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_at\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"suspend_immediately_at\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000202\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000202\"}\n"
+    }
+  ]
+}

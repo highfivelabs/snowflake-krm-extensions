@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:54Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Stage area {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"kind\" : \"PERMANENT\",\n  \"url\" : \"\",\n  \"endpoint\" : null,\n  \"storage_integration\" : null,\n  \"comment\" : \"first\",\n  \"credentials\" : null,\n  \"encryption\" : null,\n  \"directory_table\" : {\n    \"enable\" : false,\n    \"refresh_on_create\" : true,\n    \"auto_refresh\" : false,\n    \"notification_integration\" : null,\n    \"aws_sns_topic\" : null\n  },\n  \"file_format\" : {\n    \"type\" : \"CSV\",\n    \"compression\" : \"AUTO\",\n    \"record_delimiter\" : \"\\n\",\n    \"field_delimiter\" : \",\",\n    \"file_extension\" : null,\n    \"parse_header\" : false,\n    \"skip_header\" : 0,\n    \"skip_blank_lines\" : false,\n    \"date_format\" : \"AUTO\",\n    \"time_format\" : \"AUTO\",\n    \"timestamp_format\" : \"AUTO\",\n    \"binary_format\" : \"HEX\",\n    \"escape\" : \"NONE\",\n    \"escape_unenclosed_field\" : \"\\\\\",\n    \"trim_space\" : false,\n    \"field_optionally_enclosed_by\" : \"NONE\",\n    \"null_if\" : [ \"\\\\N\" ],\n    \"error_on_column_count_mismatch\" : true,\n    \"replace_invalid_characters\" : false,\n    \"empty_field_as_null\" : true,\n    \"skip_byte_order_mark\" : true,\n    \"encoding\" : \"UTF8\",\n    \"multi_line\" : true\n  },\n  \"copy_options\" : {\n    \"on_error\" : \"ABORT_STATEMENT\",\n    \"size_limit\" : null,\n    \"purge\" : false,\n    \"return_failed_only\" : false,\n    \"enforce_length\" : true,\n    \"truncatecolumns\" : false,\n    \"force\" : false\n  },\n  \"created_on\" : \"2026-11-20T23:56:54.224+00:00\",\n  \"has_credentials\" : false,\n  \"has_encryption_key\" : false,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"region\" : null,\n  \"cloud\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nstage '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on stage {{run_}}.public.{{name_}}.\",\"request_id\":\"f2491423-9c91-4240-a78d-1cb4898ce3f2\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

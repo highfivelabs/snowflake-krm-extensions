@@ -1,0 +1,69 @@
+{
+  "recorded": "2026-11-20T23:56:38Z",
+  "target": "Snowflake trial",
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Database {{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables",
+      "body": "{\"columns\":[{\"datatype\":\"NUMBER\",\"name\":\"ID\"}],\"name\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Table {{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{RUN_}}\",\n  \"kind\" : \"PERMANENT\",\n  \"cluster_by\" : null,\n  \"cluster_by_raw\" : null,\n  \"enable_schema_evolution\" : false,\n  \"change_tracking\" : false,\n  \"data_retention_time_in_days\" : 1,\n  \"max_data_extension_time_in_days\" : 14,\n  \"default_ddl_collation\" : \"\",\n  \"data_metric_schedule\" : {\n    \"schedule_type\" : \"MINUTES\",\n    \"minutes\" : 60\n  },\n  \"columns\" : [ {\n    \"name\" : \"ID\",\n    \"datatype\" : \"NUMBER(38,0)\",\n    \"nullable\" : true,\n    \"collate\" : null,\n    \"default\" : null,\n    \"autoincrement\" : null,\n    \"autoincrement_start\" : null,\n    \"autoincrement_increment\" : null,\n    \"autoincrement_order\" : null,\n    \"constraints\" : null,\n    \"comment\" : null\n  } ],\n  \"constraints\" : null,\n  \"comment\" : null,\n  \"row_timestamp\" : false,\n  \"error_logging\" : false,\n  \"created_on\" : \"2026-11-20T23:56:36.377+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"rows\" : 0,\n  \"bytes\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"dropped_on\" : null,\n  \"automatic_clustering\" : false,\n  \"search_optimization\" : false,\n  \"search_optimization_progress\" : null,\n  \"search_optimization_bytes\" : null,\n  \"search_optimization_configuration\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"budget\" : null,\n  \"table_type\" : \"NORMAL\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Stage area {{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/database-roles",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Role {{RUN_}}.{{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/warehouses",
+      "body": "{\"auto_resume\":\"false\",\"auto_suspend\":60,\"initially_suspended\":\"true\",\"name\":\"{{run_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Warehouse {{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Role {{RUN_}} successfully created.\"\n}"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/users",
+      "body": "{\"comment\":\"krm live test; deleted at the end of the run\",\"disabled\":true,\"name\":\"{{run_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"User {{RUN_}} successfully created.\"\n}"
+    }
+  ]
+}

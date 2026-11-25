@@ -1,0 +1,42 @@
+kind: OpenflowConnector
+terraform: [snowflake_openflow_connector]
+scope: schema
+group: openflow
+fields:
+  runtime: {type: identifier, required: true}
+  from_definition: {type: keyword}
+  from_location: {type: string}
+  display_name: {type: string}
+  comment: {type: string}
+  status: {type: string, output: true}
+create: CREATE OPENFLOW CONNECTOR {@id} IN RUNTIME {@parent}.{runtime}[ FROM DEFINITION {from_definition}][ FROM {from_location}][ DISPLAY_NAME = {display_name}][ COMMENT = {comment}]
+read:
+- statement: SHOW OPENFLOW CONNECTORS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {status: status, runtime: runtime, display_name: display_name, comment: comment}
+alter:
+  display_name: ALTER OPENFLOW CONNECTOR {@id} SET DISPLAY_NAME = {display_name}
+  comment: ALTER OPENFLOW CONNECTOR {@id} SET COMMENT = {comment}
+unset:
+  display_name: ALTER OPENFLOW CONNECTOR {@id} UNSET DISPLAY_NAME
+  comment: ALTER OPENFLOW CONNECTOR {@id} UNSET COMMENT
+delete: DROP OPENFLOW CONNECTOR IF EXISTS {@id}
+settle:
+  field: status
+  ready: [RUNNING, STOPPED]
+  failed: [CREATE_FAILED, START_FAILED, STOP_FAILED, UPDATE_FAILED, DELETE_FAILED, TERMINATE_FAILED, TROUBLESHOOTING, ENTER_TROUBLESHOOTING_FAILED, EXIT_TROUBLESHOOTING_FAILED]
+  busy: [CREATING, STARTING, STOPPING, UPDATING, ENTERING_TROUBLESHOOTING, EXITING_TROUBLESHOOTING]
+  teardown:
+  - when: [DELETING, TERMINATING]
+  - when: [CREATE_FAILED, START_FAILED, STOP_FAILED, UPDATE_FAILED]
+    run: ALTER OPENFLOW CONNECTOR IF EXISTS {@id} STOP
+  - run: ALTER OPENFLOW CONNECTOR IF EXISTS {@id} TERMINATE
+  gone: [DELETED, TERMINATED]
+  timeout: 30m
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_connector
+  runtime: example_runtime
+  from_definition: OPENFLOW_POSTGRES_CDC
+  comment: example-comment

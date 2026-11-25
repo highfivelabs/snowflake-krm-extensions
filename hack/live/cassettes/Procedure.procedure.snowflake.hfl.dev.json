@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:09Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/procedures",
+      "body": "{\"arguments\":[],\"body\":\"BEGIN RETURN 'ok'; END\",\"comment\":\"first\",\"language_config\":{\"language\":\"SQL\"},\"name\":\"{{name_}}\",\"return_type\":{\"datatype\":\"VARCHAR\",\"type\":\"DATATYPE\"}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Function {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/procedures/{{name_}}%28%29",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"execute_as\" : \"OWNER\",\n  \"is_secure\" : false,\n  \"arguments\" : [ ],\n  \"return_type\" : {\n    \"type\" : \"DATATYPE\",\n    \"datatype\" : \"VARCHAR\",\n    \"nullable\" : true\n  },\n  \"language_config\" : {\n    \"language\" : \"SQL\",\n    \"called_on_null_input\" : true\n  },\n  \"comment\" : \"first\",\n  \"body\" : \"BEGIN RETURN 'ok'; END\",\n  \"created_on\" : \"2026-11-20T23:57:08.420+00:00\",\n  \"schema_name\" : \"PUBLIC\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"min_num_arguments\" : 0,\n  \"max_num_arguments\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"is_builtin\" : true,\n  \"log_level\" : \"OFF\",\n  \"trace_level\" : \"OFF\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/procedures/{{name_}}%28%29",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/procedures/{{name_}}%28%29",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nprocedure '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on procedure {{run_}}.public.{{name_}}.\",\"request_id\":\"72315dee-44c1-4ca6-8f86-06af89dcbf8a\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

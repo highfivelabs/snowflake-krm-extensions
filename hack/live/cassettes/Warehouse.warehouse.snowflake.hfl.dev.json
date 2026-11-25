@@ -1,0 +1,97 @@
+{
+  "recorded": "2026-11-20T23:56:49Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/warehouses",
+      "body": "{\"auto_suspend\":60,\"comment\":\"first\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Warehouse {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"first\",\n  \"enable_query_acceleration\" : \"true\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:46.654+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"first\",\n  \"enable_query_acceleration\" : \"true\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:46.654+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_suspend\":60,\"comment\":\"second\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"second\",\n  \"enable_query_acceleration\" : \"false\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:47.293+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"second\",\n  \"enable_query_acceleration\" : \"false\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:47.293+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_resume\":\"true\",\"auto_suspend\":60,\"available\":\"\",\"budget\":null,\"comment\":\"hfl-live-drift\",\"created_on\":\"2026-11-20T23:56:46.614+00:00\",\"enable_query_acceleration\":\"false\",\"generation\":\"2\",\"initially_suspended\":null,\"is_current\":false,\"is_default\":false,\"kind\":null,\"max_cluster_count\":1,\"max_concurrency_level\":8,\"max_query_performance_level\":null,\"min_cluster_count\":1,\"name\":\"{{NAME_}}\",\"other\":\"\",\"owner\":\"ACCOUNTADMIN\",\"owner_role_type\":\"ROLE\",\"provisioning\":\"\",\"query_acceleration_max_scale_factor\":8,\"query_throughput_multiplier\":null,\"queued\":0,\"quiescing\":\"\",\"resource_constraint\":\"STANDARD_GEN_2\",\"resource_monitor\":null,\"resumed_on\":\"2026-11-20T23:56:46.629+00:00\",\"running\":0,\"scaling_policy\":\"STANDARD\",\"size\":\"X-Small\",\"started_clusters\":0,\"state\":\"SUSPENDED\",\"statement_queued_timeout_in_seconds\":0,\"statement_timeout_in_seconds\":172800,\"target_statement_size\":null,\"type\":\"STANDARD\",\"updated_on\":\"2026-11-20T23:56:47.293+00:00\",\"wait_for_completion\":null,\"warehouse_credit_limit\":null,\"warehouse_size\":\"X-Small\",\"warehouse_type\":\"STANDARD\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"hfl-live-drift\",\n  \"enable_query_acceleration\" : \"false\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:48.047+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "body": "{\"auto_suspend\":60,\"comment\":\"second\",\"initially_suspended\":\"true\",\"name\":\"{{name_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse_type\" : \"STANDARD\",\n  \"warehouse_size\" : \"X-Small\",\n  \"generation\" : \"2\",\n  \"resource_constraint\" : \"STANDARD_GEN_2\",\n  \"wait_for_completion\" : null,\n  \"max_cluster_count\" : 1,\n  \"min_cluster_count\" : 1,\n  \"scaling_policy\" : \"STANDARD\",\n  \"auto_suspend\" : 60,\n  \"auto_resume\" : \"true\",\n  \"initially_suspended\" : null,\n  \"resource_monitor\" : null,\n  \"comment\" : \"second\",\n  \"enable_query_acceleration\" : \"false\",\n  \"query_acceleration_max_scale_factor\" : 8,\n  \"max_concurrency_level\" : 8,\n  \"statement_queued_timeout_in_seconds\" : 0,\n  \"statement_timeout_in_seconds\" : 172800,\n  \"type\" : \"STANDARD\",\n  \"size\" : \"X-Small\",\n  \"state\" : \"SUSPENDED\",\n  \"started_clusters\" : 0,\n  \"running\" : 0,\n  \"queued\" : 0,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"available\" : \"\",\n  \"provisioning\" : \"\",\n  \"quiescing\" : \"\",\n  \"other\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:46.614+00:00\",\n  \"resumed_on\" : \"2026-11-20T23:56:46.629+00:00\",\n  \"updated_on\" : \"2026-11-20T23:56:48.507+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"budget\" : null,\n  \"kind\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"warehouse_credit_limit\" : null,\n  \"target_statement_size\" : null,\n  \"query_throughput_multiplier\" : null,\n  \"max_query_performance_level\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/warehouses/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nwarehouse '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on warehouse {{name_}}.\",\"request_id\":\"5afd5c4f-a9b8-42d4-b8ce-0b5d3042d8b3\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+kind: OauthIntegrationForCustomClients
+terraform: [snowflake_oauth_integration_for_custom_clients]
+scope: account
+fields:
+  oauth_client_type: {enum: [PUBLIC, CONFIDENTIAL], required: true, type: string}
+  oauth_redirect_uri: {required: true, type: string}
+  enabled: {type: boolean}
+  oauth_allow_non_tls_redirect_uri: {type: boolean}
+  oauth_enforce_pkce: {type: boolean}
+  oauth_use_secondary_roles: {enum: [IMPLICIT, NONE], type: keyword}
+  pre_authorized_roles_list: {type: identifiers}
+  allowed_roles_list: {type: identifiers}
+  blocked_roles_list: {type: identifiers}
+  oauth_issue_refresh_tokens: {type: boolean}
+  oauth_refresh_token_validity: {type: integer}
+  network_policy: {type: identstring}
+  oauth_client_rsa_public_key: {type: string}
+  oauth_client_rsa_public_key_2: {type: string}
+  comment: {type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = OAUTH OAUTH_CLIENT = CUSTOM OAUTH_CLIENT_TYPE = {oauth_client_type} OAUTH_REDIRECT_URI = {oauth_redirect_uri}[ ENABLED = {enabled}][ OAUTH_ALLOW_NON_TLS_REDIRECT_URI = {oauth_allow_non_tls_redirect_uri}][ OAUTH_ENFORCE_PKCE = {oauth_enforce_pkce}][ OAUTH_USE_SECONDARY_ROLES = {oauth_use_secondary_roles}][ PRE_AUTHORIZED_ROLES_LIST = ({pre_authorized_roles_list})][ ALLOWED_ROLES_LIST = ({allowed_roles_list})][ BLOCKED_ROLES_LIST = ({blocked_roles_list})][ OAUTH_ISSUE_REFRESH_TOKENS = {oauth_issue_refresh_tokens}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}][ NETWORK_POLICY = {network_policy}][ OAUTH_CLIENT_RSA_PUBLIC_KEY = {oauth_client_rsa_public_key}][ OAUTH_CLIENT_RSA_PUBLIC_KEY_2 = {oauth_client_rsa_public_key_2}][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    oauth_client_type: OAUTH_CLIENT_TYPE
+    oauth_redirect_uri: OAUTH_REDIRECT_URI
+    oauth_allow_non_tls_redirect_uri: OAUTH_ALLOW_NON_TLS_REDIRECT_URI
+    oauth_enforce_pkce: OAUTH_ENFORCE_PKCE
+    oauth_use_secondary_roles: OAUTH_USE_SECONDARY_ROLES
+    pre_authorized_roles_list: PRE_AUTHORIZED_ROLES_LIST
+    allowed_roles_list: ALLOWED_ROLES_LIST
+    blocked_roles_list: BLOCKED_ROLES_LIST
+    oauth_issue_refresh_tokens: OAUTH_ISSUE_REFRESH_TOKENS
+    oauth_refresh_token_validity: OAUTH_REFRESH_TOKEN_VALIDITY
+    network_policy: NETWORK_POLICY
+alter:
+  oauth_redirect_uri: ALTER SECURITY INTEGRATION {@id} SET OAUTH_REDIRECT_URI = {oauth_redirect_uri}
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  oauth_allow_non_tls_redirect_uri: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ALLOW_NON_TLS_REDIRECT_URI = {oauth_allow_non_tls_redirect_uri}
+  oauth_enforce_pkce: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ENFORCE_PKCE = {oauth_enforce_pkce}
+  oauth_use_secondary_roles: ALTER SECURITY INTEGRATION {@id} SET OAUTH_USE_SECONDARY_ROLES = {oauth_use_secondary_roles}
+  pre_authorized_roles_list: ALTER SECURITY INTEGRATION {@id} SET PRE_AUTHORIZED_ROLES_LIST = ({pre_authorized_roles_list})
+  allowed_roles_list: ALTER SECURITY INTEGRATION {@id} SET ALLOWED_ROLES_LIST = ({allowed_roles_list})
+  blocked_roles_list: ALTER SECURITY INTEGRATION {@id} SET BLOCKED_ROLES_LIST = ({blocked_roles_list})
+  oauth_issue_refresh_tokens: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ISSUE_REFRESH_TOKENS = {oauth_issue_refresh_tokens}
+  oauth_refresh_token_validity: ALTER SECURITY INTEGRATION {@id} SET OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}
+  network_policy: ALTER SECURITY INTEGRATION {@id} SET NETWORK_POLICY = {network_policy}
+  oauth_client_rsa_public_key: ALTER SECURITY INTEGRATION {@id} SET OAUTH_CLIENT_RSA_PUBLIC_KEY = {oauth_client_rsa_public_key}
+  oauth_client_rsa_public_key_2: ALTER SECURITY INTEGRATION {@id} SET OAUTH_CLIENT_RSA_PUBLIC_KEY_2 = {oauth_client_rsa_public_key_2}
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  enabled: ALTER SECURITY INTEGRATION {@id} UNSET ENABLED
+  oauth_use_secondary_roles: ALTER SECURITY INTEGRATION {@id} UNSET OAUTH_USE_SECONDARY_ROLES
+  network_policy: ALTER SECURITY INTEGRATION {@id} UNSET NETWORK_POLICY
+  oauth_client_rsa_public_key: ALTER SECURITY INTEGRATION {@id} UNSET OAUTH_CLIENT_RSA_PUBLIC_KEY
+  oauth_client_rsa_public_key_2: ALTER SECURITY INTEGRATION {@id} UNSET OAUTH_CLIENT_RSA_PUBLIC_KEY_2
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_oauth
+  oauth_client_type: CONFIDENTIAL
+  oauth_redirect_uri: https://app.example.com/callback
+  enabled: true
+  comment: example-comment

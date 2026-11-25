@@ -1,0 +1,27 @@
+kind: MaterializedView
+terraform: [snowflake_materialized_view]
+scope: schema
+warehouse: true
+fields:
+  is_secure: {type: boolean}
+  comment: {type: string}
+  statement: {type: expression, required: true}
+create: CREATE[ SECURE{?is_secure}] MATERIALIZED VIEW {@id}[ COMMENT = {comment}] AS {statement}
+read:
+- statement: SHOW MATERIALIZED VIEWS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment, is_secure: is_secure}
+alter:
+  is_secure: ALTER MATERIALIZED VIEW {@id}[ SET SECURE{?is_secure}][ UNSET SECURE{!is_secure}]
+  comment: ALTER MATERIALIZED VIEW {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER MATERIALIZED VIEW {@id} UNSET COMMENT
+delete: DROP MATERIALIZED VIEW IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_view
+  warehouse: example_wh
+  is_secure: true
+  comment: example-comment
+  statement: SELECT id, amount FROM example_db.example_schema.orders

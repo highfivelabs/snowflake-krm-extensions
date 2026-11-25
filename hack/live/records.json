@@ -1,0 +1,432 @@
+{
+  "AccountRole.account.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:49Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:49Z"
+  },
+  "AccountRoleGrant.account.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:07Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:07Z"
+  },
+  "Alert.alert.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:03Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:03Z"
+  },
+  "ApiIntegration.api.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:11Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:11Z"
+  },
+  "CatalogIntegration.catalog.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:13Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:13Z"
+  },
+  "CodeBundle.code.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:20Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:20Z"
+  },
+  "Database.database.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:41Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:41Z"
+  },
+  "DatabaseRole.database.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:50Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:50Z"
+  },
+  "DynamicTable.dynamic.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:21Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:21Z"
+  },
+  "ExternalVolume.external.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:14Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:14Z"
+  },
+  "Function.function.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:08Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:08Z"
+  },
+  "ImageRepository.image.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:14Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:14Z"
+  },
+  "NetworkPolicy.network.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:56Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:56Z"
+  },
+  "NetworkRule.network.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:55Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:55Z"
+  },
+  "Notebook.notebook.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:16Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:16Z"
+  },
+  "NotificationIntegration.notification.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:12Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:12Z"
+  },
+  "PasswordPolicy.password.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:57Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:57Z"
+  },
+  "Pipe.pipe.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:59Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:59Z"
+  },
+  "Procedure.procedure.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:09Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:09Z"
+  },
+  "Schema.schema.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:43Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:43Z"
+  },
+  "Secret.secret.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:57Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:57Z"
+  },
+  "Sequence.sequence.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:51Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:51Z"
+  },
+  "Stage.stage.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:54Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:54Z"
+  },
+  "Stream.stream.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:58Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:58Z"
+  },
+  "Streamlit.streamlit.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:18Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:18Z"
+  },
+  "Table.table.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:54Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:54Z"
+  },
+  "Tag.tag.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:46Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:46Z"
+  },
+  "Task.task.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:02Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:02Z"
+  },
+  "User.user.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:05Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:05Z"
+  },
+  "UserRoleGrant.user.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:06Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:06Z"
+  },
+  "View.view.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:57:22Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:57:22Z"
+  },
+  "Warehouse.warehouse.snowflake.hfl.dev": {
+    "result": "pass",
+    "steps": [
+      "create",
+      "read",
+      "update",
+      "drift",
+      "delete",
+      "gone"
+    ],
+    "run": "hfl-live-2611202356-e445",
+    "date": "2026-11-20T23:56:49Z",
+    "target": "Snowflake trial",
+    "lastPass": "2026-11-20T23:56:49Z"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "recorded": "2000-01-01T00:03:45Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE OPENFLOW CONNECTOR \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\" IN RUNTIME \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_RUNTIME\\\" FROM DEFINITION OPENFLOW_POSTGRES_CDC COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000765\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000765\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000765",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000765\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000765\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"CREATING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000766\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000766\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000767\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000767\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000768\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000768\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000769\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000769\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW CONNECTOR \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000770\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000770\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"UPDATING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000771\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000771\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000772\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000772\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000773\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000773\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW CONNECTOR \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000774\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000774\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"UPDATING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000775\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000775\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000776\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000776\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW CONNECTOR \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000777\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000777\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"UPDATING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000778\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000778\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000779\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000779\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000780\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000780\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"RUNNING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000781\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000781\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER OPENFLOW CONNECTOR IF EXISTS \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\" TERMINATE\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000782\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000782\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"DELETING\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000783\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000783\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"EXAMPLE_DB\",null,\"EXAMPLE_CONNECTOR\",\"EXAMPLE_RUNTIME\",\"EXAMPLE_SCHEMA\",\"DELETED\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000784\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000784\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP OPENFLOW CONNECTOR IF EXISTS \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_CONNECTOR\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000785\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000785\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW OPENFLOW CONNECTORS LIKE 'EXAMPLE_CONNECTOR' IN SCHEMA \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"database_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"display_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"runtime\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"schema_name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000786\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000786\"}\n"
+    }
+  ]
+}

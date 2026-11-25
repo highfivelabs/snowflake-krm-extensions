@@ -1,0 +1,14 @@
+kind: ReplicationGroupSecondary
+terraform: [snowflake_replication_group_secondary]
+scope: account
+group: replication
+fields:
+  primary: {type: name, required: true}
+create: CREATE REPLICATION GROUP {@id} AS REPLICA OF {primary}
+read:
+- statement: SHOW REPLICATION GROUPS
+  match: {name: "{name}", is_primary: "false"}
+delete: DROP REPLICATION GROUP IF EXISTS {@id}
+sample:
+  name: example_replication_group
+  primary: example_org.example_account.example_replication_group

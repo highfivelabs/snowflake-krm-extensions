@@ -1,0 +1,43 @@
+kind: ApiIntegrationGitRepositoryPrivateLink
+terraform: [snowflake_api_integration_git_repository_private_link]
+scope: account
+group: api
+fields:
+  allowed_authentication_secrets: {type: names}
+  use_privatelink_endpoint: {type: boolean, required: true}
+  tls_trusted_certificates: {type: names}
+  api_allowed_prefixes: {type: strings, required: true}
+  api_blocked_prefixes: {type: strings}
+  enabled: {type: boolean, required: true}
+  comment: {type: string}
+create: CREATE API INTEGRATION {@id} API_PROVIDER = git_https_api[ ALLOWED_AUTHENTICATION_SECRETS = ({allowed_authentication_secrets})] USE_PRIVATELINK_ENDPOINT = {use_privatelink_endpoint}[ TLS_TRUSTED_CERTIFICATES = ({tls_trusted_certificates})] API_ALLOWED_PREFIXES = ({api_allowed_prefixes})[ API_BLOCKED_PREFIXES = ({api_blocked_prefixes})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW API INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE API INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    api_allowed_prefixes: API_ALLOWED_PREFIXES
+    api_blocked_prefixes: API_BLOCKED_PREFIXES
+    use_privatelink_endpoint: USE_PRIVATELINK_ENDPOINT
+alter:
+  enabled: ALTER API INTEGRATION {@id} SET ENABLED = {enabled}
+  api_allowed_prefixes: ALTER API INTEGRATION {@id} SET API_ALLOWED_PREFIXES = ({api_allowed_prefixes})
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} SET API_BLOCKED_PREFIXES = ({api_blocked_prefixes})
+  comment: ALTER API INTEGRATION {@id} SET COMMENT = {comment}
+  allowed_authentication_secrets: ALTER API INTEGRATION {@id} SET ALLOWED_AUTHENTICATION_SECRETS = ({allowed_authentication_secrets})
+  use_privatelink_endpoint: ALTER API INTEGRATION {@id} SET USE_PRIVATELINK_ENDPOINT = {use_privatelink_endpoint}
+  tls_trusted_certificates: ALTER API INTEGRATION {@id} SET TLS_TRUSTED_CERTIFICATES = ({tls_trusted_certificates})
+unset:
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} UNSET API_BLOCKED_PREFIXES
+  comment: ALTER API INTEGRATION {@id} UNSET COMMENT
+  allowed_authentication_secrets: ALTER API INTEGRATION {@id} UNSET ALLOWED_AUTHENTICATION_SECRETS
+  tls_trusted_certificates: ALTER API INTEGRATION {@id} UNSET TLS_TRUSTED_CERTIFICATES
+delete: DROP API INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_git_link
+  api_allowed_prefixes: ["https://git.example.com/"]
+  use_privatelink_endpoint: true
+  enabled: true
+  comment: example-comment

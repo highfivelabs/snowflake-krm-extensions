@@ -1,0 +1,46 @@
+kind: OauthIntegrationForPartnerApplications
+terraform: [snowflake_oauth_integration_for_partner_applications]
+scope: account
+fields:
+  oauth_client: {enum: [LOOKER, TABLEAU_DESKTOP, TABLEAU_SERVER], required: true, type: keyword}
+  oauth_redirect_uri: {type: string}
+  enabled: {type: boolean}
+  oauth_issue_refresh_tokens: {type: boolean}
+  oauth_refresh_token_validity: {type: integer}
+  oauth_use_secondary_roles: {enum: [IMPLICIT, NONE], type: keyword}
+  allowed_roles_list: {type: identifiers}
+  blocked_roles_list: {type: identifiers}
+  comment: {type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = OAUTH OAUTH_CLIENT = {oauth_client}[ OAUTH_REDIRECT_URI = {oauth_redirect_uri}][ ENABLED = {enabled}][ OAUTH_ISSUE_REFRESH_TOKENS = {oauth_issue_refresh_tokens}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}][ OAUTH_USE_SECONDARY_ROLES = {oauth_use_secondary_roles}][ ALLOWED_ROLES_LIST = ({allowed_roles_list})][ BLOCKED_ROLES_LIST = ({blocked_roles_list})][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    oauth_client: OAUTH_CLIENT
+    oauth_redirect_uri: OAUTH_REDIRECT_URI
+    oauth_issue_refresh_tokens: OAUTH_ISSUE_REFRESH_TOKENS
+    oauth_refresh_token_validity: OAUTH_REFRESH_TOKEN_VALIDITY
+    oauth_use_secondary_roles: OAUTH_USE_SECONDARY_ROLES
+    allowed_roles_list: ALLOWED_ROLES_LIST
+    blocked_roles_list: BLOCKED_ROLES_LIST
+alter:
+  oauth_redirect_uri: ALTER SECURITY INTEGRATION {@id} SET OAUTH_REDIRECT_URI = {oauth_redirect_uri}
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  oauth_issue_refresh_tokens: ALTER SECURITY INTEGRATION {@id} SET OAUTH_ISSUE_REFRESH_TOKENS = {oauth_issue_refresh_tokens}
+  oauth_refresh_token_validity: ALTER SECURITY INTEGRATION {@id} SET OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}
+  oauth_use_secondary_roles: ALTER SECURITY INTEGRATION {@id} SET OAUTH_USE_SECONDARY_ROLES = {oauth_use_secondary_roles}
+  allowed_roles_list: ALTER SECURITY INTEGRATION {@id} SET ALLOWED_ROLES_LIST = ({allowed_roles_list})
+  blocked_roles_list: ALTER SECURITY INTEGRATION {@id} SET BLOCKED_ROLES_LIST = ({blocked_roles_list})
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  enabled: ALTER SECURITY INTEGRATION {@id} UNSET ENABLED
+  oauth_use_secondary_roles: ALTER SECURITY INTEGRATION {@id} UNSET OAUTH_USE_SECONDARY_ROLES
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_oauth
+  oauth_client: TABLEAU_DESKTOP
+  enabled: true
+  comment: example-comment

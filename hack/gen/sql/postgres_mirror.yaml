@@ -1,0 +1,38 @@
+kind: PostgresMirror
+terraform: [snowflake_postgres_mirror]
+id: [name]
+group: postgres
+fields:
+  name: {type: string}
+  postgres_instance: {type: string, required: true}
+  postgres_database: {type: string, required: true}
+  target_database: {type: string, required: true}
+  postgres_tables: {type: strings}
+  postgres_schemas: {type: strings}
+  refresh_interval: {type: string}
+  target_table_type: {type: string, enum: [SNOWFLAKE, ICEBERG]}
+  external_volume: {type: string}
+  warehouse: {type: string}
+  drop_target_database_on_destroy: {type: boolean}
+create: CALL SNOWFLAKE.POSTGRES.CREATE_MIRROR (mirror_name => {name}, postgres_instance => {postgres_instance}, postgres_database => {postgres_database}, target_database => {target_database}[, postgres_tables => ARRAY_CONSTRUCT ({postgres_tables})][, postgres_schemas => ARRAY_CONSTRUCT ({postgres_schemas})][, refresh_interval => {refresh_interval}][, target_table_type => {target_table_type}][, warehouse => {warehouse}][, external_volume => {external_volume}])
+read:
+- statement: CALL SNOWFLAKE.POSTGRES.LIST_MIRRORS (postgres_instance => {postgres_instance})
+  match: {MIRROR_NAME: "{name}"}
+  columns: {postgres_tables: POSTGRES_TABLES, postgres_schemas: POSTGRES_SCHEMAS}
+alter:
+  refresh_interval: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, refresh_interval => {refresh_interval})
+  warehouse: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, warehouse => {warehouse})
+add:
+  postgres_tables: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, add_tables => ARRAY_CONSTRUCT ({postgres_tables}))
+  postgres_schemas: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, add_schemas => ARRAY_CONSTRUCT ({postgres_schemas}))
+remove:
+  postgres_tables: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, remove_tables => ARRAY_CONSTRUCT ({postgres_tables}))
+  postgres_schemas: CALL SNOWFLAKE.POSTGRES.ALTER_MIRROR (mirror_name => {name}, remove_schemas => ARRAY_CONSTRUCT ({postgres_schemas}))
+delete: CALL SNOWFLAKE.POSTGRES.DROP_MIRROR (mirror_name => {name}[, drop_target_database => {drop_target_database_on_destroy}])
+sample:
+  name: orders_mirror
+  postgres_instance: example-postgres
+  postgres_database: postgres
+  target_database: ORDERS_DB
+  postgres_tables: [public.orders]
+  refresh_interval: 1 minute

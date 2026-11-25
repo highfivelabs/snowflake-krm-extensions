@@ -1,0 +1,18 @@
+kind: TableColumnMaskingPolicyApplication
+terraform: [snowflake_table_column_masking_policy_application]
+mode: set
+group: table
+fields:
+  table: {type: name, required: true}
+  column: {type: identifier, required: true}
+  masking_policy: {type: name, required: true}
+create: ALTER TABLE {table} MODIFY COLUMN {column} SET MASKING POLICY {masking_policy}
+read:
+- statement: DESCRIBE TABLE {table} TYPE = COLUMNS
+  match: {name: "{column}"}
+  columns: {masking_policy: policy name}
+delete: ALTER TABLE IF EXISTS {table} MODIFY COLUMN {column} UNSET MASKING POLICY
+sample:
+  table: example_db.example_schema.example_table
+  column: email
+  masking_policy: example_db.example_schema.example_policy

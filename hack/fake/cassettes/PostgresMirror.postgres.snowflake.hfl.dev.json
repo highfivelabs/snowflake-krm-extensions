@@ -1,0 +1,56 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CALL SNOWFLAKE.POSTGRES.CREATE_MIRROR (mirror_name =\\u003e 'orders_mirror', postgres_instance =\\u003e 'example-postgres', postgres_database =\\u003e 'postgres', target_database =\\u003e 'ORDERS_DB', postgres_tables =\\u003e ARRAY_CONSTRUCT ('public.orders'), refresh_interval =\\u003e '1 minute')\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000801\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000801\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000801",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000801\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000801\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CALL SNOWFLAKE.POSTGRES.LIST_MIRRORS (postgres_instance =\\u003e 'example-postgres')\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"orders_mirror\",null,\"[public.orders]\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"MIRROR_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_SCHEMAS\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_TABLES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000802\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000802\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CALL SNOWFLAKE.POSTGRES.LIST_MIRRORS (postgres_instance =\\u003e 'example-postgres')\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"orders_mirror\",null,\"[public.orders]\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"MIRROR_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_SCHEMAS\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_TABLES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000803\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000803\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CALL SNOWFLAKE.POSTGRES.DROP_MIRROR (mirror_name =\\u003e 'orders_mirror')\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000804\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000804\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CALL SNOWFLAKE.POSTGRES.LIST_MIRRORS (postgres_instance =\\u003e 'example-postgres')\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"MIRROR_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_SCHEMAS\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POSTGRES_TABLES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000805\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000805\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+kind: PrimaryConnection
+terraform: [snowflake_primary_connection]
+scope: account
+group: connection
+fields:
+  enable_failover_to_accounts: {type: names}
+  comment: {type: string}
+create: CREATE CONNECTION {@id}[ COMMENT = {comment}]
+read:
+- statement: SHOW CONNECTIONS LIKE {@like}
+  match: {name: "{name}", is_primary: "true"}
+  columns: {comment: comment}
+alter:
+  enable_failover_to_accounts: ALTER CONNECTION {@id} ENABLE FAILOVER TO ACCOUNTS {enable_failover_to_accounts}
+  comment: ALTER CONNECTION {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER CONNECTION {@id} UNSET COMMENT
+delete: DROP CONNECTION IF EXISTS {@id}
+sample:
+  name: example_connection
+  comment: example-comment

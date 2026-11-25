@@ -1,0 +1,128 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE WAREHOUSE \\\"EXAMPLE_ADAPTIVE_WAREHOUSE\\\" WAREHOUSE_TYPE = 'ADAPTIVE' COMMENT = 'example-comment' MAX_QUERY_PERFORMANCE_LEVEL = 'MEDIUM'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000976\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000976\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000976",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000976\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000976\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000977\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000977\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000978\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000978\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"example-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000979\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000979\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_ADAPTIVE_WAREHOUSE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000980\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000980\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000981\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000981\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000982\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000982\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_ADAPTIVE_WAREHOUSE\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000983\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000983\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000984\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000984\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_ADAPTIVE_WAREHOUSE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000985\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000985\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000986\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000986\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"changed-comment\",\"MEDIUM\",\"EXAMPLE_ADAPTIVE_WAREHOUSE\",null,null,\"ADAPTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000987\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000987\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP WAREHOUSE IF EXISTS \\\"EXAMPLE_ADAPTIVE_WAREHOUSE\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000988\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000988\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_ADAPTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000989\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000989\"}\n"
+    }
+  ]
+}

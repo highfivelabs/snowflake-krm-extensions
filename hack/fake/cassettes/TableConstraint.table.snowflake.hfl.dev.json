@@ -1,0 +1,56 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM \\\"EXAMPLE_DB\\\" . INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA = 'EXAMPLE_SCHEMA' AND TABLE_NAME = 'EXAMPLE_TABLE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"CONSTRAINT_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"CONSTRAINT_TYPE\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"ENFORCED\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"RELY\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001017\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001017\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\" ADD CONSTRAINT \\\"EXAMPLE_UNIQUE\\\" UNIQUE (\\\"EMAIL\\\")\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001018\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001018\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000001018",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001018\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001018\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM \\\"EXAMPLE_DB\\\" . INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA = 'EXAMPLE_SCHEMA' AND TABLE_NAME = 'EXAMPLE_TABLE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_UNIQUE\",\"UNIQUE\",\"false\",\"false\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"CONSTRAINT_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"CONSTRAINT_TYPE\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"ENFORCED\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"RELY\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001019\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001019\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\" DROP CONSTRAINT \\\"EXAMPLE_UNIQUE\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001020\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001020\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM \\\"EXAMPLE_DB\\\" . INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA = 'EXAMPLE_SCHEMA' AND TABLE_NAME = 'EXAMPLE_TABLE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"CONSTRAINT_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"CONSTRAINT_TYPE\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"ENFORCED\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"RELY\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001021\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001021\"}\n"
+    }
+  ]
+}

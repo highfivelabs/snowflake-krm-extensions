@@ -1,0 +1,200 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE SECURITY INTEGRATION \\\"{{NAME_}}\\\" TYPE = SAML2 ENABLED = FALSE SAML2_ISSUER = 'https://hfl-live.example/' SAML2_SSO_URL = 'https://hfl-live.example/sso' SAML2_PROVIDER = 'CUSTOM' SAML2_X509_CERT = 'MIIDFzCCAf+gAwIBAgIUHh8FsGcD54dRg6SJsV2jc3LDXr8wDQYJKoZIhvcNAQELBQAwGzEZMBcGA1UEAwwQaGZsLWxpdmUuZXhhbXBsZTAeFw0yNjExMjIxOTU0MTdaFw0zNjExMTkxOTU0MTdaMBsxGTAXBgNVBAMMEGhmbC1saXZlLmV4YW1wbGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC4ODinf52pMCRO3N/zu+fgW2HcMilxsjHgksIYymkRCrcatV79FK6fpSpa5m6dSnvGiA21V4fAGitd76lZ0WG97lKzovIBe3elzSVPkPJ+pqzsKoma5SW90SNZlS6Iknfk7Gt1mWx+1cWp2QjpD8dU7CzBiMM/J6lsTm+K2+OL54TnTGse6Pl9AH2VDMyJlW96quFlZEwymhy/sldQQQ7G+RjLTJF2+HGfsfDHFYJq7gN4t1ByFDr8XaEULNG6v9xaiI9wZdD0oBDqTyxs7Pih85qVGTtbUpYlVwXzgWZ7/ShlXhGAzupi6B3wU3qboGhHNwY6e9saoZBdQk80Pxy/AgMBAAGjUzBRMB0GA1UdDgQWBBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAfBgNVHSMEGDAWgBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQASn07yO0/H7rSSXixX6x9rx7/4ULkHKb+kpGofcgHzOJgK7ijBIfphov65ZpimOBH2W9dYaDhv4FXSHwwRXFPD3R89vw1eNg0qKzaUGFFx7Bok/IFm1VdNxwOkV+MQFZIb72KzMp2CTcW0/rPj2X17+xPxFay6V7kyyJQF+gIrPrzzhaBLE2X4u56rZUJ/3xPUNqTxA4DjxvC2UIOTdSZc5NutMI/oTn5p4S4qAm9YiuvkDcjjGCxs8G403jtYVTCqBdqjOQVvTMQRBJ9mKLhB5DNzQa5y0rhhyx9wiGpD9D8HgTOrKl19uhGvS0HBnF+Pmp7Dr01t6xMoYWQsAibL' COMMENT = 'first'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000336\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000336\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000336",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000336\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000336\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000337\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000337\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000338\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000338\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000339\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000339\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000340\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000340\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"first\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000341\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000341\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000342\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000342\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000343\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000343\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET SAML2_X509_CERT = 'MIIDFzCCAf+gAwIBAgIUHh8FsGcD54dRg6SJsV2jc3LDXr8wDQYJKoZIhvcNAQELBQAwGzEZMBcGA1UEAwwQaGZsLWxpdmUuZXhhbXBsZTAeFw0yNjExMjIxOTU0MTdaFw0zNjExMTkxOTU0MTdaMBsxGTAXBgNVBAMMEGhmbC1saXZlLmV4YW1wbGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC4ODinf52pMCRO3N/zu+fgW2HcMilxsjHgksIYymkRCrcatV79FK6fpSpa5m6dSnvGiA21V4fAGitd76lZ0WG97lKzovIBe3elzSVPkPJ+pqzsKoma5SW90SNZlS6Iknfk7Gt1mWx+1cWp2QjpD8dU7CzBiMM/J6lsTm+K2+OL54TnTGse6Pl9AH2VDMyJlW96quFlZEwymhy/sldQQQ7G+RjLTJF2+HGfsfDHFYJq7gN4t1ByFDr8XaEULNG6v9xaiI9wZdD0oBDqTyxs7Pih85qVGTtbUpYlVwXzgWZ7/ShlXhGAzupi6B3wU3qboGhHNwY6e9saoZBdQk80Pxy/AgMBAAGjUzBRMB0GA1UdDgQWBBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAfBgNVHSMEGDAWgBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQASn07yO0/H7rSSXixX6x9rx7/4ULkHKb+kpGofcgHzOJgK7ijBIfphov65ZpimOBH2W9dYaDhv4FXSHwwRXFPD3R89vw1eNg0qKzaUGFFx7Bok/IFm1VdNxwOkV+MQFZIb72KzMp2CTcW0/rPj2X17+xPxFay6V7kyyJQF+gIrPrzzhaBLE2X4u56rZUJ/3xPUNqTxA4DjxvC2UIOTdSZc5NutMI/oTn5p4S4qAm9YiuvkDcjjGCxs8G403jtYVTCqBdqjOQVvTMQRBJ9mKLhB5DNzQa5y0rhhyx9wiGpD9D8HgTOrKl19uhGvS0HBnF+Pmp7Dr01t6xMoYWQsAibL'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000344\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000344\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000345\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000345\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000346\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000346\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000347\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000347\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000348\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000348\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000349\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000349\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"hfl-live-drift\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000350\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000350\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000351\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000351\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER SECURITY INTEGRATION \\\"{{NAME_}}\\\" SET COMMENT = 'second'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000352\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000352\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000353\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000353\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000354\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000354\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"second\",\"false\",\"{{NAME_}}\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000355\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000355\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DESCRIBE SECURITY INTEGRATION \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"SAML2_ISSUER\",\"String\",\"https://hfl-live.example/\",\"\"],[\"SAML2_PROVIDER\",\"String\",\"CUSTOM\",\"\"],[\"SAML2_SNOWFLAKE_METADATA\",\"String\",\"example-saml2-snowflake-metadata-23\",\"\"],[\"SAML2_SSO_URL\",\"String\",\"https://hfl-live.example/sso\",\"\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":4,\"partitionInfo\":[{\"rowCount\":4}],\"rowType\":[{\"name\":\"property\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_type\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_value\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"property_default\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000356\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000356\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP SECURITY INTEGRATION IF EXISTS \\\"{{NAME_}}\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000357\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000357\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW SECURITY INTEGRATIONS LIKE '{{NAME_}}'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"enabled\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000358\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000358\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE POSTGRES INSTANCE \\\"EXAMPLE_POSTGRES\\\" COMPUTE_FAMILY = 'STANDARD_M' STORAGE_SIZE_GB = 10 AUTHENTICATION_AUTHORITY = POSTGRES POSTGRES_VERSION = 17 COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000787\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000787\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000787",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000787\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000787\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"example-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000788\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000788\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"example-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000789\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000789\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"example-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000790\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000790\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER POSTGRES INSTANCE \\\"EXAMPLE_POSTGRES\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000791\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000791\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"changed-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000792\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000792\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"changed-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000793\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000793\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER POSTGRES INSTANCE \\\"EXAMPLE_POSTGRES\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000794\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000794\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"hfl-live-drift\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000795\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000795\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER POSTGRES INSTANCE \\\"EXAMPLE_POSTGRES\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000796\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000796\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"changed-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000797\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000797\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"POSTGRES\",\"changed-comment\",\"STANDARD_M\",\"EXAMPLE_POSTGRES\",\"17\",\"10\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000798\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000798\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP POSTGRES INSTANCE IF EXISTS \\\"EXAMPLE_POSTGRES\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000799\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000799\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW POSTGRES INSTANCES LIKE 'EXAMPLE_POSTGRES'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"authentication_authority\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"compute_family\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"postgres_version\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"storage_size\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000800\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000800\"}\n"
+    }
+  ]
+}

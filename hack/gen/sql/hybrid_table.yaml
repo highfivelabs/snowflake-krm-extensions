@@ -1,0 +1,83 @@
+kind: HybridTable
+terraform: [snowflake_hybrid_table]
+scope: schema
+fields:
+  comment: {type: string}
+  data_retention_time_in_days: {type: integer}
+  max_data_extension_time_in_days: {type: integer}
+  column:
+    type: objects
+    required: true
+    item:
+      template: "{name} {type}[ NOT NULL{?not_null}][ DEFAULT {default}][ COLLATE {collate}][ COMMENT {comment}]"
+      fields:
+        name: {type: identifier, required: true}
+        type: {type: datatype, required: true}
+        not_null: {type: boolean}
+        default:
+          type: object
+          item:
+            template: "[{constant}][{expression}][{sequence}.NEXTVAL]"
+            fields:
+              constant: {type: value}
+              expression: {type: expression, description: "A SQL expression."}
+              sequence: {type: name}
+        collate: {type: string}
+        comment: {type: string}
+  primary_key_constraint:
+    type: object
+    required: true
+    item:
+      template: "[CONSTRAINT {name} ]PRIMARY KEY ({columns})"
+      fields:
+        name: {type: identifier}
+        columns: {type: identifiers, required: true}
+  unique_constraint:
+    type: objects
+    item:
+      template: "[CONSTRAINT {name} ]UNIQUE ({columns})"
+      fields:
+        name: {type: identifier}
+        columns: {type: identifiers, required: true}
+  foreign_key_constraint:
+    type: objects
+    item:
+      template: "[CONSTRAINT {name} ]FOREIGN KEY ({columns}) REFERENCES {table_name} ({ref_columns})"
+      fields:
+        name: {type: identifier}
+        columns: {type: identifiers, required: true, description: "The local columns."}
+        table_name: {type: name, required: true}
+        ref_columns: {type: identifiers, required: true, description: "Its columns referenced."}
+  index:
+    type: objects
+    item:
+      template: "INDEX {name} ({columns})[ INCLUDE ({include_columns})]"
+      fields:
+        name: {type: identifier, required: true}
+        columns: {type: identifiers, required: true}
+        include_columns: {type: identifiers, description: "Columns it carries (INCLUDE)."}
+create: CREATE HYBRID TABLE {@id} ({column}, {primary_key_constraint}[, {unique_constraint}][, {foreign_key_constraint}][, {index}])[ DATA_RETENTION_TIME_IN_DAYS = {data_retention_time_in_days}][ MAX_DATA_EXTENSION_TIME_IN_DAYS = {max_data_extension_time_in_days}][ COMMENT = {comment}]
+read:
+- statement: SHOW HYBRID TABLES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+alter:
+  data_retention_time_in_days: ALTER TABLE {@id} SET DATA_RETENTION_TIME_IN_DAYS = {data_retention_time_in_days}
+  max_data_extension_time_in_days: ALTER TABLE {@id} SET MAX_DATA_EXTENSION_TIME_IN_DAYS = {max_data_extension_time_in_days}
+  comment: ALTER TABLE {@id} SET COMMENT = {comment}
+unset:
+  data_retention_time_in_days: ALTER TABLE {@id} UNSET DATA_RETENTION_TIME_IN_DAYS
+  max_data_extension_time_in_days: ALTER TABLE {@id} UNSET MAX_DATA_EXTENSION_TIME_IN_DAYS
+  comment: ALTER TABLE {@id} UNSET COMMENT
+delete: DROP TABLE IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_table
+  column:
+  - {name: id, type: "NUMBER(38, 0)", not_null: true}
+  - {name: email, type: VARCHAR(256), comment: example-comment}
+  - {name: created_at, type: TIMESTAMP_NTZ, default: {expression: CURRENT_TIMESTAMP()}}
+  primary_key_constraint: {columns: [id]}
+  index: [{name: by_email, columns: [email]}]
+  comment: example-comment

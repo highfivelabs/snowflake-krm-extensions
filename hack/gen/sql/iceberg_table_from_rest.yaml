@@ -1,0 +1,36 @@
+kind: IcebergTableFromRest
+terraform: [snowflake_iceberg_table_from_rest]
+scope: schema
+group: iceberg
+fields:
+  external_volume: {type: identstring}
+  catalog: {type: identstring}
+  catalog_table_name: {type: string, required: true}
+  catalog_namespace: {type: string}
+  path_layout: {type: keyword, enum: [FLAT, HIERARCHICAL]}
+  auto_refresh: {type: boolean}
+  replace_invalid_characters: {type: boolean}
+  comment: {type: string}
+create: CREATE ICEBERG TABLE {@id}[ EXTERNAL_VOLUME = {external_volume}][ CATALOG = {catalog}] CATALOG_TABLE_NAME = {catalog_table_name}[ CATALOG_NAMESPACE = {catalog_namespace}][ PATH_LAYOUT = {path_layout}][ AUTO_REFRESH = {auto_refresh}][ REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}][ COMMENT = {comment}]
+read:
+- statement: SHOW ICEBERG TABLES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment, catalog_table_name: catalog_table_name, catalog_namespace: catalog_namespace}
+alter:
+  auto_refresh: ALTER ICEBERG TABLE {@id} SET AUTO_REFRESH = {auto_refresh}
+  replace_invalid_characters: ALTER ICEBERG TABLE {@id} SET REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}
+  comment: ALTER ICEBERG TABLE {@id} SET COMMENT = {comment}
+unset:
+  replace_invalid_characters: ALTER ICEBERG TABLE {@id} UNSET REPLACE_INVALID_CHARACTERS
+  comment: ALTER ICEBERG TABLE {@id} UNSET COMMENT
+delete: DROP ICEBERG TABLE IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_iceberg_table
+  external_volume: example_volume
+  catalog: example_catalog_integration
+  catalog_table_name: example_rest_table
+  catalog_namespace: example_namespace
+  path_layout: HIERARCHICAL
+  comment: example-comment

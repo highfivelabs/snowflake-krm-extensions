@@ -1,0 +1,600 @@
+kind: CurrentOrganizationAccount
+terraform: [snowflake_current_organization_account]
+mode: set
+group: current
+# POLICY_REFERENCES runs in a warehouse.
+warehouse: true
+fields:
+  abort_detached_query: {type: boolean}
+  active_python_profiler: {type: string}
+  allow_bind_values_access: {type: boolean}
+  allow_client_mfa_caching: {type: boolean}
+  allow_id_token: {type: boolean}
+  allowed_spcs_workload_types: {type: string}
+  autocommit: {type: boolean}
+  base_location_prefix: {type: string}
+  binary_input_format: {type: string}
+  binary_output_format: {type: string}
+  catalog: {type: identifier}
+  catalog_sync: {type: string}
+  client_enable_log_info_statement_parameters: {type: boolean}
+  client_encryption_key_size: {type: integer}
+  client_memory_limit: {type: integer}
+  client_metadata_request_use_connection_ctx: {type: boolean}
+  client_metadata_use_session_database: {type: boolean}
+  client_prefetch_threads: {type: integer}
+  client_result_chunk_size: {type: integer}
+  client_result_column_case_insensitive: {type: boolean}
+  client_session_keep_alive: {type: boolean}
+  client_session_keep_alive_heartbeat_frequency: {type: integer}
+  client_timestamp_type_mapping: {type: string}
+  comment: {type: string}
+  cortex_code_cli_daily_est_credit_limit_per_user: {type: integer}
+  cortex_code_desktop_daily_est_credit_limit_per_user: {type: integer}
+  cortex_code_snowsight_daily_est_credit_limit_per_user: {type: integer}
+  cortex_enabled_cross_region: {type: string}
+  cortex_models_allowlist: {type: string}
+  csv_timestamp_format: {type: string}
+  data_metric_schedule: {type: string}
+  data_retention_time_in_days: {type: integer}
+  date_input_format: {type: string}
+  date_output_format: {type: string}
+  default_dbt_version: {type: string}
+  default_ddl_collation: {type: string}
+  default_notebook_compute_pool_cpu: {type: string}
+  default_notebook_compute_pool_gpu: {type: string}
+  default_null_ordering: {type: string}
+  default_streamlit_compute_pool: {type: string}
+  default_streamlit_notebook_warehouse: {type: identifier}
+  disable_ui_download_button: {type: boolean}
+  disable_user_privilege_grants: {type: boolean}
+  disallowed_spcs_workload_types: {type: string}
+  enable_automatic_sensitive_data_classification_log: {type: boolean}
+  enable_budget_event_logging: {type: boolean}
+  enable_cortex_analyst: {type: boolean}
+  enable_data_compaction: {type: boolean}
+  enable_egress_cost_optimizer: {type: boolean}
+  enable_get_ddl_use_data_type_alias: {type: boolean}
+  enable_iceberg_merge_on_read: {type: boolean}
+  enable_identifier_first_login: {type: boolean}
+  enable_internal_stages_privatelink: {type: boolean}
+  enable_notebook_creation_in_personal_db: {type: boolean}
+  enable_per_account_app_service_privatelink_url: {type: boolean}
+  enable_spcs_block_storage_snowflake_full_encryption_enforcement: {type: boolean}
+  enable_tag_propagation_event_logging: {type: boolean}
+  enable_tri_secret_and_rekey_opt_out_for_image_repository: {type: boolean}
+  enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage: {type: boolean}
+  enable_unhandled_exceptions_reporting: {type: boolean}
+  enable_unload_physical_type_optimization: {type: boolean}
+  enable_unredacted_query_syntax_error: {type: boolean}
+  enable_unredacted_secure_object_error: {type: boolean}
+  enforce_network_rules_for_internal_stages: {type: boolean}
+  error_on_nondeterministic_merge: {type: boolean}
+  error_on_nondeterministic_update: {type: boolean}
+  event_table: {type: name}
+  external_oauth_add_privileged_roles_to_blocked_list: {type: boolean}
+  external_volume: {type: identifier}
+  geography_output_format: {type: string}
+  geometry_output_format: {type: string}
+  hybrid_table_lock_timeout: {type: integer}
+  iceberg_version_default: {type: integer}
+  initial_replication_size_limit_in_tb: {type: number}
+  jdbc_treat_decimal_as_int: {type: boolean}
+  jdbc_treat_timestamp_ntz_as_utc: {type: boolean}
+  jdbc_use_session_timezone: {type: boolean}
+  js_treat_integer_as_bigint: {type: boolean}
+  json_indent: {type: integer}
+  listing_auto_fulfillment_replication_refresh_schedule: {type: string}
+  lock_timeout: {type: integer}
+  log_event_level: {type: string}
+  log_level: {type: string}
+  max_concurrency_level: {type: integer}
+  max_data_extension_time_in_days: {type: integer}
+  metric_level: {type: string}
+  min_data_retention_time_in_days: {type: integer}
+  multi_statement_count: {type: integer}
+  name: {type: identifier, required: true}
+  network_policy: {type: identifier}
+  noorder_sequence_as_default: {type: boolean}
+  oauth_add_privileged_roles_to_blocked_list: {type: boolean}
+  odbc_treat_decimal_as_int: {type: boolean}
+  password_policy: {type: name}
+  periodic_data_rekeying: {type: boolean}
+  pipe_execution_paused: {type: boolean}
+  prevent_unload_to_inline_url: {type: boolean}
+  prevent_unload_to_internal_stages: {type: boolean}
+  python_profiler_modules: {type: string}
+  python_profiler_target_stage: {type: name}
+  query_tag: {type: string}
+  quoted_identifiers_ignore_case: {type: boolean}
+  read_consistency_mode: {type: string}
+  replace_invalid_characters: {type: boolean}
+  require_storage_integration_for_stage_creation: {type: boolean}
+  require_storage_integration_for_stage_operation: {type: boolean}
+  resource_monitor: {type: identifier}
+  row_timestamp_default: {type: boolean}
+  rows_per_resultset: {type: integer}
+  s3_stage_vpce_dns_name: {type: string}
+  search_path: {type: string}
+  serverless_task_max_statement_size: {type: string}
+  serverless_task_min_statement_size: {type: string}
+  session_policy: {type: name}
+  simulated_data_sharing_consumer: {type: string}
+  sql_trace_query_text: {type: string}
+  sso_login_page: {type: boolean}
+  statement_queued_timeout_in_seconds: {type: integer}
+  statement_timeout_in_seconds: {type: integer}
+  storage_serialization_policy: {type: string}
+  strict_json_output: {type: boolean}
+  suspend_task_after_num_failures: {type: integer}
+  task_auto_retry_attempts: {type: integer}
+  time_input_format: {type: string}
+  time_output_format: {type: string}
+  timestamp_day_is_always_24h: {type: boolean}
+  timestamp_input_format: {type: string}
+  timestamp_ltz_output_format: {type: string}
+  timestamp_ntz_output_format: {type: string}
+  timestamp_output_format: {type: string}
+  timestamp_type_mapping: {type: string}
+  timestamp_tz_output_format: {type: string}
+  timezone: {type: string}
+  trace_level: {type: string}
+  transaction_abort_on_error: {type: boolean}
+  transaction_default_isolation_level: {type: string}
+  two_digit_century_start: {type: integer}
+  unsupported_ddl_action: {type: string}
+  use_cached_result: {type: boolean}
+  use_workspaces_for_sql: {type: string}
+  user_task_managed_initial_warehouse_size: {type: string}
+  user_task_minimum_trigger_interval_in_seconds: {type: integer}
+  user_task_timeout_ms: {type: integer}
+  week_of_year_policy: {type: integer}
+  week_start: {type: integer}
+read:
+- statement: SHOW ORGANIZATION ACCOUNTS
+  match: {account_name: "{name}", is_organization_account: "true"}
+  columns: {comment: comment}
+- statement: SHOW PARAMETERS IN ACCOUNT
+  properties: {name: key, value: value}
+  columns:
+    abort_detached_query: ABORT_DETACHED_QUERY
+    active_python_profiler: ACTIVE_PYTHON_PROFILER
+    allow_bind_values_access: ALLOW_BIND_VALUES_ACCESS
+    allow_client_mfa_caching: ALLOW_CLIENT_MFA_CACHING
+    allow_id_token: ALLOW_ID_TOKEN
+    allowed_spcs_workload_types: ALLOWED_SPCS_WORKLOAD_TYPES
+    autocommit: AUTOCOMMIT
+    base_location_prefix: BASE_LOCATION_PREFIX
+    binary_input_format: BINARY_INPUT_FORMAT
+    binary_output_format: BINARY_OUTPUT_FORMAT
+    catalog: CATALOG
+    catalog_sync: CATALOG_SYNC
+    client_enable_log_info_statement_parameters: CLIENT_ENABLE_LOG_INFO_STATEMENT_PARAMETERS
+    client_encryption_key_size: CLIENT_ENCRYPTION_KEY_SIZE
+    client_memory_limit: CLIENT_MEMORY_LIMIT
+    client_metadata_request_use_connection_ctx: CLIENT_METADATA_REQUEST_USE_CONNECTION_CTX
+    client_metadata_use_session_database: CLIENT_METADATA_USE_SESSION_DATABASE
+    client_prefetch_threads: CLIENT_PREFETCH_THREADS
+    client_result_chunk_size: CLIENT_RESULT_CHUNK_SIZE
+    client_result_column_case_insensitive: CLIENT_RESULT_COLUMN_CASE_INSENSITIVE
+    client_session_keep_alive: CLIENT_SESSION_KEEP_ALIVE
+    client_session_keep_alive_heartbeat_frequency: CLIENT_SESSION_KEEP_ALIVE_HEARTBEAT_FREQUENCY
+    client_timestamp_type_mapping: CLIENT_TIMESTAMP_TYPE_MAPPING
+    cortex_code_cli_daily_est_credit_limit_per_user: CORTEX_CODE_CLI_DAILY_EST_CREDIT_LIMIT_PER_USER
+    cortex_code_desktop_daily_est_credit_limit_per_user: CORTEX_CODE_DESKTOP_DAILY_EST_CREDIT_LIMIT_PER_USER
+    cortex_code_snowsight_daily_est_credit_limit_per_user: CORTEX_CODE_SNOWSIGHT_DAILY_EST_CREDIT_LIMIT_PER_USER
+    cortex_enabled_cross_region: CORTEX_ENABLED_CROSS_REGION
+    cortex_models_allowlist: CORTEX_MODELS_ALLOWLIST
+    csv_timestamp_format: CSV_TIMESTAMP_FORMAT
+    data_metric_schedule: DATA_METRIC_SCHEDULE
+    data_retention_time_in_days: DATA_RETENTION_TIME_IN_DAYS
+    date_input_format: DATE_INPUT_FORMAT
+    date_output_format: DATE_OUTPUT_FORMAT
+    default_dbt_version: DEFAULT_DBT_VERSION
+    default_ddl_collation: DEFAULT_DDL_COLLATION
+    default_notebook_compute_pool_cpu: DEFAULT_NOTEBOOK_COMPUTE_POOL_CPU
+    default_notebook_compute_pool_gpu: DEFAULT_NOTEBOOK_COMPUTE_POOL_GPU
+    default_null_ordering: DEFAULT_NULL_ORDERING
+    default_streamlit_compute_pool: DEFAULT_STREAMLIT_COMPUTE_POOL
+    default_streamlit_notebook_warehouse: DEFAULT_STREAMLIT_NOTEBOOK_WAREHOUSE
+    disable_ui_download_button: DISABLE_UI_DOWNLOAD_BUTTON
+    disable_user_privilege_grants: DISABLE_USER_PRIVILEGE_GRANTS
+    disallowed_spcs_workload_types: DISALLOWED_SPCS_WORKLOAD_TYPES
+    enable_automatic_sensitive_data_classification_log: ENABLE_AUTOMATIC_SENSITIVE_DATA_CLASSIFICATION_LOG
+    enable_budget_event_logging: ENABLE_BUDGET_EVENT_LOGGING
+    enable_cortex_analyst: ENABLE_CORTEX_ANALYST
+    enable_data_compaction: ENABLE_DATA_COMPACTION
+    enable_egress_cost_optimizer: ENABLE_EGRESS_COST_OPTIMIZER
+    enable_get_ddl_use_data_type_alias: ENABLE_GET_DDL_USE_DATA_TYPE_ALIAS
+    enable_iceberg_merge_on_read: ENABLE_ICEBERG_MERGE_ON_READ
+    enable_identifier_first_login: ENABLE_IDENTIFIER_FIRST_LOGIN
+    enable_internal_stages_privatelink: ENABLE_INTERNAL_STAGES_PRIVATELINK
+    enable_notebook_creation_in_personal_db: ENABLE_NOTEBOOK_CREATION_IN_PERSONAL_DB
+    enable_per_account_app_service_privatelink_url: ENABLE_PER_ACCOUNT_APP_SERVICE_PRIVATELINK_URL
+    enable_spcs_block_storage_snowflake_full_encryption_enforcement: ENABLE_SPCS_BLOCK_STORAGE_SNOWFLAKE_FULL_ENCRYPTION_ENFORCEMENT
+    enable_tag_propagation_event_logging: ENABLE_TAG_PROPAGATION_EVENT_LOGGING
+    enable_tri_secret_and_rekey_opt_out_for_image_repository: ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_IMAGE_REPOSITORY
+    enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage: ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_SPCS_BLOCK_STORAGE
+    enable_unhandled_exceptions_reporting: ENABLE_UNHANDLED_EXCEPTIONS_REPORTING
+    enable_unload_physical_type_optimization: ENABLE_UNLOAD_PHYSICAL_TYPE_OPTIMIZATION
+    enable_unredacted_query_syntax_error: ENABLE_UNREDACTED_QUERY_SYNTAX_ERROR
+    enable_unredacted_secure_object_error: ENABLE_UNREDACTED_SECURE_OBJECT_ERROR
+    enforce_network_rules_for_internal_stages: ENFORCE_NETWORK_RULES_FOR_INTERNAL_STAGES
+    error_on_nondeterministic_merge: ERROR_ON_NONDETERMINISTIC_MERGE
+    error_on_nondeterministic_update: ERROR_ON_NONDETERMINISTIC_UPDATE
+    event_table: EVENT_TABLE
+    external_oauth_add_privileged_roles_to_blocked_list: EXTERNAL_OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST
+    external_volume: EXTERNAL_VOLUME
+    geography_output_format: GEOGRAPHY_OUTPUT_FORMAT
+    geometry_output_format: GEOMETRY_OUTPUT_FORMAT
+    hybrid_table_lock_timeout: HYBRID_TABLE_LOCK_TIMEOUT
+    iceberg_version_default: ICEBERG_VERSION_DEFAULT
+    initial_replication_size_limit_in_tb: INITIAL_REPLICATION_SIZE_LIMIT_IN_TB
+    jdbc_treat_decimal_as_int: JDBC_TREAT_DECIMAL_AS_INT
+    jdbc_treat_timestamp_ntz_as_utc: JDBC_TREAT_TIMESTAMP_NTZ_AS_UTC
+    jdbc_use_session_timezone: JDBC_USE_SESSION_TIMEZONE
+    js_treat_integer_as_bigint: JS_TREAT_INTEGER_AS_BIGINT
+    json_indent: JSON_INDENT
+    listing_auto_fulfillment_replication_refresh_schedule: LISTING_AUTO_FULFILLMENT_REPLICATION_REFRESH_SCHEDULE
+    lock_timeout: LOCK_TIMEOUT
+    log_event_level: LOG_EVENT_LEVEL
+    log_level: LOG_LEVEL
+    max_concurrency_level: MAX_CONCURRENCY_LEVEL
+    max_data_extension_time_in_days: MAX_DATA_EXTENSION_TIME_IN_DAYS
+    metric_level: METRIC_LEVEL
+    min_data_retention_time_in_days: MIN_DATA_RETENTION_TIME_IN_DAYS
+    multi_statement_count: MULTI_STATEMENT_COUNT
+    network_policy: NETWORK_POLICY
+    noorder_sequence_as_default: NOORDER_SEQUENCE_AS_DEFAULT
+    oauth_add_privileged_roles_to_blocked_list: OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST
+    odbc_treat_decimal_as_int: ODBC_TREAT_DECIMAL_AS_INT
+    periodic_data_rekeying: PERIODIC_DATA_REKEYING
+    pipe_execution_paused: PIPE_EXECUTION_PAUSED
+    prevent_unload_to_inline_url: PREVENT_UNLOAD_TO_INLINE_URL
+    prevent_unload_to_internal_stages: PREVENT_UNLOAD_TO_INTERNAL_STAGES
+    python_profiler_modules: PYTHON_PROFILER_MODULES
+    python_profiler_target_stage: PYTHON_PROFILER_TARGET_STAGE
+    query_tag: QUERY_TAG
+    quoted_identifiers_ignore_case: QUOTED_IDENTIFIERS_IGNORE_CASE
+    read_consistency_mode: READ_CONSISTENCY_MODE
+    replace_invalid_characters: REPLACE_INVALID_CHARACTERS
+    require_storage_integration_for_stage_creation: REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_CREATION
+    require_storage_integration_for_stage_operation: REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_OPERATION
+    row_timestamp_default: ROW_TIMESTAMP_DEFAULT
+    rows_per_resultset: ROWS_PER_RESULTSET
+    s3_stage_vpce_dns_name: S3_STAGE_VPCE_DNS_NAME
+    search_path: SEARCH_PATH
+    serverless_task_max_statement_size: SERVERLESS_TASK_MAX_STATEMENT_SIZE
+    serverless_task_min_statement_size: SERVERLESS_TASK_MIN_STATEMENT_SIZE
+    simulated_data_sharing_consumer: SIMULATED_DATA_SHARING_CONSUMER
+    sql_trace_query_text: SQL_TRACE_QUERY_TEXT
+    sso_login_page: SSO_LOGIN_PAGE
+    statement_queued_timeout_in_seconds: STATEMENT_QUEUED_TIMEOUT_IN_SECONDS
+    statement_timeout_in_seconds: STATEMENT_TIMEOUT_IN_SECONDS
+    storage_serialization_policy: STORAGE_SERIALIZATION_POLICY
+    strict_json_output: STRICT_JSON_OUTPUT
+    suspend_task_after_num_failures: SUSPEND_TASK_AFTER_NUM_FAILURES
+    task_auto_retry_attempts: TASK_AUTO_RETRY_ATTEMPTS
+    time_input_format: TIME_INPUT_FORMAT
+    time_output_format: TIME_OUTPUT_FORMAT
+    timestamp_day_is_always_24h: TIMESTAMP_DAY_IS_ALWAYS_24H
+    timestamp_input_format: TIMESTAMP_INPUT_FORMAT
+    timestamp_ltz_output_format: TIMESTAMP_LTZ_OUTPUT_FORMAT
+    timestamp_ntz_output_format: TIMESTAMP_NTZ_OUTPUT_FORMAT
+    timestamp_output_format: TIMESTAMP_OUTPUT_FORMAT
+    timestamp_type_mapping: TIMESTAMP_TYPE_MAPPING
+    timestamp_tz_output_format: TIMESTAMP_TZ_OUTPUT_FORMAT
+    timezone: TIMEZONE
+    trace_level: TRACE_LEVEL
+    transaction_abort_on_error: TRANSACTION_ABORT_ON_ERROR
+    transaction_default_isolation_level: TRANSACTION_DEFAULT_ISOLATION_LEVEL
+    two_digit_century_start: TWO_DIGIT_CENTURY_START
+    unsupported_ddl_action: UNSUPPORTED_DDL_ACTION
+    use_cached_result: USE_CACHED_RESULT
+    use_workspaces_for_sql: USE_WORKSPACES_FOR_SQL
+    user_task_managed_initial_warehouse_size: USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE
+    user_task_minimum_trigger_interval_in_seconds: USER_TASK_MINIMUM_TRIGGER_INTERVAL_IN_SECONDS
+    user_task_timeout_ms: USER_TASK_TIMEOUT_MS
+    week_of_year_policy: WEEK_OF_YEAR_POLICY
+    week_start: WEEK_START
+- statement: SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME => CURRENT_ACCOUNT(), REF_ENTITY_DOMAIN => 'ACCOUNT'))
+  properties: {name: POLICY_KIND, value: POLICY_DB.POLICY_SCHEMA.POLICY_NAME}
+  columns: {password_policy: PASSWORD_POLICY, session_policy: SESSION_POLICY}
+- statement: SHOW RESOURCE MONITORS
+  properties: {name: level, value: name}
+  columns: {resource_monitor: ACCOUNT}
+alter:
+  comment: ALTER ORGANIZATION ACCOUNT SET COMMENT = {comment}
+  password_policy: ALTER ORGANIZATION ACCOUNT SET PASSWORD POLICY {password_policy}
+  session_policy: ALTER ORGANIZATION ACCOUNT SET SESSION POLICY {session_policy}
+  resource_monitor: ALTER ORGANIZATION ACCOUNT SET RESOURCE_MONITOR = {resource_monitor}
+  abort_detached_query: ALTER ORGANIZATION ACCOUNT SET ABORT_DETACHED_QUERY = {abort_detached_query}
+  active_python_profiler: ALTER ORGANIZATION ACCOUNT SET ACTIVE_PYTHON_PROFILER = {active_python_profiler}
+  allow_bind_values_access: ALTER ORGANIZATION ACCOUNT SET ALLOW_BIND_VALUES_ACCESS = {allow_bind_values_access}
+  allow_client_mfa_caching: ALTER ORGANIZATION ACCOUNT SET ALLOW_CLIENT_MFA_CACHING = {allow_client_mfa_caching}
+  allow_id_token: ALTER ORGANIZATION ACCOUNT SET ALLOW_ID_TOKEN = {allow_id_token}
+  allowed_spcs_workload_types: ALTER ORGANIZATION ACCOUNT SET ALLOWED_SPCS_WORKLOAD_TYPES = {allowed_spcs_workload_types}
+  autocommit: ALTER ORGANIZATION ACCOUNT SET AUTOCOMMIT = {autocommit}
+  base_location_prefix: ALTER ORGANIZATION ACCOUNT SET BASE_LOCATION_PREFIX = {base_location_prefix}
+  binary_input_format: ALTER ORGANIZATION ACCOUNT SET BINARY_INPUT_FORMAT = {binary_input_format}
+  binary_output_format: ALTER ORGANIZATION ACCOUNT SET BINARY_OUTPUT_FORMAT = {binary_output_format}
+  catalog: ALTER ORGANIZATION ACCOUNT SET CATALOG = {catalog}
+  catalog_sync: ALTER ORGANIZATION ACCOUNT SET CATALOG_SYNC = {catalog_sync}
+  client_enable_log_info_statement_parameters: ALTER ORGANIZATION ACCOUNT SET CLIENT_ENABLE_LOG_INFO_STATEMENT_PARAMETERS = {client_enable_log_info_statement_parameters}
+  client_encryption_key_size: ALTER ORGANIZATION ACCOUNT SET CLIENT_ENCRYPTION_KEY_SIZE = {client_encryption_key_size}
+  client_memory_limit: ALTER ORGANIZATION ACCOUNT SET CLIENT_MEMORY_LIMIT = {client_memory_limit}
+  client_metadata_request_use_connection_ctx: ALTER ORGANIZATION ACCOUNT SET CLIENT_METADATA_REQUEST_USE_CONNECTION_CTX = {client_metadata_request_use_connection_ctx}
+  client_metadata_use_session_database: ALTER ORGANIZATION ACCOUNT SET CLIENT_METADATA_USE_SESSION_DATABASE = {client_metadata_use_session_database}
+  client_prefetch_threads: ALTER ORGANIZATION ACCOUNT SET CLIENT_PREFETCH_THREADS = {client_prefetch_threads}
+  client_result_chunk_size: ALTER ORGANIZATION ACCOUNT SET CLIENT_RESULT_CHUNK_SIZE = {client_result_chunk_size}
+  client_result_column_case_insensitive: ALTER ORGANIZATION ACCOUNT SET CLIENT_RESULT_COLUMN_CASE_INSENSITIVE = {client_result_column_case_insensitive}
+  client_session_keep_alive: ALTER ORGANIZATION ACCOUNT SET CLIENT_SESSION_KEEP_ALIVE = {client_session_keep_alive}
+  client_session_keep_alive_heartbeat_frequency: ALTER ORGANIZATION ACCOUNT SET CLIENT_SESSION_KEEP_ALIVE_HEARTBEAT_FREQUENCY = {client_session_keep_alive_heartbeat_frequency}
+  client_timestamp_type_mapping: ALTER ORGANIZATION ACCOUNT SET CLIENT_TIMESTAMP_TYPE_MAPPING = {client_timestamp_type_mapping}
+  cortex_code_cli_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT SET CORTEX_CODE_CLI_DAILY_EST_CREDIT_LIMIT_PER_USER = {cortex_code_cli_daily_est_credit_limit_per_user}
+  cortex_code_desktop_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT SET CORTEX_CODE_DESKTOP_DAILY_EST_CREDIT_LIMIT_PER_USER = {cortex_code_desktop_daily_est_credit_limit_per_user}
+  cortex_code_snowsight_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT SET CORTEX_CODE_SNOWSIGHT_DAILY_EST_CREDIT_LIMIT_PER_USER = {cortex_code_snowsight_daily_est_credit_limit_per_user}
+  cortex_enabled_cross_region: ALTER ORGANIZATION ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = {cortex_enabled_cross_region}
+  cortex_models_allowlist: ALTER ORGANIZATION ACCOUNT SET CORTEX_MODELS_ALLOWLIST = {cortex_models_allowlist}
+  csv_timestamp_format: ALTER ORGANIZATION ACCOUNT SET CSV_TIMESTAMP_FORMAT = {csv_timestamp_format}
+  data_metric_schedule: ALTER ORGANIZATION ACCOUNT SET DATA_METRIC_SCHEDULE = {data_metric_schedule}
+  data_retention_time_in_days: ALTER ORGANIZATION ACCOUNT SET DATA_RETENTION_TIME_IN_DAYS = {data_retention_time_in_days}
+  date_input_format: ALTER ORGANIZATION ACCOUNT SET DATE_INPUT_FORMAT = {date_input_format}
+  date_output_format: ALTER ORGANIZATION ACCOUNT SET DATE_OUTPUT_FORMAT = {date_output_format}
+  default_dbt_version: ALTER ORGANIZATION ACCOUNT SET DEFAULT_DBT_VERSION = {default_dbt_version}
+  default_ddl_collation: ALTER ORGANIZATION ACCOUNT SET DEFAULT_DDL_COLLATION = {default_ddl_collation}
+  default_notebook_compute_pool_cpu: ALTER ORGANIZATION ACCOUNT SET DEFAULT_NOTEBOOK_COMPUTE_POOL_CPU = {default_notebook_compute_pool_cpu}
+  default_notebook_compute_pool_gpu: ALTER ORGANIZATION ACCOUNT SET DEFAULT_NOTEBOOK_COMPUTE_POOL_GPU = {default_notebook_compute_pool_gpu}
+  default_null_ordering: ALTER ORGANIZATION ACCOUNT SET DEFAULT_NULL_ORDERING = {default_null_ordering}
+  default_streamlit_compute_pool: ALTER ORGANIZATION ACCOUNT SET DEFAULT_STREAMLIT_COMPUTE_POOL = {default_streamlit_compute_pool}
+  default_streamlit_notebook_warehouse: ALTER ORGANIZATION ACCOUNT SET DEFAULT_STREAMLIT_NOTEBOOK_WAREHOUSE = {default_streamlit_notebook_warehouse}
+  disable_ui_download_button: ALTER ORGANIZATION ACCOUNT SET DISABLE_UI_DOWNLOAD_BUTTON = {disable_ui_download_button}
+  disable_user_privilege_grants: ALTER ORGANIZATION ACCOUNT SET DISABLE_USER_PRIVILEGE_GRANTS = {disable_user_privilege_grants}
+  disallowed_spcs_workload_types: ALTER ORGANIZATION ACCOUNT SET DISALLOWED_SPCS_WORKLOAD_TYPES = {disallowed_spcs_workload_types}
+  enable_automatic_sensitive_data_classification_log: ALTER ORGANIZATION ACCOUNT SET ENABLE_AUTOMATIC_SENSITIVE_DATA_CLASSIFICATION_LOG = {enable_automatic_sensitive_data_classification_log}
+  enable_budget_event_logging: ALTER ORGANIZATION ACCOUNT SET ENABLE_BUDGET_EVENT_LOGGING = {enable_budget_event_logging}
+  enable_cortex_analyst: ALTER ORGANIZATION ACCOUNT SET ENABLE_CORTEX_ANALYST = {enable_cortex_analyst}
+  enable_data_compaction: ALTER ORGANIZATION ACCOUNT SET ENABLE_DATA_COMPACTION = {enable_data_compaction}
+  enable_egress_cost_optimizer: ALTER ORGANIZATION ACCOUNT SET ENABLE_EGRESS_COST_OPTIMIZER = {enable_egress_cost_optimizer}
+  enable_get_ddl_use_data_type_alias: ALTER ORGANIZATION ACCOUNT SET ENABLE_GET_DDL_USE_DATA_TYPE_ALIAS = {enable_get_ddl_use_data_type_alias}
+  enable_iceberg_merge_on_read: ALTER ORGANIZATION ACCOUNT SET ENABLE_ICEBERG_MERGE_ON_READ = {enable_iceberg_merge_on_read}
+  enable_identifier_first_login: ALTER ORGANIZATION ACCOUNT SET ENABLE_IDENTIFIER_FIRST_LOGIN = {enable_identifier_first_login}
+  enable_internal_stages_privatelink: ALTER ORGANIZATION ACCOUNT SET ENABLE_INTERNAL_STAGES_PRIVATELINK = {enable_internal_stages_privatelink}
+  enable_notebook_creation_in_personal_db: ALTER ORGANIZATION ACCOUNT SET ENABLE_NOTEBOOK_CREATION_IN_PERSONAL_DB = {enable_notebook_creation_in_personal_db}
+  enable_per_account_app_service_privatelink_url: ALTER ORGANIZATION ACCOUNT SET ENABLE_PER_ACCOUNT_APP_SERVICE_PRIVATELINK_URL = {enable_per_account_app_service_privatelink_url}
+  enable_spcs_block_storage_snowflake_full_encryption_enforcement: ALTER ORGANIZATION ACCOUNT SET ENABLE_SPCS_BLOCK_STORAGE_SNOWFLAKE_FULL_ENCRYPTION_ENFORCEMENT = {enable_spcs_block_storage_snowflake_full_encryption_enforcement}
+  enable_tag_propagation_event_logging: ALTER ORGANIZATION ACCOUNT SET ENABLE_TAG_PROPAGATION_EVENT_LOGGING = {enable_tag_propagation_event_logging}
+  enable_tri_secret_and_rekey_opt_out_for_image_repository: ALTER ORGANIZATION ACCOUNT SET ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_IMAGE_REPOSITORY = {enable_tri_secret_and_rekey_opt_out_for_image_repository}
+  enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage: ALTER ORGANIZATION ACCOUNT SET ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_SPCS_BLOCK_STORAGE = {enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage}
+  enable_unhandled_exceptions_reporting: ALTER ORGANIZATION ACCOUNT SET ENABLE_UNHANDLED_EXCEPTIONS_REPORTING = {enable_unhandled_exceptions_reporting}
+  enable_unload_physical_type_optimization: ALTER ORGANIZATION ACCOUNT SET ENABLE_UNLOAD_PHYSICAL_TYPE_OPTIMIZATION = {enable_unload_physical_type_optimization}
+  enable_unredacted_query_syntax_error: ALTER ORGANIZATION ACCOUNT SET ENABLE_UNREDACTED_QUERY_SYNTAX_ERROR = {enable_unredacted_query_syntax_error}
+  enable_unredacted_secure_object_error: ALTER ORGANIZATION ACCOUNT SET ENABLE_UNREDACTED_SECURE_OBJECT_ERROR = {enable_unredacted_secure_object_error}
+  enforce_network_rules_for_internal_stages: ALTER ORGANIZATION ACCOUNT SET ENFORCE_NETWORK_RULES_FOR_INTERNAL_STAGES = {enforce_network_rules_for_internal_stages}
+  error_on_nondeterministic_merge: ALTER ORGANIZATION ACCOUNT SET ERROR_ON_NONDETERMINISTIC_MERGE = {error_on_nondeterministic_merge}
+  error_on_nondeterministic_update: ALTER ORGANIZATION ACCOUNT SET ERROR_ON_NONDETERMINISTIC_UPDATE = {error_on_nondeterministic_update}
+  event_table: ALTER ORGANIZATION ACCOUNT SET EVENT_TABLE = {event_table}
+  external_oauth_add_privileged_roles_to_blocked_list: ALTER ORGANIZATION ACCOUNT SET EXTERNAL_OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST = {external_oauth_add_privileged_roles_to_blocked_list}
+  external_volume: ALTER ORGANIZATION ACCOUNT SET EXTERNAL_VOLUME = {external_volume}
+  geography_output_format: ALTER ORGANIZATION ACCOUNT SET GEOGRAPHY_OUTPUT_FORMAT = {geography_output_format}
+  geometry_output_format: ALTER ORGANIZATION ACCOUNT SET GEOMETRY_OUTPUT_FORMAT = {geometry_output_format}
+  hybrid_table_lock_timeout: ALTER ORGANIZATION ACCOUNT SET HYBRID_TABLE_LOCK_TIMEOUT = {hybrid_table_lock_timeout}
+  iceberg_version_default: ALTER ORGANIZATION ACCOUNT SET ICEBERG_VERSION_DEFAULT = {iceberg_version_default}
+  initial_replication_size_limit_in_tb: ALTER ORGANIZATION ACCOUNT SET INITIAL_REPLICATION_SIZE_LIMIT_IN_TB = {initial_replication_size_limit_in_tb}
+  jdbc_treat_decimal_as_int: ALTER ORGANIZATION ACCOUNT SET JDBC_TREAT_DECIMAL_AS_INT = {jdbc_treat_decimal_as_int}
+  jdbc_treat_timestamp_ntz_as_utc: ALTER ORGANIZATION ACCOUNT SET JDBC_TREAT_TIMESTAMP_NTZ_AS_UTC = {jdbc_treat_timestamp_ntz_as_utc}
+  jdbc_use_session_timezone: ALTER ORGANIZATION ACCOUNT SET JDBC_USE_SESSION_TIMEZONE = {jdbc_use_session_timezone}
+  js_treat_integer_as_bigint: ALTER ORGANIZATION ACCOUNT SET JS_TREAT_INTEGER_AS_BIGINT = {js_treat_integer_as_bigint}
+  json_indent: ALTER ORGANIZATION ACCOUNT SET JSON_INDENT = {json_indent}
+  listing_auto_fulfillment_replication_refresh_schedule: ALTER ORGANIZATION ACCOUNT SET LISTING_AUTO_FULFILLMENT_REPLICATION_REFRESH_SCHEDULE = {listing_auto_fulfillment_replication_refresh_schedule}
+  lock_timeout: ALTER ORGANIZATION ACCOUNT SET LOCK_TIMEOUT = {lock_timeout}
+  log_event_level: ALTER ORGANIZATION ACCOUNT SET LOG_EVENT_LEVEL = {log_event_level}
+  log_level: ALTER ORGANIZATION ACCOUNT SET LOG_LEVEL = {log_level}
+  max_concurrency_level: ALTER ORGANIZATION ACCOUNT SET MAX_CONCURRENCY_LEVEL = {max_concurrency_level}
+  max_data_extension_time_in_days: ALTER ORGANIZATION ACCOUNT SET MAX_DATA_EXTENSION_TIME_IN_DAYS = {max_data_extension_time_in_days}
+  metric_level: ALTER ORGANIZATION ACCOUNT SET METRIC_LEVEL = {metric_level}
+  min_data_retention_time_in_days: ALTER ORGANIZATION ACCOUNT SET MIN_DATA_RETENTION_TIME_IN_DAYS = {min_data_retention_time_in_days}
+  multi_statement_count: ALTER ORGANIZATION ACCOUNT SET MULTI_STATEMENT_COUNT = {multi_statement_count}
+  network_policy: ALTER ORGANIZATION ACCOUNT SET NETWORK_POLICY = {network_policy}
+  noorder_sequence_as_default: ALTER ORGANIZATION ACCOUNT SET NOORDER_SEQUENCE_AS_DEFAULT = {noorder_sequence_as_default}
+  oauth_add_privileged_roles_to_blocked_list: ALTER ORGANIZATION ACCOUNT SET OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST = {oauth_add_privileged_roles_to_blocked_list}
+  odbc_treat_decimal_as_int: ALTER ORGANIZATION ACCOUNT SET ODBC_TREAT_DECIMAL_AS_INT = {odbc_treat_decimal_as_int}
+  periodic_data_rekeying: ALTER ORGANIZATION ACCOUNT SET PERIODIC_DATA_REKEYING = {periodic_data_rekeying}
+  pipe_execution_paused: ALTER ORGANIZATION ACCOUNT SET PIPE_EXECUTION_PAUSED = {pipe_execution_paused}
+  prevent_unload_to_inline_url: ALTER ORGANIZATION ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = {prevent_unload_to_inline_url}
+  prevent_unload_to_internal_stages: ALTER ORGANIZATION ACCOUNT SET PREVENT_UNLOAD_TO_INTERNAL_STAGES = {prevent_unload_to_internal_stages}
+  python_profiler_modules: ALTER ORGANIZATION ACCOUNT SET PYTHON_PROFILER_MODULES = {python_profiler_modules}
+  python_profiler_target_stage: ALTER ORGANIZATION ACCOUNT SET PYTHON_PROFILER_TARGET_STAGE = {python_profiler_target_stage}
+  query_tag: ALTER ORGANIZATION ACCOUNT SET QUERY_TAG = {query_tag}
+  quoted_identifiers_ignore_case: ALTER ORGANIZATION ACCOUNT SET QUOTED_IDENTIFIERS_IGNORE_CASE = {quoted_identifiers_ignore_case}
+  read_consistency_mode: ALTER ORGANIZATION ACCOUNT SET READ_CONSISTENCY_MODE = {read_consistency_mode}
+  replace_invalid_characters: ALTER ORGANIZATION ACCOUNT SET REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}
+  require_storage_integration_for_stage_creation: ALTER ORGANIZATION ACCOUNT SET REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_CREATION = {require_storage_integration_for_stage_creation}
+  require_storage_integration_for_stage_operation: ALTER ORGANIZATION ACCOUNT SET REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_OPERATION = {require_storage_integration_for_stage_operation}
+  row_timestamp_default: ALTER ORGANIZATION ACCOUNT SET ROW_TIMESTAMP_DEFAULT = {row_timestamp_default}
+  rows_per_resultset: ALTER ORGANIZATION ACCOUNT SET ROWS_PER_RESULTSET = {rows_per_resultset}
+  s3_stage_vpce_dns_name: ALTER ORGANIZATION ACCOUNT SET S3_STAGE_VPCE_DNS_NAME = {s3_stage_vpce_dns_name}
+  search_path: ALTER ORGANIZATION ACCOUNT SET SEARCH_PATH = {search_path}
+  serverless_task_max_statement_size: ALTER ORGANIZATION ACCOUNT SET SERVERLESS_TASK_MAX_STATEMENT_SIZE = {serverless_task_max_statement_size}
+  serverless_task_min_statement_size: ALTER ORGANIZATION ACCOUNT SET SERVERLESS_TASK_MIN_STATEMENT_SIZE = {serverless_task_min_statement_size}
+  simulated_data_sharing_consumer: ALTER ORGANIZATION ACCOUNT SET SIMULATED_DATA_SHARING_CONSUMER = {simulated_data_sharing_consumer}
+  sql_trace_query_text: ALTER ORGANIZATION ACCOUNT SET SQL_TRACE_QUERY_TEXT = {sql_trace_query_text}
+  sso_login_page: ALTER ORGANIZATION ACCOUNT SET SSO_LOGIN_PAGE = {sso_login_page}
+  statement_queued_timeout_in_seconds: ALTER ORGANIZATION ACCOUNT SET STATEMENT_QUEUED_TIMEOUT_IN_SECONDS = {statement_queued_timeout_in_seconds}
+  statement_timeout_in_seconds: ALTER ORGANIZATION ACCOUNT SET STATEMENT_TIMEOUT_IN_SECONDS = {statement_timeout_in_seconds}
+  storage_serialization_policy: ALTER ORGANIZATION ACCOUNT SET STORAGE_SERIALIZATION_POLICY = {storage_serialization_policy}
+  strict_json_output: ALTER ORGANIZATION ACCOUNT SET STRICT_JSON_OUTPUT = {strict_json_output}
+  suspend_task_after_num_failures: ALTER ORGANIZATION ACCOUNT SET SUSPEND_TASK_AFTER_NUM_FAILURES = {suspend_task_after_num_failures}
+  task_auto_retry_attempts: ALTER ORGANIZATION ACCOUNT SET TASK_AUTO_RETRY_ATTEMPTS = {task_auto_retry_attempts}
+  time_input_format: ALTER ORGANIZATION ACCOUNT SET TIME_INPUT_FORMAT = {time_input_format}
+  time_output_format: ALTER ORGANIZATION ACCOUNT SET TIME_OUTPUT_FORMAT = {time_output_format}
+  timestamp_day_is_always_24h: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_DAY_IS_ALWAYS_24H = {timestamp_day_is_always_24h}
+  timestamp_input_format: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_INPUT_FORMAT = {timestamp_input_format}
+  timestamp_ltz_output_format: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_LTZ_OUTPUT_FORMAT = {timestamp_ltz_output_format}
+  timestamp_ntz_output_format: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_NTZ_OUTPUT_FORMAT = {timestamp_ntz_output_format}
+  timestamp_output_format: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_OUTPUT_FORMAT = {timestamp_output_format}
+  timestamp_type_mapping: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_TYPE_MAPPING = {timestamp_type_mapping}
+  timestamp_tz_output_format: ALTER ORGANIZATION ACCOUNT SET TIMESTAMP_TZ_OUTPUT_FORMAT = {timestamp_tz_output_format}
+  timezone: ALTER ORGANIZATION ACCOUNT SET TIMEZONE = {timezone}
+  trace_level: ALTER ORGANIZATION ACCOUNT SET TRACE_LEVEL = {trace_level}
+  transaction_abort_on_error: ALTER ORGANIZATION ACCOUNT SET TRANSACTION_ABORT_ON_ERROR = {transaction_abort_on_error}
+  transaction_default_isolation_level: ALTER ORGANIZATION ACCOUNT SET TRANSACTION_DEFAULT_ISOLATION_LEVEL = {transaction_default_isolation_level}
+  two_digit_century_start: ALTER ORGANIZATION ACCOUNT SET TWO_DIGIT_CENTURY_START = {two_digit_century_start}
+  unsupported_ddl_action: ALTER ORGANIZATION ACCOUNT SET UNSUPPORTED_DDL_ACTION = {unsupported_ddl_action}
+  use_cached_result: ALTER ORGANIZATION ACCOUNT SET USE_CACHED_RESULT = {use_cached_result}
+  use_workspaces_for_sql: ALTER ORGANIZATION ACCOUNT SET USE_WORKSPACES_FOR_SQL = {use_workspaces_for_sql}
+  user_task_managed_initial_warehouse_size: ALTER ORGANIZATION ACCOUNT SET USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE = {user_task_managed_initial_warehouse_size}
+  user_task_minimum_trigger_interval_in_seconds: ALTER ORGANIZATION ACCOUNT SET USER_TASK_MINIMUM_TRIGGER_INTERVAL_IN_SECONDS = {user_task_minimum_trigger_interval_in_seconds}
+  user_task_timeout_ms: ALTER ORGANIZATION ACCOUNT SET USER_TASK_TIMEOUT_MS = {user_task_timeout_ms}
+  week_of_year_policy: ALTER ORGANIZATION ACCOUNT SET WEEK_OF_YEAR_POLICY = {week_of_year_policy}
+  week_start: ALTER ORGANIZATION ACCOUNT SET WEEK_START = {week_start}
+unset:
+  comment: ALTER ORGANIZATION ACCOUNT UNSET COMMENT
+  password_policy: ALTER ORGANIZATION ACCOUNT UNSET PASSWORD POLICY
+  session_policy: ALTER ORGANIZATION ACCOUNT UNSET SESSION POLICY
+  resource_monitor: ALTER ORGANIZATION ACCOUNT UNSET RESOURCE_MONITOR
+  abort_detached_query: ALTER ORGANIZATION ACCOUNT UNSET ABORT_DETACHED_QUERY
+  active_python_profiler: ALTER ORGANIZATION ACCOUNT UNSET ACTIVE_PYTHON_PROFILER
+  allow_bind_values_access: ALTER ORGANIZATION ACCOUNT UNSET ALLOW_BIND_VALUES_ACCESS
+  allow_client_mfa_caching: ALTER ORGANIZATION ACCOUNT UNSET ALLOW_CLIENT_MFA_CACHING
+  allow_id_token: ALTER ORGANIZATION ACCOUNT UNSET ALLOW_ID_TOKEN
+  allowed_spcs_workload_types: ALTER ORGANIZATION ACCOUNT UNSET ALLOWED_SPCS_WORKLOAD_TYPES
+  autocommit: ALTER ORGANIZATION ACCOUNT UNSET AUTOCOMMIT
+  base_location_prefix: ALTER ORGANIZATION ACCOUNT UNSET BASE_LOCATION_PREFIX
+  binary_input_format: ALTER ORGANIZATION ACCOUNT UNSET BINARY_INPUT_FORMAT
+  binary_output_format: ALTER ORGANIZATION ACCOUNT UNSET BINARY_OUTPUT_FORMAT
+  catalog: ALTER ORGANIZATION ACCOUNT UNSET CATALOG
+  catalog_sync: ALTER ORGANIZATION ACCOUNT UNSET CATALOG_SYNC
+  client_enable_log_info_statement_parameters: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_ENABLE_LOG_INFO_STATEMENT_PARAMETERS
+  client_encryption_key_size: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_ENCRYPTION_KEY_SIZE
+  client_memory_limit: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_MEMORY_LIMIT
+  client_metadata_request_use_connection_ctx: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_METADATA_REQUEST_USE_CONNECTION_CTX
+  client_metadata_use_session_database: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_METADATA_USE_SESSION_DATABASE
+  client_prefetch_threads: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_PREFETCH_THREADS
+  client_result_chunk_size: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_RESULT_CHUNK_SIZE
+  client_result_column_case_insensitive: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_RESULT_COLUMN_CASE_INSENSITIVE
+  client_session_keep_alive: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_SESSION_KEEP_ALIVE
+  client_session_keep_alive_heartbeat_frequency: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_SESSION_KEEP_ALIVE_HEARTBEAT_FREQUENCY
+  client_timestamp_type_mapping: ALTER ORGANIZATION ACCOUNT UNSET CLIENT_TIMESTAMP_TYPE_MAPPING
+  cortex_code_cli_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT UNSET CORTEX_CODE_CLI_DAILY_EST_CREDIT_LIMIT_PER_USER
+  cortex_code_desktop_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT UNSET CORTEX_CODE_DESKTOP_DAILY_EST_CREDIT_LIMIT_PER_USER
+  cortex_code_snowsight_daily_est_credit_limit_per_user: ALTER ORGANIZATION ACCOUNT UNSET CORTEX_CODE_SNOWSIGHT_DAILY_EST_CREDIT_LIMIT_PER_USER
+  cortex_enabled_cross_region: ALTER ORGANIZATION ACCOUNT UNSET CORTEX_ENABLED_CROSS_REGION
+  csv_timestamp_format: ALTER ORGANIZATION ACCOUNT UNSET CSV_TIMESTAMP_FORMAT
+  data_metric_schedule: ALTER ORGANIZATION ACCOUNT UNSET DATA_METRIC_SCHEDULE
+  data_retention_time_in_days: ALTER ORGANIZATION ACCOUNT UNSET DATA_RETENTION_TIME_IN_DAYS
+  date_input_format: ALTER ORGANIZATION ACCOUNT UNSET DATE_INPUT_FORMAT
+  date_output_format: ALTER ORGANIZATION ACCOUNT UNSET DATE_OUTPUT_FORMAT
+  default_dbt_version: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_DBT_VERSION
+  default_ddl_collation: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_DDL_COLLATION
+  default_notebook_compute_pool_cpu: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_NOTEBOOK_COMPUTE_POOL_CPU
+  default_notebook_compute_pool_gpu: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_NOTEBOOK_COMPUTE_POOL_GPU
+  default_null_ordering: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_NULL_ORDERING
+  default_streamlit_compute_pool: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_STREAMLIT_COMPUTE_POOL
+  default_streamlit_notebook_warehouse: ALTER ORGANIZATION ACCOUNT UNSET DEFAULT_STREAMLIT_NOTEBOOK_WAREHOUSE
+  disable_ui_download_button: ALTER ORGANIZATION ACCOUNT UNSET DISABLE_UI_DOWNLOAD_BUTTON
+  disable_user_privilege_grants: ALTER ORGANIZATION ACCOUNT UNSET DISABLE_USER_PRIVILEGE_GRANTS
+  disallowed_spcs_workload_types: ALTER ORGANIZATION ACCOUNT UNSET DISALLOWED_SPCS_WORKLOAD_TYPES
+  enable_automatic_sensitive_data_classification_log: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_AUTOMATIC_SENSITIVE_DATA_CLASSIFICATION_LOG
+  enable_budget_event_logging: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_BUDGET_EVENT_LOGGING
+  enable_cortex_analyst: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_CORTEX_ANALYST
+  enable_data_compaction: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_DATA_COMPACTION
+  enable_egress_cost_optimizer: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_EGRESS_COST_OPTIMIZER
+  enable_get_ddl_use_data_type_alias: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_GET_DDL_USE_DATA_TYPE_ALIAS
+  enable_iceberg_merge_on_read: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_ICEBERG_MERGE_ON_READ
+  enable_identifier_first_login: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_IDENTIFIER_FIRST_LOGIN
+  enable_internal_stages_privatelink: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_INTERNAL_STAGES_PRIVATELINK
+  enable_notebook_creation_in_personal_db: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_NOTEBOOK_CREATION_IN_PERSONAL_DB
+  enable_per_account_app_service_privatelink_url: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_PER_ACCOUNT_APP_SERVICE_PRIVATELINK_URL
+  enable_spcs_block_storage_snowflake_full_encryption_enforcement: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_SPCS_BLOCK_STORAGE_SNOWFLAKE_FULL_ENCRYPTION_ENFORCEMENT
+  enable_tag_propagation_event_logging: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_TAG_PROPAGATION_EVENT_LOGGING
+  enable_tri_secret_and_rekey_opt_out_for_image_repository: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_IMAGE_REPOSITORY
+  enable_tri_secret_and_rekey_opt_out_for_spcs_block_storage: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_TRI_SECRET_AND_REKEY_OPT_OUT_FOR_SPCS_BLOCK_STORAGE
+  enable_unhandled_exceptions_reporting: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_UNHANDLED_EXCEPTIONS_REPORTING
+  enable_unload_physical_type_optimization: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_UNLOAD_PHYSICAL_TYPE_OPTIMIZATION
+  enable_unredacted_query_syntax_error: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_UNREDACTED_QUERY_SYNTAX_ERROR
+  enable_unredacted_secure_object_error: ALTER ORGANIZATION ACCOUNT UNSET ENABLE_UNREDACTED_SECURE_OBJECT_ERROR
+  enforce_network_rules_for_internal_stages: ALTER ORGANIZATION ACCOUNT UNSET ENFORCE_NETWORK_RULES_FOR_INTERNAL_STAGES
+  error_on_nondeterministic_merge: ALTER ORGANIZATION ACCOUNT UNSET ERROR_ON_NONDETERMINISTIC_MERGE
+  error_on_nondeterministic_update: ALTER ORGANIZATION ACCOUNT UNSET ERROR_ON_NONDETERMINISTIC_UPDATE
+  event_table: ALTER ORGANIZATION ACCOUNT UNSET EVENT_TABLE
+  external_oauth_add_privileged_roles_to_blocked_list: ALTER ORGANIZATION ACCOUNT UNSET EXTERNAL_OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST
+  external_volume: ALTER ORGANIZATION ACCOUNT UNSET EXTERNAL_VOLUME
+  geography_output_format: ALTER ORGANIZATION ACCOUNT UNSET GEOGRAPHY_OUTPUT_FORMAT
+  geometry_output_format: ALTER ORGANIZATION ACCOUNT UNSET GEOMETRY_OUTPUT_FORMAT
+  hybrid_table_lock_timeout: ALTER ORGANIZATION ACCOUNT UNSET HYBRID_TABLE_LOCK_TIMEOUT
+  iceberg_version_default: ALTER ORGANIZATION ACCOUNT UNSET ICEBERG_VERSION_DEFAULT
+  initial_replication_size_limit_in_tb: ALTER ORGANIZATION ACCOUNT UNSET INITIAL_REPLICATION_SIZE_LIMIT_IN_TB
+  jdbc_treat_decimal_as_int: ALTER ORGANIZATION ACCOUNT UNSET JDBC_TREAT_DECIMAL_AS_INT
+  jdbc_treat_timestamp_ntz_as_utc: ALTER ORGANIZATION ACCOUNT UNSET JDBC_TREAT_TIMESTAMP_NTZ_AS_UTC
+  jdbc_use_session_timezone: ALTER ORGANIZATION ACCOUNT UNSET JDBC_USE_SESSION_TIMEZONE
+  js_treat_integer_as_bigint: ALTER ORGANIZATION ACCOUNT UNSET JS_TREAT_INTEGER_AS_BIGINT
+  json_indent: ALTER ORGANIZATION ACCOUNT UNSET JSON_INDENT
+  listing_auto_fulfillment_replication_refresh_schedule: ALTER ORGANIZATION ACCOUNT UNSET LISTING_AUTO_FULFILLMENT_REPLICATION_REFRESH_SCHEDULE
+  lock_timeout: ALTER ORGANIZATION ACCOUNT UNSET LOCK_TIMEOUT
+  log_event_level: ALTER ORGANIZATION ACCOUNT UNSET LOG_EVENT_LEVEL
+  log_level: ALTER ORGANIZATION ACCOUNT UNSET LOG_LEVEL
+  max_concurrency_level: ALTER ORGANIZATION ACCOUNT UNSET MAX_CONCURRENCY_LEVEL
+  max_data_extension_time_in_days: ALTER ORGANIZATION ACCOUNT UNSET MAX_DATA_EXTENSION_TIME_IN_DAYS
+  metric_level: ALTER ORGANIZATION ACCOUNT UNSET METRIC_LEVEL
+  min_data_retention_time_in_days: ALTER ORGANIZATION ACCOUNT UNSET MIN_DATA_RETENTION_TIME_IN_DAYS
+  multi_statement_count: ALTER ORGANIZATION ACCOUNT UNSET MULTI_STATEMENT_COUNT
+  network_policy: ALTER ORGANIZATION ACCOUNT UNSET NETWORK_POLICY
+  noorder_sequence_as_default: ALTER ORGANIZATION ACCOUNT UNSET NOORDER_SEQUENCE_AS_DEFAULT
+  oauth_add_privileged_roles_to_blocked_list: ALTER ORGANIZATION ACCOUNT UNSET OAUTH_ADD_PRIVILEGED_ROLES_TO_BLOCKED_LIST
+  odbc_treat_decimal_as_int: ALTER ORGANIZATION ACCOUNT UNSET ODBC_TREAT_DECIMAL_AS_INT
+  periodic_data_rekeying: ALTER ORGANIZATION ACCOUNT UNSET PERIODIC_DATA_REKEYING
+  pipe_execution_paused: ALTER ORGANIZATION ACCOUNT UNSET PIPE_EXECUTION_PAUSED
+  prevent_unload_to_inline_url: ALTER ORGANIZATION ACCOUNT UNSET PREVENT_UNLOAD_TO_INLINE_URL
+  prevent_unload_to_internal_stages: ALTER ORGANIZATION ACCOUNT UNSET PREVENT_UNLOAD_TO_INTERNAL_STAGES
+  python_profiler_modules: ALTER ORGANIZATION ACCOUNT UNSET PYTHON_PROFILER_MODULES
+  python_profiler_target_stage: ALTER ORGANIZATION ACCOUNT UNSET PYTHON_PROFILER_TARGET_STAGE
+  query_tag: ALTER ORGANIZATION ACCOUNT UNSET QUERY_TAG
+  quoted_identifiers_ignore_case: ALTER ORGANIZATION ACCOUNT UNSET QUOTED_IDENTIFIERS_IGNORE_CASE
+  read_consistency_mode: ALTER ORGANIZATION ACCOUNT UNSET READ_CONSISTENCY_MODE
+  replace_invalid_characters: ALTER ORGANIZATION ACCOUNT UNSET REPLACE_INVALID_CHARACTERS
+  require_storage_integration_for_stage_creation: ALTER ORGANIZATION ACCOUNT UNSET REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_CREATION
+  require_storage_integration_for_stage_operation: ALTER ORGANIZATION ACCOUNT UNSET REQUIRE_STORAGE_INTEGRATION_FOR_STAGE_OPERATION
+  row_timestamp_default: ALTER ORGANIZATION ACCOUNT UNSET ROW_TIMESTAMP_DEFAULT
+  rows_per_resultset: ALTER ORGANIZATION ACCOUNT UNSET ROWS_PER_RESULTSET
+  s3_stage_vpce_dns_name: ALTER ORGANIZATION ACCOUNT UNSET S3_STAGE_VPCE_DNS_NAME
+  search_path: ALTER ORGANIZATION ACCOUNT UNSET SEARCH_PATH
+  serverless_task_max_statement_size: ALTER ORGANIZATION ACCOUNT UNSET SERVERLESS_TASK_MAX_STATEMENT_SIZE
+  serverless_task_min_statement_size: ALTER ORGANIZATION ACCOUNT UNSET SERVERLESS_TASK_MIN_STATEMENT_SIZE
+  simulated_data_sharing_consumer: ALTER ORGANIZATION ACCOUNT UNSET SIMULATED_DATA_SHARING_CONSUMER
+  sql_trace_query_text: ALTER ORGANIZATION ACCOUNT UNSET SQL_TRACE_QUERY_TEXT
+  sso_login_page: ALTER ORGANIZATION ACCOUNT UNSET SSO_LOGIN_PAGE
+  statement_queued_timeout_in_seconds: ALTER ORGANIZATION ACCOUNT UNSET STATEMENT_QUEUED_TIMEOUT_IN_SECONDS
+  statement_timeout_in_seconds: ALTER ORGANIZATION ACCOUNT UNSET STATEMENT_TIMEOUT_IN_SECONDS
+  storage_serialization_policy: ALTER ORGANIZATION ACCOUNT UNSET STORAGE_SERIALIZATION_POLICY
+  strict_json_output: ALTER ORGANIZATION ACCOUNT UNSET STRICT_JSON_OUTPUT
+  suspend_task_after_num_failures: ALTER ORGANIZATION ACCOUNT UNSET SUSPEND_TASK_AFTER_NUM_FAILURES
+  task_auto_retry_attempts: ALTER ORGANIZATION ACCOUNT UNSET TASK_AUTO_RETRY_ATTEMPTS
+  time_input_format: ALTER ORGANIZATION ACCOUNT UNSET TIME_INPUT_FORMAT
+  time_output_format: ALTER ORGANIZATION ACCOUNT UNSET TIME_OUTPUT_FORMAT
+  timestamp_day_is_always_24h: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_DAY_IS_ALWAYS_24H
+  timestamp_input_format: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_INPUT_FORMAT
+  timestamp_ltz_output_format: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_LTZ_OUTPUT_FORMAT
+  timestamp_ntz_output_format: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_NTZ_OUTPUT_FORMAT
+  timestamp_output_format: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_OUTPUT_FORMAT
+  timestamp_type_mapping: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_TYPE_MAPPING
+  timestamp_tz_output_format: ALTER ORGANIZATION ACCOUNT UNSET TIMESTAMP_TZ_OUTPUT_FORMAT
+  timezone: ALTER ORGANIZATION ACCOUNT UNSET TIMEZONE
+  trace_level: ALTER ORGANIZATION ACCOUNT UNSET TRACE_LEVEL
+  transaction_abort_on_error: ALTER ORGANIZATION ACCOUNT UNSET TRANSACTION_ABORT_ON_ERROR
+  transaction_default_isolation_level: ALTER ORGANIZATION ACCOUNT UNSET TRANSACTION_DEFAULT_ISOLATION_LEVEL
+  two_digit_century_start: ALTER ORGANIZATION ACCOUNT UNSET TWO_DIGIT_CENTURY_START
+  unsupported_ddl_action: ALTER ORGANIZATION ACCOUNT UNSET UNSUPPORTED_DDL_ACTION
+  use_cached_result: ALTER ORGANIZATION ACCOUNT UNSET USE_CACHED_RESULT
+  use_workspaces_for_sql: ALTER ORGANIZATION ACCOUNT UNSET USE_WORKSPACES_FOR_SQL
+  user_task_managed_initial_warehouse_size: ALTER ORGANIZATION ACCOUNT UNSET USER_TASK_MANAGED_INITIAL_WAREHOUSE_SIZE
+  user_task_minimum_trigger_interval_in_seconds: ALTER ORGANIZATION ACCOUNT UNSET USER_TASK_MINIMUM_TRIGGER_INTERVAL_IN_SECONDS
+  user_task_timeout_ms: ALTER ORGANIZATION ACCOUNT UNSET USER_TASK_TIMEOUT_MS
+  week_of_year_policy: ALTER ORGANIZATION ACCOUNT UNSET WEEK_OF_YEAR_POLICY
+  week_start: ALTER ORGANIZATION ACCOUNT UNSET WEEK_START
+unsetFirst: [password_policy, session_policy]
+sample:
+  name: EXAMPLE_ORG_ACCOUNT
+  comment: example-comment
+  timezone: Europe/London
+  warehouse: example_wh

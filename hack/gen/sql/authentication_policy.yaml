@@ -1,0 +1,41 @@
+kind: AuthenticationPolicy
+terraform: [snowflake_authentication_policy]
+scope: schema
+fields:
+  authentication_methods: {type: strings, enum: [ALL, SAML, PASSWORD, OAUTH, KEYPAIR, PROGRAMMATIC_ACCESS_TOKEN, WORKLOAD_IDENTITY]}
+  mfa_enrollment: {type: keyword, enum: [REQUIRED, REQUIRED_PASSWORD_ONLY, OPTIONAL]}
+  client_types: {type: strings, enum: [ALL, SNOWFLAKE_UI, DRIVERS, SNOWSQL, SNOWFLAKE_CLI]}
+  security_integrations: {type: identifiers}
+  comment: {type: string}
+create: CREATE AUTHENTICATION POLICY {@id}[ AUTHENTICATION_METHODS = ({authentication_methods})][ MFA_ENROLLMENT = {mfa_enrollment}][ CLIENT_TYPES = ({client_types})][ SECURITY_INTEGRATIONS = ({security_integrations})][ COMMENT = {comment}]
+read:
+- statement: SHOW AUTHENTICATION POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE AUTHENTICATION POLICY {@id}
+  properties: {name: property, value: value}
+  columns:
+    authentication_methods: AUTHENTICATION_METHODS
+    mfa_enrollment: MFA_ENROLLMENT
+    client_types: CLIENT_TYPES
+    security_integrations: SECURITY_INTEGRATIONS
+alter:
+  authentication_methods: ALTER AUTHENTICATION POLICY {@id} SET AUTHENTICATION_METHODS = ({authentication_methods})
+  mfa_enrollment: ALTER AUTHENTICATION POLICY {@id} SET MFA_ENROLLMENT = {mfa_enrollment}
+  client_types: ALTER AUTHENTICATION POLICY {@id} SET CLIENT_TYPES = ({client_types})
+  security_integrations: ALTER AUTHENTICATION POLICY {@id} SET SECURITY_INTEGRATIONS = ({security_integrations})
+  comment: ALTER AUTHENTICATION POLICY {@id} SET COMMENT = {comment}
+unset:
+  authentication_methods: ALTER AUTHENTICATION POLICY {@id} UNSET AUTHENTICATION_METHODS
+  mfa_enrollment: ALTER AUTHENTICATION POLICY {@id} UNSET MFA_ENROLLMENT
+  client_types: ALTER AUTHENTICATION POLICY {@id} UNSET CLIENT_TYPES
+  security_integrations: ALTER AUTHENTICATION POLICY {@id} UNSET SECURITY_INTEGRATIONS
+  comment: ALTER AUTHENTICATION POLICY {@id} UNSET COMMENT
+delete: DROP AUTHENTICATION POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  authentication_methods: [SAML, PASSWORD]
+  mfa_enrollment: REQUIRED
+  comment: example-comment

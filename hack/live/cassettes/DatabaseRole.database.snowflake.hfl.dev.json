@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:50Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/database-roles",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Role {{RUN_}}.{{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/database-roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ {\n  \"name\" : \"{{RUN_}}\",\n  \"comment\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:37.506+00:00\",\n  \"granted_to_roles\" : 0,\n  \"granted_to_database_roles\" : 0,\n  \"granted_database_roles\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n}, {\n  \"name\" : \"{{NAME_}}\",\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:50.126+00:00\",\n  \"granted_to_roles\" : 0,\n  \"granted_to_database_roles\" : 0,\n  \"granted_database_roles\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n} ]"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/database-roles/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{RUN_}}.{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/database-roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ {\n  \"name\" : \"{{RUN_}}\",\n  \"comment\" : \"\",\n  \"created_on\" : \"2026-11-20T23:56:37.506+00:00\",\n  \"granted_to_roles\" : 0,\n  \"granted_to_database_roles\" : 0,\n  \"granted_database_roles\" : 0,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n} ]"
+    }
+  ]
+}

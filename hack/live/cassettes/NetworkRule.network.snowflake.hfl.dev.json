@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:55Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/network-rules",
+      "body": "{\"comment\":\"first\",\"mode\":\"ingress\",\"name\":\"{{name_}}\",\"type\":\"IPv4\",\"value_list\":[\"192.0.2.0/24\"]}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Network rule {{NAME_}} is created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/network-rules/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:54.967+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"mode\" : \"ingress\",\n  \"name\" : \"{{NAME_}}\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"schema_name\" : \"PUBLIC\",\n  \"type\" : \"IPv4\",\n  \"value_list\" : [ \"192.0.2.0/24\" ]\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/network-rules/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/network-rules/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nnetwork rule '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have apply masking policy granted on account ja15367.\",\"request_id\":\"b157b44b-fef2-4f2b-b9ee-efc8b5e64277\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000001,\"name\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables",
+      "body": "{\"columns\":[{\"datatype\":\"NUMBER\",\"name\":\"ID\"}],\"name\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"columns\":[{\"datatype\":\"NUMBER\",\"name\":\"ID\"}],\"id\":280000002,\"name\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000003}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000004,\"name\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/database-roles",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000005,\"name\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/warehouses",
+      "body": "{\"auto_resume\":\"false\",\"auto_suspend\":60,\"initially_suspended\":\"true\",\"name\":\"{{run_}}\",\"warehouse_size\":\"X-Small\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"auto_resume\":\"false\",\"auto_suspend\":60,\"id\":280000006,\"initially_suspended\":\"true\",\"name\":\"{{run_}}\",\"warehouse_size\":\"X-Small\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles",
+      "body": "{\"name\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"id\":280000007,\"name\":\"{{run_}}\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/users",
+      "body": "{\"comment\":\"krm live test; deleted at the end of the run\",\"disabled\":true,\"name\":\"{{run_}}\",\"type\":\"SERVICE\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"_stub\":\"rehearsal stand-in: the fake API has no such resource\",\"comment\":\"krm live test; deleted at the end of the run\",\"disabled\":true,\"id\":280000008,\"name\":\"{{run_}}\",\"type\":\"SERVICE\"}\n"
+    }
+  ]
+}

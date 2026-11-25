@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:20Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/code-bundles",
+      "body": "{\"comment\":\"first\",\"from_location\":\"@{{run_}}.PUBLIC.{{run_}}\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully created. Warning: source directory '@{{run_}}.PUBLIC.{{run_}}' does not exist or contains no files.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/code-bundles/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"from_location\" : null,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:57:18.970+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"default_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://code bundle/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : \"@{{run_}}.PUBLIC.{{run_}}\",\n    \"git_commit_hash\" : null\n  },\n  \"last_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://code bundle/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : \"@{{run_}}.PUBLIC.{{run_}}\",\n    \"git_commit_hash\" : null\n  },\n  \"live_version_location_uri\" : null,\n  \"container_type\" : \"Stage\",\n  \"container_database\" : \"{{RUN_}}\",\n  \"container_schema\" : null,\n  \"container_name\" : \"{{RUN_}}\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/code-bundles/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/code-bundles/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\ncode bundle '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on code bundle {{run_}}.public.{{name_}}.\",\"request_id\":\"c77f0e46-9974-45b6-ba79-11ce30ca99d7\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

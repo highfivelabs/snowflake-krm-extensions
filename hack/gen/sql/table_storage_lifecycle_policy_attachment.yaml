@@ -1,0 +1,22 @@
+kind: TableStorageLifecyclePolicyAttachment
+terraform: [snowflake_table_storage_lifecycle_policy_attachment]
+mode: grant
+group: table
+warehouse: true
+fields:
+  table_name: {type: name, required: true}
+  table_type: {type: keyword, required: true, enum: [TABLE, DYNAMIC TABLE]}
+  storage_lifecycle_policy_name: {type: name, required: true}
+  "on": {type: identifiers, required: true}
+create: ALTER {table_type} {table_name} ADD STORAGE LIFECYCLE POLICY {storage_lifecycle_policy_name} ON ({on})
+read:
+- statement: SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME => {table_name:namestring}, REF_ENTITY_DOMAIN => 'TABLE'))
+  match: {POLICY_KIND: STORAGE_LIFECYCLE_POLICY, POLICY_DB.POLICY_SCHEMA.POLICY_NAME: "{storage_lifecycle_policy_name}"}
+  columns: {"on": REF_ARG_COLUMN_NAMES}
+delete: ALTER {table_type} {table_name} DROP STORAGE LIFECYCLE POLICY
+sample:
+  table_name: example_db.example_schema.example_table
+  table_type: TABLE
+  storage_lifecycle_policy_name: example_db.example_schema.example_policy
+  "on": [created_at]
+  warehouse: example_wh

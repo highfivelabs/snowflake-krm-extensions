@@ -1,0 +1,35 @@
+kind: ApiIntegrationExternalMcpDynamicClient
+terraform: [snowflake_api_integration_external_mcp_dynamic_client]
+scope: account
+group: api
+fields:
+  oauth_resource_url: {type: string, required: true}
+  api_allowed_prefixes: {type: strings, required: true}
+  api_blocked_prefixes: {type: strings}
+  enabled: {type: boolean, required: true}
+  comment: {type: string}
+create: CREATE API INTEGRATION {@id} API_PROVIDER = external_mcp API_USER_AUTHENTICATION = (TYPE = OAUTH_DYNAMIC_CLIENT OAUTH_RESOURCE_URL = {oauth_resource_url}) API_ALLOWED_PREFIXES = ({api_allowed_prefixes})[ API_BLOCKED_PREFIXES = ({api_blocked_prefixes})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW API INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE API INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    api_allowed_prefixes: API_ALLOWED_PREFIXES
+    api_blocked_prefixes: API_BLOCKED_PREFIXES
+alter:
+  enabled: ALTER API INTEGRATION {@id} SET ENABLED = {enabled}
+  api_allowed_prefixes: ALTER API INTEGRATION {@id} SET API_ALLOWED_PREFIXES = ({api_allowed_prefixes})
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} SET API_BLOCKED_PREFIXES = ({api_blocked_prefixes})
+  comment: ALTER API INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} UNSET API_BLOCKED_PREFIXES
+  comment: ALTER API INTEGRATION {@id} UNSET COMMENT
+delete: DROP API INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_mcp_dynamic
+  api_allowed_prefixes: ["https://mcp.example.com/"]
+  oauth_resource_url: "https://mcp.example.com/"
+  enabled: true
+  comment: example-comment

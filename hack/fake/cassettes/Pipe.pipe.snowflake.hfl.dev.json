@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes",
+      "body": "{\"comment\":\"first\",\"copy_statement\":\"COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}\",\"name\":\"{{name_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"budget\":\"example-budget\",\"comment\":\"first\",\"copy_statement\":\"COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"invalid_reason\":\"example-invalid-reason\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"pattern\":\"example-pattern\",\"schema_name\":\"example-schema-name\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"budget\":\"example-budget\",\"comment\":\"first\",\"copy_statement\":\"COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"invalid_reason\":\"example-invalid-reason\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"pattern\":\"example-pattern\",\"schema_name\":\"example-schema-name\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "recorded": "2026-11-20T23:56:46Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Tag {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "body": "{\"comment\":\"second\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "body": "{\"allowed_values\":null,\"comment\":\"hfl-live-drift\",\"created_on\":\"2026-11-20T23:56:44.122+00:00\",\"database_name\":\"{{RUN_}}\",\"multi_value\":false,\"name\":\"{{NAME_}}\",\"on_conflict\":null,\"owner\":\"ACCOUNTADMIN\",\"owner_role_type\":\"ROLE\",\"propagate\":\"NONE\",\"schema_name\":\"PUBLIC\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"hfl-live-drift\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "body": "{\"comment\":\"second\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"allowed_values\" : null,\n  \"comment\" : \"second\",\n  \"created_on\" : \"2026-11-20T23:56:44.122+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"multi_value\" : false,\n  \"name\" : \"{{NAME_}}\",\n  \"on_conflict\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"propagate\" : \"NONE\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tags/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\ntag '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on tag {{run_}}.public.{{name_}}.\",\"request_id\":\"e37b95a1-8ca1-41c2-befc-e865e7204ad8\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

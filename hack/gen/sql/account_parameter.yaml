@@ -1,0 +1,16 @@
+kind: AccountParameter
+terraform: [snowflake_account_parameter]
+mode: set
+group: account
+fields:
+  key: {type: keyword, required: true}
+  value: {type: value, required: true}
+create: ALTER ACCOUNT SET {key} = {value}
+read:
+- statement: SHOW PARAMETERS LIKE {key:string} IN ACCOUNT
+  match: {key: "{key}", level: ACCOUNT}
+  columns: {value: value}
+delete: ALTER ACCOUNT UNSET {key}
+sample:
+  key: STATEMENT_TIMEOUT_IN_SECONDS
+  value: 3600

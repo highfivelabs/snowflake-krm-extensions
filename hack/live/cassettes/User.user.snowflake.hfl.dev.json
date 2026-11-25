@@ -1,0 +1,97 @@
+{
+  "recorded": "2026-11-20T23:57:05Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/users",
+      "body": "{\"comment\":\"first\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"User {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : \"{{NAME_}}\",\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"first\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : \"{{NAME_}}\",\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"first\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"second\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : null,\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"second\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : null,\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"second\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"hfl-live-drift\",\"created_on\":\"2026-11-20T23:57:03.155+00:00\",\"custom_landing_page_url\":null,\"custom_landing_page_url_flush_next_ui_load\":false,\"days_to_expiry\":null,\"default_namespace\":null,\"default_role\":null,\"default_secondary_roles\":\"ALL\",\"default_warehouse\":null,\"disabled\":true,\"display_name\":null,\"email\":null,\"enable_unredacted_query_syntax_error\":false,\"expires_at\":null,\"ext_authn_duo\":false,\"ext_authn_uid\":null,\"first_name\":null,\"has_password\":false,\"has_rsa_public_key\":false,\"last_name\":null,\"last_successful_login\":null,\"locked_until\":null,\"login_name\":\"{{NAME_}}\",\"middle_name\":null,\"mins_to_bypass_mfa\":null,\"mins_to_bypass_network_policy\":null,\"mins_to_unlock\":null,\"must_change_password\":false,\"name\":\"{{NAME_}}\",\"network_policy\":null,\"owner\":\"ACCOUNTADMIN\",\"password\":null,\"password_last_set\":null,\"rsa_public_key\":null,\"rsa_public_key_2\":null,\"rsa_public_key_2_fp\":null,\"rsa_public_key_fp\":null,\"snowflake_lock\":false,\"snowflake_support\":false,\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : null,\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"hfl-live-drift\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/users/{{name_}}",
+      "body": "{\"comment\":\"second\",\"disabled\":true,\"name\":\"{{name_}}\",\"type\":\"SERVICE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"password\" : null,\n  \"login_name\" : \"{{NAME_}}\",\n  \"display_name\" : null,\n  \"first_name\" : null,\n  \"middle_name\" : null,\n  \"last_name\" : null,\n  \"email\" : null,\n  \"must_change_password\" : false,\n  \"disabled\" : true,\n  \"days_to_expiry\" : null,\n  \"mins_to_unlock\" : null,\n  \"default_warehouse\" : null,\n  \"default_namespace\" : null,\n  \"default_role\" : null,\n  \"default_secondary_roles\" : \"ALL\",\n  \"mins_to_bypass_mfa\" : null,\n  \"rsa_public_key\" : null,\n  \"rsa_public_key_2\" : null,\n  \"comment\" : \"second\",\n  \"type\" : \"SERVICE\",\n  \"enable_unredacted_query_syntax_error\" : false,\n  \"network_policy\" : null,\n  \"created_on\" : \"2026-11-20T23:57:03.155+00:00\",\n  \"last_successful_login\" : null,\n  \"expires_at\" : null,\n  \"locked_until\" : null,\n  \"has_password\" : false,\n  \"has_rsa_public_key\" : false,\n  \"rsa_public_key_fp\" : null,\n  \"rsa_public_key_2_fp\" : null,\n  \"ext_authn_duo\" : false,\n  \"ext_authn_uid\" : null,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"snowflake_lock\" : false,\n  \"snowflake_support\" : false,\n  \"mins_to_bypass_network_policy\" : null,\n  \"password_last_set\" : null,\n  \"custom_landing_page_url\" : null,\n  \"custom_landing_page_url_flush_next_ui_load\" : false\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nuser '{{name_}}' does not exist or not authorized.\",\"request_id\":\"6e91d4f4-32d6-41d1-8c1b-7a1aab3ceeec\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

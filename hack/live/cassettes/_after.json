@@ -1,0 +1,34 @@
+{
+  "recorded": "2026-11-20T23:57:23Z",
+  "target": "Snowflake trial",
+  "interactions": [
+    {
+      "method": "DELETE",
+      "path": "/api/v2/users/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{RUN_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/roles/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{RUN_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/warehouses/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{RUN_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{RUN_}} successfully dropped.\"\n}"
+    }
+  ]
+}

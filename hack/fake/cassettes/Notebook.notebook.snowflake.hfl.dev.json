@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\",\"query_warehouse\":\"{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"budget\":\"example-budget\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"default_packages\":\"example-default-packages\",\"external_access_secrets\":\"{{redacted}}\",\"live_version_location_uri\":\"example-live-version-location-uri\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query_warehouse\":\"{{run_}}\",\"schema_name\":\"example-schema-name\",\"url_id\":\"example-url-id\",\"user_packages\":\"example-user-packages\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"budget\":\"example-budget\",\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"default_packages\":\"example-default-packages\",\"external_access_secrets\":\"{{redacted}}\",\"live_version_location_uri\":\"example-live-version-location-uri\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query_warehouse\":\"{{run_}}\",\"schema_name\":\"example-schema-name\",\"url_id\":\"example-url-id\",\"user_packages\":\"example-user-packages\"}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/notebooks/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

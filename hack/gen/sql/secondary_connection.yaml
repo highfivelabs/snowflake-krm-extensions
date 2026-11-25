@@ -1,0 +1,21 @@
+kind: SecondaryConnection
+terraform: [snowflake_secondary_connection]
+scope: account
+group: connection
+fields:
+  as_replica_of: {type: name, required: true}
+  comment: {type: string}
+create: CREATE CONNECTION {@id} AS REPLICA OF {as_replica_of}[ COMMENT = {comment}]
+read:
+- statement: SHOW CONNECTIONS LIKE {@like}
+  match: {name: "{name}", is_primary: "false"}
+  columns: {comment: comment}
+alter:
+  comment: ALTER CONNECTION {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER CONNECTION {@id} UNSET COMMENT
+delete: DROP CONNECTION IF EXISTS {@id}
+sample:
+  name: example_connection
+  as_replica_of: example_org.example_account.example_connection
+  comment: example-comment

@@ -1,0 +1,88 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services",
+      "body": "{\"compute_pool\":\"example-compute-pool\",\"name\":\"TEST_NAME\",\"spec\":{}}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"example-compute-pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"example-compute-pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"example-compute-pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "body": "{\"compute_pool\":\"changed-compute_pool\",\"name\":\"TEST_NAME\",\"spec\":{}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"changed-compute_pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"changed-compute_pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "body": "{\"compute_pool\":\"hfl-live-drift\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"hfl-live-drift\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "body": "{\"compute_pool\":\"changed-compute_pool\",\"name\":\"TEST_NAME\",\"spec\":{}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"changed-compute_pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"compute_pool\":\"changed-compute_pool\",\"created_on\":\"2000-01-01T00:00:00Z\",\"current_instances\":1,\"dns_name\":\"example-dns-name\",\"is_job\":true,\"is_upgrading\":true,\"managing_object_domain\":\"example-managing-object-domain\",\"managing_object_name\":\"example-managing-object-name\",\"name\":\"TEST_NAME\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"spec\":{},\"spec_digest\":\"example-spec-digest\",\"suspended_on\":\"2000-01-01T00:00:00Z\",\"target_instances\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/example-database/schemas/example-schema/services/TEST_NAME",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

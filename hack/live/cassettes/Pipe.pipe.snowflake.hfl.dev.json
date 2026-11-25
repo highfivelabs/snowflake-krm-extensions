@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:59Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes",
+      "body": "{\"comment\":\"first\",\"copy_statement\":\"COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Pipe {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"comment\" : \"first\",\n  \"auto_ingest\" : null,\n  \"error_integration\" : null,\n  \"aws_sns_topic\" : null,\n  \"integration\" : null,\n  \"copy_statement\" : \"COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}\",\n  \"created_on\" : \"1970-01-21T18:40:19.019+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"pattern\" : null,\n  \"owner_role_type\" : \"ROLE\",\n  \"invalid_reason\" : null,\n  \"budget\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/pipes/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\npipe '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on pipe {{run_}}.public.{{name_}}.\",\"request_id\":\"8a52d0ed-4f24-46fe-9fe5-2eae3b020339\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

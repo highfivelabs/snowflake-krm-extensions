@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/views",
+      "body": "{\"columns\":[{\"name\":\"ID\"}],\"comment\":\"first\",\"name\":\"{{name_}}\",\"query\":\"SELECT ID FROM {{run_}}.PUBLIC.{{run_}}\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"change_tracking\":true,\"columns\":[{\"name\":\"ID\"}],\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query\":\"SELECT ID FROM {{run_}}.PUBLIC.{{run_}}\",\"schema_name\":\"example-schema-name\",\"select_query\":\"example-select-query\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/views/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"change_tracking\":true,\"columns\":[{\"name\":\"ID\"}],\"comment\":\"first\",\"created_on\":\"2000-01-01T00:00:00Z\",\"database_name\":\"example-database-name\",\"name\":\"{{name_}}\",\"owner\":\"example-owner\",\"owner_role_type\":\"example-owner-role-type\",\"query\":\"SELECT ID FROM {{run_}}.PUBLIC.{{run_}}\",\"schema_name\":\"example-schema-name\",\"select_query\":\"example-select-query\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/views/{{name_}}",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/views/{{name_}}",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

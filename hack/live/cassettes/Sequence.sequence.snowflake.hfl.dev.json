@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:51Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/sequences",
+      "body": "{\"comment\":\"first\",\"increment\":1,\"name\":\"{{name_}}\",\"start\":1}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Sequence {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/sequences/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:50.973+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"increment\" : 1,\n  \"name\" : \"{{NAME_}}\",\n  \"ordered\" : false,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"schema_name\" : \"PUBLIC\",\n  \"start\" : 1\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/sequences/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/sequences/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nsequence '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on sequence {{run_}}.public.{{name_}}.\",\"request_id\":\"4376a4b4-4e32-4af4-ae46-6ec50d7932c0\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

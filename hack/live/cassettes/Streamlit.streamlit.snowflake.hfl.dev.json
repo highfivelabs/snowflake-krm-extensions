@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:18Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits",
+      "body": "{\"comment\":\"first\",\"main_file\":\"streamlit_app.py\",\"name\":\"{{name_}}\",\"query_warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Streamlit {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"comment\" : \"first\",\n  \"imports\" : [ ],\n  \"external_access_integrations\" : [ ],\n  \"external_access_secrets\" : null,\n  \"title\" : null,\n  \"main_file\" : \"streamlit_app.py\",\n  \"query_warehouse\" : \"{{RUN_}}\",\n  \"code_warehouse\" : null,\n  \"runtime_name\" : \"SYSTEM$ST_CONTAINER_RUNTIME_PY3_11\",\n  \"compute_pool\" : \"SYSTEM_COMPUTE_POOL_CPU\",\n  \"runtime_environment_version\" : null,\n  \"execute_as\" : null,\n  \"execute_as_role\" : null,\n  \"idle_auto_shutdown_time_seconds\" : null,\n  \"scheduled_tasks\" : [ ],\n  \"min_instances\" : null,\n  \"max_instances\" : null,\n  \"artifact_repositories\" : [ ],\n  \"default_version\" : \"LAST\",\n  \"created_on\" : \"2026-11-20T23:57:17.023+00:00\",\n  \"default_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://streamlit/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : null,\n    \"git_commit_hash\" : null\n  },\n  \"last_version_details\" : {\n    \"name\" : \"VERSION$1\",\n    \"alias\" : null,\n    \"location_url\" : \"snow://streamlit/{{RUN_}}.PUBLIC.{{NAME_}}/versions/version$1/\",\n    \"source_location_uri\" : null,\n    \"git_commit_hash\" : null\n  },\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"source_location\" : null,\n  \"url_id\" : \"r7mdesykq5xi3abqigls\",\n  \"default_packages\" : [ \"python==3.11.*\", \"snowflake-snowpark-python\", \"streamlit\" ],\n  \"user_packages\" : [ \"\" ],\n  \"live_version_location_uri\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/streamlits/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nstreamlit '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on streamlit {{run_}}.public.{{name_}}.\",\"request_id\":\"8ad5176c-a6ab-4326-a2fc-da4c8ee617cd\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts",
+      "body": "{\"admin_name\":\"example-admin-name\",\"edition\":\"example-edition\",\"email\":\"example-email\",\"name\":\"TEST_NAME\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"account_locator\":\"example-account-locator\",\"account_locator_url\":\"example-account-locator-url\",\"account_old_url_last_used\":\"2000-01-01T00:00:00Z\",\"account_old_url_saved_on\":\"2000-01-01T00:00:00Z\",\"account_url\":\"example-account-url\",\"consumption_billing_entity_name\":\"example-consumption-billing-entity-name\",\"created_on\":\"2000-01-01T00:00:00Z\",\"dropped_on\":\"2000-01-01T00:00:00Z\",\"edition\":\"example-edition\",\"is_events_account\":true,\"is_org_admin\":true,\"managed_accounts\":1,\"marketplace_consumer_billing_entity_name\":\"example-marketplace-consumer-billing-entity-name\",\"marketplace_provider_billing_entity_name\":\"example-marketplace-provider-billing-entity-name\",\"moved_on\":\"2000-01-01T00:00:00Z\",\"moved_to_organization\":\"example-moved-to-organization\",\"name\":\"TEST_NAME\",\"old_account_url\":\"example-old-account-url\",\"organization_URL_expiration_on\":\"2000-01-01T00:00:00Z\",\"organization_name\":\"example-organization-name\",\"organization_old_url\":\"example-organization-old-url\",\"organization_old_url_last_used\":\"2000-01-01T00:00:00Z\",\"organization_old_url_saved_on\":\"2000-01-01T00:00:00Z\",\"restored_on\":\"2000-01-01T00:00:00Z\",\"retention_time\":1,\"scheduled_deletion_time\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[{\"admin_name\":\"example-admin-name\",\"edition\":\"example-edition\",\"email\":\"example-email\",\"name\":\"TEST_NAME\"}]\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/TEST_NAME?gracePeriodInDays=90",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[]\n"
+    }
+  ]
+}

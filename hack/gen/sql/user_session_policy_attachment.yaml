@@ -1,0 +1,15 @@
+kind: UserSessionPolicyAttachment
+terraform: [snowflake_user_session_policy_attachment]
+mode: set
+group: user
+fields:
+  user_name: {type: identifier, required: true}
+  session_policy_name: {type: name, required: true}
+create: ALTER USER {user_name} SET SESSION POLICY {session_policy_name}
+read:
+- statement: SHOW SESSION POLICIES ON USER {user_name}
+  columns: {session_policy_name: database_name.schema_name.name}
+delete: ALTER USER {user_name} UNSET SESSION POLICY
+sample:
+  user_name: example_user
+  session_policy_name: example_db.example_schema.example_policy

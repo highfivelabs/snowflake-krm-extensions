@@ -1,0 +1,17 @@
+kind: GrantApplicationRole
+terraform: [snowflake_grant_application_role]
+mode: grant
+group: grant
+fields:
+  application_role_name: {type: name, required: true}
+  grantee_type: {type: keyword, required: true, enum: [ROLE, APPLICATION]}
+  grantee_name: {type: identifier, required: true}
+create: GRANT APPLICATION ROLE {application_role_name} TO {grantee_type} {grantee_name}
+read:
+- statement: SHOW GRANTS OF APPLICATION ROLE {application_role_name}
+  match: {granted_to: "{grantee_type}", grantee_name: "{grantee_name}"}
+delete: REVOKE APPLICATION ROLE {application_role_name} FROM {grantee_type} {grantee_name}
+sample:
+  application_role_name: example_app.example_role
+  grantee_type: ROLE
+  grantee_name: example_role

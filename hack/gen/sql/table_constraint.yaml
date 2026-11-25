@@ -1,0 +1,48 @@
+kind: TableConstraint
+terraform: [snowflake_table_constraint]
+mode: grant
+group: table
+warehouse: true
+fields:
+  database: {type: identifier, required: true}
+  schema: {type: identifier, required: true}
+  table: {type: identifier, required: true, description: "The table."}
+  name: {type: identifier, required: true}
+  type: {type: keyword, required: true, enum: [UNIQUE, PRIMARY KEY, FOREIGN KEY]}
+  columns: {type: identifiers, required: true}
+  foreign_key_properties:
+    type: object
+    item:
+      template: "REFERENCES {references}[ MATCH {match}][ ON UPDATE {on_update}][ ON DELETE {on_delete}]"
+      fields:
+        references:
+          type: object
+          required: true
+          item:
+            template: "{table_id} ({columns})"
+            fields:
+              table_id: {type: name, required: true}
+              columns: {type: identifiers, required: true, description: "Its columns."}
+        match: {type: keyword, enum: [FULL, SIMPLE, PARTIAL]}
+        on_update: {type: keyword, enum: [CASCADE, SET NULL, SET DEFAULT, RESTRICT, NO ACTION]}
+        on_delete: {type: keyword, enum: [CASCADE, SET NULL, SET DEFAULT, RESTRICT, NO ACTION]}
+  enforced: {type: boolean}
+  deferrable: {type: boolean}
+  initially: {type: keyword, enum: [DEFERRED, IMMEDIATE]}
+  enable: {type: boolean}
+  validate: {type: boolean}
+  rely: {type: boolean}
+create: ALTER TABLE {database}.{schema}.{table} ADD CONSTRAINT {name} {type} ({columns})[ {foreign_key_properties}][ ENFORCED{?enforced}][ NOT ENFORCED{!enforced}][ DEFERRABLE{?deferrable}][ NOT DEFERRABLE{!deferrable}][ INITIALLY {initially}][ ENABLE{?enable}][ DISABLE{!enable}][ VALIDATE{?validate}][ NOVALIDATE{!validate}][ RELY{?rely}][ NORELY{!rely}]
+read:
+- statement: SELECT * FROM {database} . INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA = {schema:exactstring} AND TABLE_NAME = {table:exactstring}
+  match: {CONSTRAINT_NAME: "{name}", CONSTRAINT_TYPE: "{type}"}
+  columns: {enforced: ENFORCED, rely: RELY}
+delete: ALTER TABLE {database}.{schema}.{table} DROP CONSTRAINT {name}
+sample:
+  database: example_db
+  schema: example_schema
+  table: example_table
+  name: example_unique
+  type: UNIQUE
+  columns: [email]
+  warehouse: example_wh

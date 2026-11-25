@@ -1,0 +1,136 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"CREATE INTERACTIVE WAREHOUSE \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\" TABLES (\\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\") WAREHOUSE_SIZE = 'XSMALL' AUTO_SUSPEND = 86400 COMMENT = 'example-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000990\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000990\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000990",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000990\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000990\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"example-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000991\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000991\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"example-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000992\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000992\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"example-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000993\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000993\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000994\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000994\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\" SET WAREHOUSE_SIZE = 'XSMALL'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000995\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000995\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"changed-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000996\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000996\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"changed-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000997\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000997\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\" SET COMMENT = 'hfl-live-drift'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000998\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000998\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"hfl-live-drift\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000999\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000999\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER WAREHOUSE \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\" SET COMMENT = 'changed-comment'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001000\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001000\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"changed-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001001\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001001\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[null,\"86400\",\"changed-comment\",null,null,\"EXAMPLE_INTERACTIVE_WAREHOUSE\",null,\"[EXAMPLE_DB.EXAMPLE_SCHEMA.EXAMPLE_TABLE]\",\"INTERACTIVE\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"auto_resume\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"auto_suspend\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"min_cluster_count\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"tables\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001002\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001002\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"DROP WAREHOUSE IF EXISTS \\\"EXAMPLE_INTERACTIVE_WAREHOUSE\\\"\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001003\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001003\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SHOW WAREHOUSES LIKE 'EXAMPLE_INTERACTIVE_WAREHOUSE'\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"comment\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"max_query_performance_level\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"name\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"query_throughput_multiplier\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"resource_monitor\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"type\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000001004\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000001004\"}\n"
+    }
+  ]
+}

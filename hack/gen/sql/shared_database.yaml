@@ -1,0 +1,21 @@
+kind: SharedDatabase
+terraform: [snowflake_shared_database]
+scope: account
+group: database
+fields:
+  from_share: {type: name, required: true}
+  comment: {type: string}
+create: CREATE DATABASE {@id} FROM SHARE {from_share}[ COMMENT = {comment}]
+read:
+- statement: SHOW DATABASES LIKE {@like}
+  match: {name: "{name}", kind: IMPORTED DATABASE}
+  columns: {comment: comment}
+alter:
+  comment: ALTER DATABASE {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER DATABASE {@id} UNSET COMMENT
+delete: DROP DATABASE IF EXISTS {@id}
+sample:
+  name: example_shared_db
+  from_share: example_org.example_account.example_share
+  comment: example-comment

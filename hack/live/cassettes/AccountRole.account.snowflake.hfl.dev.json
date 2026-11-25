@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:49Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/roles",
+      "body": "{\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Role {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ {\n  \"name\" : \"ACCOUNTADMIN\",\n  \"comment\" : \"Account administrator can manage all aspects of the account.\",\n  \"created_on\" : \"2026-11-16T04:37:01.983+00:00\",\n  \"owner\" : null,\n  \"is_default\" : true,\n  \"is_current\" : true,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 2,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 2\n}, {\n  \"name\" : \"{{RUN_}}\",\n  \"comment\" : null,\n  \"created_on\" : \"2026-11-20T23:56:38.020+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : false,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"{{NAME_}}\",\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:49.201+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : false,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"ORGADMIN\",\n  \"comment\" : \"Organization administrator can manage organizations and accounts in organizations\",\n  \"created_on\" : \"2026-11-16T04:37:02.470+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : false,\n  \"assigned_to_users\" : 1,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"PUBLIC\",\n  \"comment\" : \"Public role is automatically available to every user in the account.\",\n  \"created_on\" : \"2026-11-16T04:37:02.022+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 1\n}, {\n  \"name\" : \"SECURITYADMIN\",\n  \"comment\" : \"Security administrator can manage security aspects of the account.\",\n  \"created_on\" : \"2026-11-16T04:37:02.007+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 1\n}, {\n  \"name\" : \"SNOWFLAKE_LEARNING_ROLE\",\n  \"comment\" : \"Created by Snowflake during account provisioning\",\n  \"created_on\" : \"2026-11-16T04:37:08.200+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"SYSADMIN\",\n  \"comment\" : \"System administrator can create and manage databases and warehouses.\",\n  \"created_on\" : \"2026-11-16T04:37:02.016+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"USERADMIN\",\n  \"comment\" : \"User administrator can create and manage users and roles\",\n  \"created_on\" : \"2026-11-16T04:37:01.996+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n} ]"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/roles/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ {\n  \"name\" : \"ACCOUNTADMIN\",\n  \"comment\" : \"Account administrator can manage all aspects of the account.\",\n  \"created_on\" : \"2026-11-16T04:37:01.983+00:00\",\n  \"owner\" : null,\n  \"is_default\" : true,\n  \"is_current\" : true,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 2,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 2\n}, {\n  \"name\" : \"{{RUN_}}\",\n  \"comment\" : null,\n  \"created_on\" : \"2026-11-20T23:56:38.020+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : false,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"ORGADMIN\",\n  \"comment\" : \"Organization administrator can manage organizations and accounts in organizations\",\n  \"created_on\" : \"2026-11-16T04:37:02.470+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : false,\n  \"assigned_to_users\" : 1,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"PUBLIC\",\n  \"comment\" : \"Public role is automatically available to every user in the account.\",\n  \"created_on\" : \"2026-11-16T04:37:02.022+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 0,\n  \"granted_roles\" : 1\n}, {\n  \"name\" : \"SECURITYADMIN\",\n  \"comment\" : \"Security administrator can manage security aspects of the account.\",\n  \"created_on\" : \"2026-11-16T04:37:02.007+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 1\n}, {\n  \"name\" : \"SNOWFLAKE_LEARNING_ROLE\",\n  \"comment\" : \"Created by Snowflake during account provisioning\",\n  \"created_on\" : \"2026-11-16T04:37:08.200+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"SYSADMIN\",\n  \"comment\" : \"System administrator can create and manage databases and warehouses.\",\n  \"created_on\" : \"2026-11-16T04:37:02.016+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n}, {\n  \"name\" : \"USERADMIN\",\n  \"comment\" : \"User administrator can create and manage users and roles\",\n  \"created_on\" : \"2026-11-16T04:37:01.996+00:00\",\n  \"owner\" : null,\n  \"is_default\" : false,\n  \"is_current\" : false,\n  \"is_inherited\" : true,\n  \"assigned_to_users\" : 0,\n  \"granted_to_roles\" : 1,\n  \"granted_roles\" : 0\n} ]"
+    }
+  ]
+}

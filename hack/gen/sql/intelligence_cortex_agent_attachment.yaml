@@ -1,0 +1,15 @@
+kind: IntelligenceCortexAgentAttachment
+terraform: [snowflake_intelligence_cortex_agent_attachment]
+mode: grant
+group: intelligence
+fields:
+  snowflake_intelligence_name: {type: identifier, required: true}
+  cortex_agent_name: {type: name, required: true}
+create: ALTER SNOWFLAKE INTELLIGENCE {snowflake_intelligence_name} ADD AGENT {cortex_agent_name}
+read:
+- statement: SHOW AGENTS IN SNOWFLAKE INTELLIGENCE {snowflake_intelligence_name}
+  match: {database_name.schema_name.name: "{cortex_agent_name}"}
+delete: ALTER SNOWFLAKE INTELLIGENCE {snowflake_intelligence_name} DROP AGENT {cortex_agent_name}
+sample:
+  snowflake_intelligence_name: example_intelligence
+  cortex_agent_name: example_db.example_schema.example_agent

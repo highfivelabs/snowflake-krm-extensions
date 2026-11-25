@@ -1,0 +1,183 @@
+# Inputs to krm-rest-runtime/gen/krmgen.py. Specs are pinned to the commit in each url;
+# hack/gen/fetch-specs.sh downloads them. overrides: map (Terraform type -> API item path),
+# exclude (Terraform types), excludePaths (API item paths).
+vendor: snowflake
+title: Snowflake
+groupSuffix: snowflake.hfl.dev
+connectionKind: Connection
+credentialKeys:
+- token
+baseURLHelp: Your account URL, e.g. https://myorg-myaccount.snowflakecomputing.com. Required. The Secret may also hold `tokenType` (PROGRAMMATIC_ACCESS_TOKEN by default; KEYPAIR_JWT or OAUTH).
+terraform:
+  provider: snowflakedb/snowflake
+  prefix: snowflake
+  gaps: terraform-gaps.json
+specs:
+- file: specs/snowflake.json
+  url: https://github.com/snowflakedb/snowflake-rest-api-specs/tree/990e25d97236a11826c9eed40e587c2b859e5680/specifications
+  bundle: tools/bundle_snowflake.py
+envelope: {}
+caseInsensitive:
+- name
+# A warehouse reference reads back upper-cased, as every unquoted identifier (HFL-620).
+- warehouse
+- query_warehouse
+overrides:
+  # Terraform's snowflake_function_* are user-defined functions; /functions is the
+  # service-function API (Snowpark Container Services), not theirs (HFL-620).
+  map:
+    snowflake_secret_with_generic_string: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+    snowflake_secret_with_basic_authentication: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+    snowflake_secret_with_client_credentials: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+    snowflake_secret_with_authorization_code_grant: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+    snowflake_function_java: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+    snowflake_function_javascript: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+    snowflake_function_python: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+    snowflake_function_scala: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+    snowflake_function_sql: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+    snowflake_procedure_java: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}
+    snowflake_procedure_javascript: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}
+    snowflake_procedure_python: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}
+    snowflake_procedure_scala: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}
+    snowflake_procedure_sql: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}
+    snowflake_stream_on_table: /api/v2/databases/{database}/schemas/{schema}/streams/{name}
+    snowflake_stream_on_view: /api/v2/databases/{database}/schemas/{schema}/streams/{name}
+    snowflake_stream_on_external_table: /api/v2/databases/{database}/schemas/{schema}/streams/{name}
+    snowflake_stream_on_directory_table: /api/v2/databases/{database}/schemas/{schema}/streams/{name}
+    snowflake_catalog_integration_aws_glue: /api/v2/catalog-integrations/{name}
+    snowflake_catalog_integration_iceberg_rest: /api/v2/catalog-integrations/{name}
+    snowflake_catalog_integration_object_storage: /api/v2/catalog-integrations/{name}
+    snowflake_catalog_integration_open_catalog: /api/v2/catalog-integrations/{name}
+    snowflake_account_role: /api/v2/roles/{name}
+    snowflake_database_role: /api/v2/databases/{database}/database-roles/{name}
+    snowflake_grant_privileges_to_account_role: /api/v2/roles/{name}/grants
+    snowflake_grant_account_role: /api/v2/users/{name}/grants
+    snowflake_grant_privileges_to_database_role: /api/v2/databases/{database}/database-roles/{name}/grants
+    # Terraform 2.x splits these by provider or kind; each is the same REST object
+    # (api_hook.type AWS / AZURE / GC / GIT, notification_hook EMAIL, the stage's url
+    # and credentials, the user's type SERVICE / LEGACY_SERVICE). Not mapped: the git
+    # variants with API_USER_AUTHENTICATION (GitHub app, OAuth2) or a private link
+    # endpoint, and the external MCP ones: the REST GitHook has no field for them.
+    snowflake_api_integration_amazon_api_gateway: /api/v2/api-integrations/{name}
+    snowflake_api_integration_azure_api_management: /api/v2/api-integrations/{name}
+    snowflake_api_integration_google_cloud_api_gateway: /api/v2/api-integrations/{name}
+    snowflake_api_integration_git_repository_token: /api/v2/api-integrations/{name}
+    snowflake_email_notification_integration: /api/v2/notification-integrations/{name}
+    snowflake_stage: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_stage_internal: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_stage_external_s3: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_stage_external_s3_compatible: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_stage_external_gcs: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_stage_external_azure: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+    snowflake_service_user: /api/v2/users/{name}
+    snowflake_legacy_service_user: /api/v2/users/{name}
+  kindNames:
+    /api/v2/databases/{database}/schemas/{schema}/secrets/{name}: Secret
+    /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}: Function
+    /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}: Procedure
+    /api/v2/databases/{database}/schemas/{schema}/streams/{name}: Stream
+    /api/v2/catalog-integrations/{name}: CatalogIntegration
+    /api/v2/roles/{name}/grants: AccountRoleGrant
+    /api/v2/users/{name}/grants: UserRoleGrant
+    /api/v2/databases/{database}/database-roles/{name}/grants: DatabaseRoleGrant
+    /api/v2/roles/{name}: AccountRole
+    /api/v2/databases/{database}/database-roles/{name}: DatabaseRole
+    /api/v2/api-integrations/{name}: ApiIntegration
+    /api/v2/notification-integrations/{name}: NotificationIntegration
+    /api/v2/databases/{database}/schemas/{schema}/stages/{name}: Stage
+    /api/v2/users/{name}: User
+  # Live runs (HFL-620): fields a read leaves out (null), so drift checks skip them.
+  writeOnly:
+    /api/v2/warehouses/{name}: [initially_suspended]
+    /api/v2/databases/{database}/schemas/{schema}/secrets/{name}: [secret_string]
+    /api/v2/databases/{database}/schemas/{schema}/code-bundles/{name}: [from_location]
+    # The spec marks these writeOnly (an account's first admin user; an external
+    # stage's credentials and its encryption key).
+    /api/v2/accounts/{name}: [admin_name, admin_password, admin_rsa_public_key, admin_user_type, first_name, last_name, email, must_change_password, polaris]
+    /api/v2/managed-accounts/{name}: [admin_name, admin_password]
+    /api/v2/databases/{database}/schemas/{schema}/stages/{name}: [credentials, encryption]
+  # A function or procedure is named by its signature, NAME(TYPE, ...); the
+  # create answers only a status message (HFL-620).
+  idFrom:
+    /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}: "{name}({arguments[].datatype})"
+    /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}: "{name}({arguments[].datatype})"
+  # A view's query reads back as its whole CREATE VIEW statement (HFL-620).
+  compare:
+    /api/v2/databases/{database}/schemas/{schema}/views/{name}: {query: endsWith}
+  # An account is dropped with a grace period (3 to 90 days) in which it can be
+  # restored; the API requires one. The longest keeps a deleted object's account
+  # restorable longest (an owner's choice; Terraform makes the user pick).
+  deleteQuery:
+    /api/v2/accounts/{name}:
+      gracePeriodInDays: 90
+  listReads:
+    # Accounts and reader (managed) accounts are listed, not got.
+    /api/v2/accounts:
+      field: name
+      caseInsensitive:
+      - name
+    /api/v2/managed-accounts:
+      field: name
+      caseInsensitive:
+      - name
+    /api/v2/roles:
+      field: name
+      caseInsensitive:
+      - name
+    /api/v2/databases/{database}/database-roles:
+      field: name
+      caseInsensitive:
+      - name
+  assocs:
+  - create: /api/v2/roles/{name}/grants
+    read: /api/v2/roles/{name}/grants
+    delete: /api/v2/roles/{name}/grants:revoke
+  - create: /api/v2/databases/{database}/database-roles/{name}/grants
+    read: /api/v2/databases/{database}/database-roles/{name}/grants
+    delete: /api/v2/databases/{database}/database-roles/{name}/grants:revoke
+  - create: /api/v2/users/{name}/grants
+    read: /api/v2/users/{name}/grants
+    delete: /api/v2/users/{name}/grants:revoke
+# SFREPL (builder, 2026-11-15): kinds the REST API cannot update (no ALTER) report a
+# changed spec as drift and stop. Only these stateless kinds may opt in, per object, to
+# applying a change with CREATE OR REPLACE (spec.replaceOnChange: true). Never tables,
+# dynamic or Iceberg tables, stages or external volumes; other immutable kinds stay out
+# until the builder says otherwise. Task is stateless too but has an update already.
+# SFREPL-1 (builder, 2026-11-15: "as recommended"): View, Pipe, NetworkPolicy,
+# PasswordPolicy, Streamlit, Notebook and CodeBundle hold definitions, not data, and may
+# opt in too. AccountRole, DatabaseRole, Secret, Sequence, CatalogIntegration,
+# NotificationIntegration, ImageRepository and CortexSearchService stay report-only:
+# replacing them would drop grants, the secret value, the sequence position, the
+# integration's trust or external IDs, the images, or the index.
+replaceOnChange:
+  query:
+    createMode: orReplace
+  identity:
+  - name
+  kinds:
+    Alert: {}
+    CodeBundle: {}
+    Function:
+      identity: [name, arguments]
+    NetworkPolicy: {}
+    NetworkRule: {}
+    Notebook: {}
+    PasswordPolicy: {}
+    Pipe: {}
+    Procedure:
+      identity: [name, arguments]
+    Stream: {}
+    Streamlit: {}
+    View: {}
+sql:
+  dir: sql
+# Terraform gap types no kind will cover, and why: no draft kind is made for them
+# (krm-rest-runtime's README, "Draft kinds"). The README's "Not covered" table is
+# generated from these and draftNotes.
+hardBlocks:
+  snowflake_execute: >-
+    Runs the `execute`, `revert` and `query` statements its configuration holds, as
+    written. A kind for it would let anyone allowed to create the kind run any SQL with
+    the role the manager connects as; no template can check SQL that is free text. Not
+    built: the owner's call whether to offer it at all (for example only behind a manager
+    flag that is off by default).

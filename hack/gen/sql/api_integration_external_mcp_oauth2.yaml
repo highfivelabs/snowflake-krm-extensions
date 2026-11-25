@@ -1,0 +1,48 @@
+kind: ApiIntegrationExternalMcpOauth2
+terraform: [snowflake_api_integration_external_mcp_oauth2]
+scope: account
+group: api
+fields:
+  oauth_client_id: {type: string, required: true}
+  oauth_client_secret: {type: string, required: true}
+  oauth_token_endpoint: {type: string, required: true}
+  oauth_authorization_endpoint: {type: string, required: true}
+  oauth_client_auth_method: {type: keyword, enum: [CLIENT_SECRET_BASIC, CLIENT_SECRET_POST]}
+  oauth_discovery_url: {type: string}
+  oauth_refresh_token_validity: {type: integer}
+  api_allowed_prefixes: {type: strings, required: true}
+  api_blocked_prefixes: {type: strings}
+  enabled: {type: boolean, required: true}
+  comment: {type: string}
+create: CREATE API INTEGRATION {@id} API_PROVIDER = external_mcp API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}[ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}][ OAUTH_DISCOVERY_URL = {oauth_discovery_url}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}]) API_ALLOWED_PREFIXES = ({api_allowed_prefixes})[ API_BLOCKED_PREFIXES = ({api_blocked_prefixes})] ENABLED = {enabled}[ COMMENT = {comment}]
+read:
+- statement: SHOW API INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {enabled: enabled, comment: comment}
+- statement: DESCRIBE API INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    api_allowed_prefixes: API_ALLOWED_PREFIXES
+    api_blocked_prefixes: API_BLOCKED_PREFIXES
+alter:
+  enabled: ALTER API INTEGRATION {@id} SET ENABLED = {enabled}
+  api_allowed_prefixes: ALTER API INTEGRATION {@id} SET API_ALLOWED_PREFIXES = ({api_allowed_prefixes})
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} SET API_BLOCKED_PREFIXES = ({api_blocked_prefixes})
+  comment: ALTER API INTEGRATION {@id} SET COMMENT = {comment}
+  oauth_client_id: ALTER API INTEGRATION {@id} SET API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}[ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}][ OAUTH_DISCOVERY_URL = {oauth_discovery_url}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}])
+  oauth_client_secret: ALTER API INTEGRATION {@id} SET API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}[ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}][ OAUTH_DISCOVERY_URL = {oauth_discovery_url}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}])
+  oauth_token_endpoint: ALTER API INTEGRATION {@id} SET API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}[ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}][ OAUTH_DISCOVERY_URL = {oauth_discovery_url}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}])
+  oauth_authorization_endpoint: ALTER API INTEGRATION {@id} SET API_USER_AUTHENTICATION = (TYPE = OAUTH2 OAUTH_CLIENT_ID = {oauth_client_id} OAUTH_CLIENT_SECRET = {oauth_client_secret} OAUTH_TOKEN_ENDPOINT = {oauth_token_endpoint} OAUTH_AUTHORIZATION_ENDPOINT = {oauth_authorization_endpoint}[ OAUTH_CLIENT_AUTH_METHOD = {oauth_client_auth_method}][ OAUTH_DISCOVERY_URL = {oauth_discovery_url}][ OAUTH_REFRESH_TOKEN_VALIDITY = {oauth_refresh_token_validity}])
+unset:
+  api_blocked_prefixes: ALTER API INTEGRATION {@id} UNSET API_BLOCKED_PREFIXES
+  comment: ALTER API INTEGRATION {@id} UNSET COMMENT
+delete: DROP API INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_mcp
+  api_allowed_prefixes: ["https://mcp.example.com/"]
+  enabled: true
+  oauth_client_id: example-client
+  oauth_client_secret: example-secret
+  oauth_token_endpoint: "https://mcp.example.com/token"
+  oauth_authorization_endpoint: "https://mcp.example.com/authorize"
+  comment: example-comment

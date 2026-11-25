@@ -1,0 +1,56 @@
+{
+  "recorded": "2000-01-01T00:05:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e '\\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\"', REF_ENTITY_DOMAIN =\\u003e 'TABLE'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"REF_ARG_COLUMN_NAMES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000971\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000971\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\" ADD STORAGE LIFECYCLE POLICY \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_POLICY\\\" ON (\\\"CREATED_AT\\\")\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 202,
+      "contentType": "application/json",
+      "response": "{\"code\":\"333334\",\"message\":\"Asynchronous execution in progress. Use provided query id to perform query monitoring and management.\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000972\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000972\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/statements/01c0ffee-0000-4000-8000-000000000972",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000972\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000972\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e '\\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\"', REF_ENTITY_DOMAIN =\\u003e 'TABLE'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"EXAMPLE_DB\",\"STORAGE_LIFECYCLE_POLICY\",\"EXAMPLE_POLICY\",\"EXAMPLE_SCHEMA\",\"[CREATED_AT]\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"REF_ARG_COLUMN_NAMES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000973\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000973\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"ALTER TABLE \\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\" DROP STORAGE LIFECYCLE POLICY\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[[\"Statement executed successfully.\"]],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":1,\"partitionInfo\":[{\"rowCount\":1}],\"rowType\":[{\"name\":\"status\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000974\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000974\"}\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/statements?nullable=true",
+      "body": "{\"statement\":\"SELECT * FROM TABLE (SNOWFLAKE.INFORMATION_SCHEMA.POLICY_REFERENCES (REF_ENTITY_NAME =\\u003e '\\\"EXAMPLE_DB\\\".\\\"EXAMPLE_SCHEMA\\\".\\\"EXAMPLE_TABLE\\\"', REF_ENTITY_DOMAIN =\\u003e 'TABLE'))\",\"timeout\":60,\"parameters\":{\"multi_statement_count\":1},\"warehouse\":\"EXAMPLE_WH\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"code\":\"090001\",\"data\":[],\"message\":\"Statement executed successfully.\",\"resultSetMetaData\":{\"format\":\"jsonv2\",\"numRows\":0,\"partitionInfo\":[{\"rowCount\":0}],\"rowType\":[{\"name\":\"POLICY_DB\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_KIND\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_NAME\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"POLICY_SCHEMA\",\"nullable\":true,\"type\":\"text\"},{\"name\":\"REF_ARG_COLUMN_NAMES\",\"nullable\":true,\"type\":\"text\"}]},\"sqlState\":\"00000\",\"statementHandle\":\"01c0ffee-0000-4000-8000-000000000975\",\"statementStatusUrl\":\"/api/v2/statements/01c0ffee-0000-4000-8000-000000000975\"}\n"
+    }
+  ]
+}

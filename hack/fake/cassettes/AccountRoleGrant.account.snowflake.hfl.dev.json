@@ -1,0 +1,39 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "GET",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[]\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "body": "{\"privileges\":[\"USAGE\"],\"securable\":{\"name\":\"{{run_}}\"},\"securable_type\":\"DATABASE\"}",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"status\":\"ok\"}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[{\"privileges\":[\"USAGE\"],\"securable\":{\"name\":\"{{run_}}\"},\"securable_type\":\"DATABASE\"}]\n"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles/{{run_}}/grants:revoke",
+      "body": "{\"privileges\":[\"USAGE\"],\"securable\":{\"name\":\"{{run_}}\"},\"securable_type\":\"DATABASE\"}",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"status\":\"ok\"}"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+kind: ScimIntegration
+terraform: [snowflake_scim_integration]
+scope: account
+fields:
+  enabled: {type: boolean}
+  scim_client: {enum: [OKTA, AZURE, GENERIC], required: true, type: string}
+  run_as_role: {required: true, type: identstring}
+  network_policy: {type: identstring}
+  sync_password: {type: boolean}
+  comment: {type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = SCIM[ ENABLED = {enabled}] SCIM_CLIENT = {scim_client} RUN_AS_ROLE = {run_as_role}[ NETWORK_POLICY = {network_policy}][ SYNC_PASSWORD = {sync_password}][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    scim_client: SCIM_CLIENT
+    run_as_role: RUN_AS_ROLE
+    network_policy: NETWORK_POLICY
+    sync_password: SYNC_PASSWORD
+alter:
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  network_policy: ALTER SECURITY INTEGRATION {@id} SET NETWORK_POLICY = {network_policy}
+  sync_password: ALTER SECURITY INTEGRATION {@id} SET SYNC_PASSWORD = {sync_password}
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  enabled: ALTER SECURITY INTEGRATION {@id} UNSET ENABLED
+  network_policy: ALTER SECURITY INTEGRATION {@id} UNSET NETWORK_POLICY
+  sync_password: ALTER SECURITY INTEGRATION {@id} UNSET SYNC_PASSWORD
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_scim
+  scim_client: GENERIC
+  run_as_role: GENERIC_SCIM_PROVISIONER
+  enabled: true
+  comment: example-comment

@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:13Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/catalog-integrations",
+      "body": "{\"catalog\":{\"catalog_source\":\"OBJECT_STORE\"},\"comment\":\"first\",\"enabled\":false,\"name\":\"{{name_}}\",\"table_format\":\"ICEBERG\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Integration {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/catalog-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"catalog\" : {\n    \"catalog_source\" : \"OBJECT_STORE\"\n  },\n  \"table_format\" : \"ICEBERG\",\n  \"enabled\" : false,\n  \"comment\" : \"first\",\n  \"refresh_interval_seconds\" : 30,\n  \"event_config\" : null,\n  \"default_storage_config\" : null,\n  \"type\" : \"CATALOG\",\n  \"category\" : \"CATALOG\",\n  \"created_on\" : \"2026-11-20T23:57:12.642+00:00\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/catalog-integrations/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/catalog-integrations/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nintegration '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on integration {{name_}}.\",\"request_id\":\"ab5a2738-ab4d-4977-adf6-31b134ad20c3\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "recorded": "2000-01-01T00:00:00Z",
+  "target": "krm-rest-runtime fake API (built from types.yaml; not the vendor's API)",
+  "vars": {
+    "table": "rehearsal-table"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/compute-pools",
+      "body": "{\"instance_family\":\"example-instance-family\",\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\"}",
+      "status": 201,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"example-instance-family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"example-instance-family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"example-instance-family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "body": "{\"instance_family\":\"changed-instance_family\",\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"changed-instance_family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"changed-instance_family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "body": "{\"instance_family\":\"hfl-live-drift\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"hfl-live-drift\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"hfl-live-drift\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "body": "{\"instance_family\":\"changed-instance_family\",\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"changed-instance_family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\"active_nodes\":1,\"application\":\"example-application\",\"backup_instance_families\":\"example-backup-instance-families\",\"budget\":\"example-budget\",\"created_on\":\"2000-01-01T00:00:00Z\",\"desired_nodes\":1,\"desired_nodes_expire_after\":\"2000-01-01T00:00:00Z\",\"error_code\":\"example-error-code\",\"idle_nodes\":1,\"instance_family\":\"changed-instance_family\",\"is_exclusive\":true,\"max_nodes\":1,\"min_nodes\":1,\"name\":\"TEST_NAME\",\"num_jobs\":1,\"num_services\":1,\"optimize_for_capacity\":true,\"owner\":\"example-owner\",\"placement_group\":\"example-placement-group\",\"resumed_on\":\"2000-01-01T00:00:00Z\",\"state\":\"UNKNOWN\",\"status_message\":\"example-status-message\",\"target_nodes\":1,\"updated_on\":\"2000-01-01T00:00:00Z\"}\n"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/compute-pools/TEST_NAME",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "response": "{\"message\":\"Not Found\"}\n"
+    }
+  ]
+}

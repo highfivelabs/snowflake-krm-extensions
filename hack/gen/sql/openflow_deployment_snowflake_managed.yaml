@@ -1,0 +1,36 @@
+kind: OpenflowDeploymentSnowflakeManaged
+terraform: [snowflake_openflow_deployment_snowflake_managed]
+scope: account
+group: openflow
+fields:
+  display_name: {type: string}
+  comment: {type: string}
+  event_table: {type: namestring}
+  status: {type: string, output: true}
+create: CREATE OPENFLOW DEPLOYMENT {@id} DEPLOYMENT_TYPE = 'SNOWFLAKE'[ DISPLAY_NAME = {display_name}][ COMMENT = {comment}][ EVENT_TABLE = {event_table}]
+read:
+- statement: SHOW OPENFLOW DEPLOYMENTS LIKE {@like}
+  match: {name: "{name}", type: SNOWFLAKE}
+  columns: {status: status, display_name: display_name, comment: comment}
+alter:
+  display_name: ALTER OPENFLOW DEPLOYMENT {@id} SET DISPLAY_NAME = {display_name}
+  comment: ALTER OPENFLOW DEPLOYMENT {@id} SET COMMENT = {comment}
+  event_table: ALTER OPENFLOW DEPLOYMENT {@id} SET EVENT_TABLE = {event_table}
+unset:
+  display_name: ALTER OPENFLOW DEPLOYMENT {@id} UNSET DISPLAY_NAME
+  comment: ALTER OPENFLOW DEPLOYMENT {@id} UNSET COMMENT
+  event_table: ALTER OPENFLOW DEPLOYMENT {@id} UNSET EVENT_TABLE
+delete: DROP OPENFLOW DEPLOYMENT IF EXISTS {@id}
+settle:
+  field: status
+  ready: [ACTIVE]
+  failed: [CREATE_FAILED, PROVISIONING_FAILED, UPGRADE_FAILED, MIGRATION_FAILED, ROLLBACK_FAILED, DELETE_FAILED, TERMINATE_FAILED, DELETED, TERMINATED]
+  busy: [CREATING, PROVISIONING]
+  teardown:
+  - when: [DELETING, TERMINATING]
+  - run: ALTER OPENFLOW DEPLOYMENT IF EXISTS {@id} TERMINATE
+  gone: [DELETED, TERMINATED]
+  timeout: 30m
+sample:
+  name: example_deployment
+  comment: example-comment

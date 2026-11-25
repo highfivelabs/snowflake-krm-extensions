@@ -1,0 +1,13 @@
+kind: AccountSessionPolicyAttachment
+terraform: [snowflake_account_session_policy_attachment]
+mode: set
+group: account
+fields:
+  session_policy_name: {type: name, required: true}
+create: ALTER ACCOUNT SET SESSION POLICY {session_policy_name}
+read:
+- statement: SHOW SESSION POLICIES ON ACCOUNT
+  columns: {session_policy_name: database_name.schema_name.name}
+delete: ALTER ACCOUNT UNSET SESSION POLICY
+sample:
+  session_policy_name: example_db.example_schema.example_policy

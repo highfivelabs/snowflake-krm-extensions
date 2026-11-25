@@ -1,0 +1,22 @@
+kind: McpServer
+terraform: [snowflake_mcp_server]
+scope: schema
+fields:
+  specification: {type: dollarstring, required: true}
+  comment: {type: string}
+create: CREATE MCP SERVER {@id}[ COMMENT = {comment}] FROM SPECIFICATION {specification}
+read:
+- statement: SHOW MCP SERVERS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+delete: DROP MCP SERVER IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_mcp_server
+  comment: example-comment
+  specification: |
+    tools:
+      - name: example_search
+        type: CORTEX_SEARCH_SERVICE_QUERY
+        identifier: example_db.example_schema.example_search

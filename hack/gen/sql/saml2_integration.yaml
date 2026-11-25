@@ -1,0 +1,76 @@
+kind: Saml2Integration
+terraform: [snowflake_saml2_integration]
+scope: account
+fields:
+  enabled: {type: boolean}
+  saml2_issuer: {required: true, type: string}
+  saml2_sso_url: {required: true, type: string}
+  saml2_provider: {enum: [OKTA, ADFS, CUSTOM], required: true, type: string}
+  saml2_x509_cert: {required: true, type: string}
+  allowed_user_domains: {type: strings}
+  allowed_email_patterns: {type: strings}
+  saml2_sp_initiated_login_page_label: {type: string}
+  saml2_enable_sp_initiated: {type: boolean}
+  saml2_snowflake_x509_cert: {type: string}
+  saml2_sign_request: {type: boolean}
+  saml2_requested_nameid_format: {type: string}
+  saml2_post_logout_redirect_url: {type: string}
+  saml2_force_authn: {type: boolean}
+  saml2_snowflake_issuer_url: {type: string}
+  saml2_snowflake_acs_url: {type: string}
+  comment: {type: string}
+  saml2_snowflake_metadata: {output: true, type: string}
+create: CREATE SECURITY INTEGRATION {@id} TYPE = SAML2[ ENABLED = {enabled}] SAML2_ISSUER = {saml2_issuer} SAML2_SSO_URL = {saml2_sso_url} SAML2_PROVIDER = {saml2_provider} SAML2_X509_CERT = {saml2_x509_cert}[ ALLOWED_USER_DOMAINS = ({allowed_user_domains})][ ALLOWED_EMAIL_PATTERNS = ({allowed_email_patterns})][ SAML2_SP_INITIATED_LOGIN_PAGE_LABEL = {saml2_sp_initiated_login_page_label}][ SAML2_ENABLE_SP_INITIATED = {saml2_enable_sp_initiated}][ SAML2_SNOWFLAKE_X509_CERT = {saml2_snowflake_x509_cert}][ SAML2_SIGN_REQUEST = {saml2_sign_request}][ SAML2_REQUESTED_NAMEID_FORMAT = {saml2_requested_nameid_format}][ SAML2_POST_LOGOUT_REDIRECT_URL = {saml2_post_logout_redirect_url}][ SAML2_FORCE_AUTHN = {saml2_force_authn}][ SAML2_SNOWFLAKE_ISSUER_URL = {saml2_snowflake_issuer_url}][ SAML2_SNOWFLAKE_ACS_URL = {saml2_snowflake_acs_url}][ COMMENT = {comment}]
+read:
+- statement: SHOW SECURITY INTEGRATIONS LIKE {@like}
+  match: {name: "{name}"}
+  columns: {comment: comment, enabled: enabled}
+- statement: DESCRIBE SECURITY INTEGRATION {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    saml2_issuer: SAML2_ISSUER
+    saml2_sso_url: SAML2_SSO_URL
+    saml2_provider: SAML2_PROVIDER
+    allowed_user_domains: ALLOWED_USER_DOMAINS
+    allowed_email_patterns: ALLOWED_EMAIL_PATTERNS
+    saml2_sp_initiated_login_page_label: SAML2_SP_INITIATED_LOGIN_PAGE_LABEL
+    saml2_enable_sp_initiated: SAML2_ENABLE_SP_INITIATED
+    saml2_sign_request: SAML2_SIGN_REQUEST
+    saml2_requested_nameid_format: SAML2_REQUESTED_NAMEID_FORMAT
+    saml2_post_logout_redirect_url: SAML2_POST_LOGOUT_REDIRECT_URL
+    saml2_force_authn: SAML2_FORCE_AUTHN
+    saml2_snowflake_issuer_url: SAML2_SNOWFLAKE_ISSUER_URL
+    saml2_snowflake_acs_url: SAML2_SNOWFLAKE_ACS_URL
+    saml2_snowflake_metadata: SAML2_SNOWFLAKE_METADATA
+alter:
+  enabled: ALTER SECURITY INTEGRATION {@id} SET ENABLED = {enabled}
+  saml2_issuer: ALTER SECURITY INTEGRATION {@id} SET SAML2_ISSUER = {saml2_issuer}
+  saml2_sso_url: ALTER SECURITY INTEGRATION {@id} SET SAML2_SSO_URL = {saml2_sso_url}
+  saml2_provider: ALTER SECURITY INTEGRATION {@id} SET SAML2_PROVIDER = {saml2_provider}
+  saml2_x509_cert: ALTER SECURITY INTEGRATION {@id} SET SAML2_X509_CERT = {saml2_x509_cert}
+  allowed_user_domains: ALTER SECURITY INTEGRATION {@id} SET ALLOWED_USER_DOMAINS = ({allowed_user_domains})
+  allowed_email_patterns: ALTER SECURITY INTEGRATION {@id} SET ALLOWED_EMAIL_PATTERNS = ({allowed_email_patterns})
+  saml2_sp_initiated_login_page_label: ALTER SECURITY INTEGRATION {@id} SET SAML2_SP_INITIATED_LOGIN_PAGE_LABEL = {saml2_sp_initiated_login_page_label}
+  saml2_enable_sp_initiated: ALTER SECURITY INTEGRATION {@id} SET SAML2_ENABLE_SP_INITIATED = {saml2_enable_sp_initiated}
+  saml2_snowflake_x509_cert: ALTER SECURITY INTEGRATION {@id} SET SAML2_SNOWFLAKE_X509_CERT = {saml2_snowflake_x509_cert}
+  saml2_sign_request: ALTER SECURITY INTEGRATION {@id} SET SAML2_SIGN_REQUEST = {saml2_sign_request}
+  saml2_requested_nameid_format: ALTER SECURITY INTEGRATION {@id} SET SAML2_REQUESTED_NAMEID_FORMAT = {saml2_requested_nameid_format}
+  saml2_post_logout_redirect_url: ALTER SECURITY INTEGRATION {@id} SET SAML2_POST_LOGOUT_REDIRECT_URL = {saml2_post_logout_redirect_url}
+  saml2_force_authn: ALTER SECURITY INTEGRATION {@id} SET SAML2_FORCE_AUTHN = {saml2_force_authn}
+  saml2_snowflake_issuer_url: ALTER SECURITY INTEGRATION {@id} SET SAML2_SNOWFLAKE_ISSUER_URL = {saml2_snowflake_issuer_url}
+  saml2_snowflake_acs_url: ALTER SECURITY INTEGRATION {@id} SET SAML2_SNOWFLAKE_ACS_URL = {saml2_snowflake_acs_url}
+  comment: ALTER SECURITY INTEGRATION {@id} SET COMMENT = {comment}
+unset:
+  saml2_requested_nameid_format: ALTER SECURITY INTEGRATION {@id} UNSET SAML2_REQUESTED_NAMEID_FORMAT
+  saml2_post_logout_redirect_url: ALTER SECURITY INTEGRATION {@id} UNSET SAML2_POST_LOGOUT_REDIRECT_URL
+  saml2_force_authn: ALTER SECURITY INTEGRATION {@id} UNSET SAML2_FORCE_AUTHN
+  comment: ALTER SECURITY INTEGRATION {@id} UNSET COMMENT
+delete: DROP SECURITY INTEGRATION IF EXISTS {@id}
+sample:
+  name: example_saml
+  saml2_issuer: https://idp.example.com/
+  saml2_sso_url: https://idp.example.com/sso
+  saml2_provider: CUSTOM
+  saml2_x509_cert: MIIexample
+  enabled: true
+  comment: example-comment

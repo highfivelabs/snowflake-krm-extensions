@@ -1,0 +1,126 @@
+kind: FileFormat
+terraform: [snowflake_file_format, snowflake_file_format_avro, snowflake_file_format_csv, snowflake_file_format_json, snowflake_file_format_orc, snowflake_file_format_parquet, snowflake_file_format_xml]
+scope: schema
+fields:
+  type: {type: keyword, required: true, enum: [CSV, JSON, AVRO, ORC, PARQUET, XML]}
+  compression: {type: keyword}
+  record_delimiter: {type: string}
+  field_delimiter: {type: string}
+  multi_line: {type: boolean}
+  file_extension: {type: string}
+  parse_header: {type: boolean}
+  skip_header: {type: integer}
+  skip_blank_lines: {type: boolean}
+  date_format: {type: string}
+  time_format: {type: string}
+  timestamp_format: {type: string}
+  binary_format: {type: keyword}
+  escape: {type: string}
+  escape_unenclosed_field: {type: string}
+  trim_space: {type: boolean}
+  field_optionally_enclosed_by: {type: string}
+  null_if: {type: strings}
+  error_on_column_count_mismatch: {type: boolean}
+  replace_invalid_characters: {type: boolean}
+  empty_field_as_null: {type: boolean}
+  skip_byte_order_mark: {type: boolean}
+  encoding: {type: keyword}
+  enable_octal: {type: boolean}
+  allow_duplicate: {type: boolean}
+  strip_outer_array: {type: boolean}
+  strip_null_values: {type: boolean}
+  ignore_utf8_errors: {type: boolean}
+  binary_as_text: {type: boolean}
+  use_logical_type: {type: boolean}
+  use_vectorized_scanner: {type: boolean}
+  snappy_compression: {type: boolean}
+  preserve_space: {type: boolean}
+  strip_outer_element: {type: boolean}
+  disable_snowflake_data: {type: boolean}
+  disable_auto_convert: {type: boolean}
+  comment: {type: string}
+create: CREATE FILE FORMAT {@id} TYPE = {type}[ COMPRESSION = {compression}][ RECORD_DELIMITER = {record_delimiter}][ FIELD_DELIMITER = {field_delimiter}][ MULTI_LINE = {multi_line}][ FILE_EXTENSION = {file_extension}][ PARSE_HEADER = {parse_header}][ SKIP_HEADER = {skip_header}][ SKIP_BLANK_LINES = {skip_blank_lines}][ DATE_FORMAT = {date_format}][ TIME_FORMAT = {time_format}][ TIMESTAMP_FORMAT = {timestamp_format}][ BINARY_FORMAT = {binary_format}][ ESCAPE = {escape}][ ESCAPE_UNENCLOSED_FIELD = {escape_unenclosed_field}][ TRIM_SPACE = {trim_space}][ FIELD_OPTIONALLY_ENCLOSED_BY = {field_optionally_enclosed_by}][ NULL_IF = ({null_if})][ ERROR_ON_COLUMN_COUNT_MISMATCH = {error_on_column_count_mismatch}][ REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}][ EMPTY_FIELD_AS_NULL = {empty_field_as_null}][ SKIP_BYTE_ORDER_MARK = {skip_byte_order_mark}][ ENCODING = {encoding}][ ENABLE_OCTAL = {enable_octal}][ ALLOW_DUPLICATE = {allow_duplicate}][ STRIP_OUTER_ARRAY = {strip_outer_array}][ STRIP_NULL_VALUES = {strip_null_values}][ IGNORE_UTF8_ERRORS = {ignore_utf8_errors}][ BINARY_AS_TEXT = {binary_as_text}][ USE_LOGICAL_TYPE = {use_logical_type}][ USE_VECTORIZED_SCANNER = {use_vectorized_scanner}][ SNAPPY_COMPRESSION = {snappy_compression}][ PRESERVE_SPACE = {preserve_space}][ STRIP_OUTER_ELEMENT = {strip_outer_element}][ DISABLE_SNOWFLAKE_DATA = {disable_snowflake_data}][ DISABLE_AUTO_CONVERT = {disable_auto_convert}][ COMMENT = {comment}]
+read:
+- statement: SHOW FILE FORMATS LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {type: type, comment: comment}
+- statement: DESCRIBE FILE FORMAT {@id}
+  properties: {name: property, value: property_value}
+  columns:
+    compression: COMPRESSION
+    field_delimiter: FIELD_DELIMITER
+    multi_line: MULTI_LINE
+    file_extension: FILE_EXTENSION
+    parse_header: PARSE_HEADER
+    skip_header: SKIP_HEADER
+    skip_blank_lines: SKIP_BLANK_LINES
+    date_format: DATE_FORMAT
+    time_format: TIME_FORMAT
+    timestamp_format: TIMESTAMP_FORMAT
+    binary_format: BINARY_FORMAT
+    trim_space: TRIM_SPACE
+    error_on_column_count_mismatch: ERROR_ON_COLUMN_COUNT_MISMATCH
+    replace_invalid_characters: REPLACE_INVALID_CHARACTERS
+    empty_field_as_null: EMPTY_FIELD_AS_NULL
+    skip_byte_order_mark: SKIP_BYTE_ORDER_MARK
+    encoding: ENCODING
+    enable_octal: ENABLE_OCTAL
+    allow_duplicate: ALLOW_DUPLICATE
+    strip_outer_array: STRIP_OUTER_ARRAY
+    strip_null_values: STRIP_NULL_VALUES
+    ignore_utf8_errors: IGNORE_UTF8_ERRORS
+    binary_as_text: BINARY_AS_TEXT
+    use_logical_type: USE_LOGICAL_TYPE
+    use_vectorized_scanner: USE_VECTORIZED_SCANNER
+    snappy_compression: SNAPPY_COMPRESSION
+    preserve_space: PRESERVE_SPACE
+    strip_outer_element: STRIP_OUTER_ELEMENT
+    disable_snowflake_data: DISABLE_SNOWFLAKE_DATA
+    disable_auto_convert: DISABLE_AUTO_CONVERT
+alter:
+  compression: ALTER FILE FORMAT {@id} SET COMPRESSION = {compression}
+  record_delimiter: ALTER FILE FORMAT {@id} SET RECORD_DELIMITER = {record_delimiter}
+  field_delimiter: ALTER FILE FORMAT {@id} SET FIELD_DELIMITER = {field_delimiter}
+  multi_line: ALTER FILE FORMAT {@id} SET MULTI_LINE = {multi_line}
+  file_extension: ALTER FILE FORMAT {@id} SET FILE_EXTENSION = {file_extension}
+  parse_header: ALTER FILE FORMAT {@id} SET PARSE_HEADER = {parse_header}
+  skip_header: ALTER FILE FORMAT {@id} SET SKIP_HEADER = {skip_header}
+  skip_blank_lines: ALTER FILE FORMAT {@id} SET SKIP_BLANK_LINES = {skip_blank_lines}
+  date_format: ALTER FILE FORMAT {@id} SET DATE_FORMAT = {date_format}
+  time_format: ALTER FILE FORMAT {@id} SET TIME_FORMAT = {time_format}
+  timestamp_format: ALTER FILE FORMAT {@id} SET TIMESTAMP_FORMAT = {timestamp_format}
+  binary_format: ALTER FILE FORMAT {@id} SET BINARY_FORMAT = {binary_format}
+  escape: ALTER FILE FORMAT {@id} SET ESCAPE = {escape}
+  escape_unenclosed_field: ALTER FILE FORMAT {@id} SET ESCAPE_UNENCLOSED_FIELD = {escape_unenclosed_field}
+  trim_space: ALTER FILE FORMAT {@id} SET TRIM_SPACE = {trim_space}
+  field_optionally_enclosed_by: ALTER FILE FORMAT {@id} SET FIELD_OPTIONALLY_ENCLOSED_BY = {field_optionally_enclosed_by}
+  null_if: ALTER FILE FORMAT {@id} SET NULL_IF = ({null_if})
+  error_on_column_count_mismatch: ALTER FILE FORMAT {@id} SET ERROR_ON_COLUMN_COUNT_MISMATCH = {error_on_column_count_mismatch}
+  replace_invalid_characters: ALTER FILE FORMAT {@id} SET REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}
+  empty_field_as_null: ALTER FILE FORMAT {@id} SET EMPTY_FIELD_AS_NULL = {empty_field_as_null}
+  skip_byte_order_mark: ALTER FILE FORMAT {@id} SET SKIP_BYTE_ORDER_MARK = {skip_byte_order_mark}
+  encoding: ALTER FILE FORMAT {@id} SET ENCODING = {encoding}
+  enable_octal: ALTER FILE FORMAT {@id} SET ENABLE_OCTAL = {enable_octal}
+  allow_duplicate: ALTER FILE FORMAT {@id} SET ALLOW_DUPLICATE = {allow_duplicate}
+  strip_outer_array: ALTER FILE FORMAT {@id} SET STRIP_OUTER_ARRAY = {strip_outer_array}
+  strip_null_values: ALTER FILE FORMAT {@id} SET STRIP_NULL_VALUES = {strip_null_values}
+  ignore_utf8_errors: ALTER FILE FORMAT {@id} SET IGNORE_UTF8_ERRORS = {ignore_utf8_errors}
+  binary_as_text: ALTER FILE FORMAT {@id} SET BINARY_AS_TEXT = {binary_as_text}
+  use_logical_type: ALTER FILE FORMAT {@id} SET USE_LOGICAL_TYPE = {use_logical_type}
+  use_vectorized_scanner: ALTER FILE FORMAT {@id} SET USE_VECTORIZED_SCANNER = {use_vectorized_scanner}
+  snappy_compression: ALTER FILE FORMAT {@id} SET SNAPPY_COMPRESSION = {snappy_compression}
+  preserve_space: ALTER FILE FORMAT {@id} SET PRESERVE_SPACE = {preserve_space}
+  strip_outer_element: ALTER FILE FORMAT {@id} SET STRIP_OUTER_ELEMENT = {strip_outer_element}
+  disable_snowflake_data: ALTER FILE FORMAT {@id} SET DISABLE_SNOWFLAKE_DATA = {disable_snowflake_data}
+  disable_auto_convert: ALTER FILE FORMAT {@id} SET DISABLE_AUTO_CONVERT = {disable_auto_convert}
+  comment: ALTER FILE FORMAT {@id} SET COMMENT = {comment}
+delete: DROP FILE FORMAT IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_format
+  type: CSV
+  field_delimiter: ","
+  skip_header: 1
+  null_if: ["NULL", ""]
+  comment: example-comment

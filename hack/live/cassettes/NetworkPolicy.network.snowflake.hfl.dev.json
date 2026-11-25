@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:56:56Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/network-policies",
+      "body": "{\"allowed_ip_list\":[\"192.0.2.0/24\"],\"comment\":\"first\",\"name\":\"{{name_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Network policy {{NAME_}} is created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/network-policies/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"allowed_network_rule_list\" : [ ],\n  \"blocked_network_rule_list\" : [ ],\n  \"allowed_ip_list\" : [ \"192.0.2.0/24\" ],\n  \"blocked_ip_list\" : [ ],\n  \"comment\" : \"first\",\n  \"created_on\" : \"2026-11-20T23:56:55.719+00:00\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/network-policies/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/network-policies/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nnetwork policy '{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on network policy {{name_}}.\",\"request_id\":\"7479dcce-5a7e-44bc-9458-a01358405a51\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

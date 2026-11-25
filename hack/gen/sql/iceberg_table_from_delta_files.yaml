@@ -1,0 +1,32 @@
+kind: IcebergTableFromDeltaFiles
+terraform: [snowflake_iceberg_table_from_delta_files]
+scope: schema
+group: iceberg
+fields:
+  external_volume: {type: identstring}
+  catalog: {type: identstring}
+  base_location: {type: string, required: true}
+  auto_refresh: {type: boolean}
+  replace_invalid_characters: {type: boolean}
+  comment: {type: string}
+create: CREATE ICEBERG TABLE {@id}[ EXTERNAL_VOLUME = {external_volume}][ CATALOG = {catalog}] BASE_LOCATION = {base_location}[ AUTO_REFRESH = {auto_refresh}][ REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}][ COMMENT = {comment}]
+read:
+- statement: SHOW ICEBERG TABLES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+alter:
+  auto_refresh: ALTER ICEBERG TABLE {@id} SET AUTO_REFRESH = {auto_refresh}
+  replace_invalid_characters: ALTER ICEBERG TABLE {@id} SET REPLACE_INVALID_CHARACTERS = {replace_invalid_characters}
+  comment: ALTER ICEBERG TABLE {@id} SET COMMENT = {comment}
+unset:
+  replace_invalid_characters: ALTER ICEBERG TABLE {@id} UNSET REPLACE_INVALID_CHARACTERS
+  comment: ALTER ICEBERG TABLE {@id} UNSET COMMENT
+delete: DROP ICEBERG TABLE IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_iceberg_table
+  external_volume: example_volume
+  catalog: example_catalog_integration
+  base_location: example/delta
+  comment: example-comment

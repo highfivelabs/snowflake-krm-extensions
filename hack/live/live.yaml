@@ -1,0 +1,560 @@
+# Copyright 2026 High Five Labs
+# SPDX-License-Identifier: Apache-2.0
+#
+# Live tests (TestEveryKindLive, krm-rest-runtime's kindtest.Live): these
+# kinds, in this order, against the real API. Kinds not listed are not run
+# live. They skip, naming the secret, until it exists in Secret Manager; then
+#   KRM_LIVE=1 go test -run TestEveryKindLive -v .
+# Everything a run makes is named hfl-live-<stamp>-<hex> (or hfl_live_...),
+# deleted at the end; the sweep deletes older leftovers. How it works and
+# what the {{...}} templates mean: krm-rest-runtime docs/live.md.
+#
+# The token is a programmatic access token (PAT) of a user whose default
+# role is ACCOUNTADMIN in the trial account. A run makes one database (with
+# a table and a stage in it), one XSMALL warehouse that starts suspended and
+# never auto-resumes, one role and one disabled service user, and deletes
+# them at the end. Nothing listed spends credits: tasks and alerts are
+# created suspended, the dynamic table never refreshes, integrations are
+# disabled and point at made-up endpoints, and network, password, session
+# and authentication policies are never set on the account or the
+# live-test user (only on a disabled user made for the kind and dropped
+# after it). SQL kinds run statements through the SQL API. Kinds that would spend
+# credits or need outside storage are listed with skip: and why.
+#
+# Snowflake's PUT is CREATE OR ALTER: fields left out of the body go back to
+# their defaults, so the drift step sends the whole object (driftFull).
+secret: krm-live-snowflake      # JSON: {"token": "<PAT>", "baseURL": "https://<org>-<account>.snowflakecomputing.com", "tokenType": "PROGRAMMATIC_ACCESS_TOKEN"}
+target: Snowflake trial
+
+before:
+- {method: POST, path: /api/v2/databases, body: {name: "{{run_}}"}}
+- {method: POST, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables", body: {name: "{{run_}}", columns: [{name: ID, datatype: NUMBER}]}}
+# The table's name as Snowflake reads it back (upper case), for references
+# a read compares case-sensitively (a stream's source).
+- {method: GET, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables/{{run_}}", save: {table: name}}
+- {method: POST, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/stages", body: {name: "{{run_}}"}}
+- {method: POST, path: "/api/v2/databases/{{run_}}/database-roles", body: {name: "{{run_}}"}}
+- {method: POST, path: /api/v2/warehouses, body: {name: "{{run_}}", warehouse_size: X-Small, auto_suspend: 60, auto_resume: "false", initially_suspended: "true"}}
+- {method: POST, path: /api/v2/roles, body: {name: "{{run_}}"}}
+- {method: POST, path: /api/v2/users, body: {name: "{{run_}}", disabled: true, type: SERVICE, comment: "krm live test; deleted at the end of the run"}}
+after:
+- {method: DELETE, path: "/api/v2/users/{{run_}}", ok: [404]}
+- {method: DELETE, path: "/api/v2/roles/{{run_}}", ok: [404]}
+- {method: DELETE, path: "/api/v2/warehouses/{{run_}}", ok: [404]}
+- {method: DELETE, path: "/api/v2/databases/{{run_}}", ok: [404]}
+
+sweep:
+- {list: "/api/v2/databases?like=HFL_LIVE_%25", name: name, delete: "/api/v2/databases/{id}"}
+- {list: "/api/v2/warehouses?like=HFL_LIVE_%25", name: name, delete: "/api/v2/warehouses/{id}"}
+- {list: "/api/v2/roles?like=HFL_LIVE_%25", name: name, delete: "/api/v2/roles/{id}"}
+- {list: "/api/v2/network-policies", name: name, delete: "/api/v2/network-policies/{id}"}
+- {list: "/api/v2/users?like=HFL_LIVE_%25", name: name, delete: "/api/v2/users/{id}"}
+- {list: "/api/v2/api-integrations?like=HFL_LIVE_%25", name: name, delete: "/api/v2/api-integrations/{id}"}
+- {list: "/api/v2/notification-integrations?like=HFL_LIVE_%25", name: name, delete: "/api/v2/notification-integrations/{id}"}
+- {list: "/api/v2/catalog-integrations?like=HFL_LIVE_%25", name: name, delete: "/api/v2/catalog-integrations/{id}"}
+- {list: "/api/v2/external-volumes?like=HFL_LIVE_%25", name: name, delete: "/api/v2/external-volumes/{id}"}
+
+kinds:
+- kind: Database
+  replaceSample: true
+  spec: {name: "{{name_}}", comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: Schema
+  replaceSample: true
+  spec: {database: "{{run_}}", name: "{{name_}}", comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: Tag
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: Warehouse
+  replaceSample: true
+  spec: {name: "{{name_}}", warehouse_size: X-Small, auto_suspend: 60, initially_suspended: "true", comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: AccountRole
+  replaceSample: true
+  spec: {name: "{{name_}}", comment: first}
+
+- kind: DatabaseRole
+  replaceSample: true
+  spec: {database: "{{run_}}", name: "{{name_}}", comment: first}
+
+- kind: Sequence
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", start: 1, increment: 1, comment: first}
+
+- kind: Table
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", columns: [{name: ID, datatype: "NUMBER(38,0)"}], comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: Stage
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", comment: first}
+
+- kind: NetworkRule
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", type: IPv4, mode: ingress, value_list: ["192.0.2.0/24"], comment: first}
+
+# A network policy object only; it is never set on the account or a user.
+- kind: NetworkPolicy
+  replaceSample: true
+  spec: {name: "{{name_}}", allowed_ip_list: ["192.0.2.0/24"], comment: first}
+
+# A password policy object only; it is never set on the account or a user.
+- kind: PasswordPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", password_min_length: 12, comment: first}
+
+- kind: Secret
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", type: GENERIC_STRING, secret_string: not-a-real-secret, comment: first}
+
+- kind: Stream
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", stream_source: {src_type: table, name: "{{var:table}}"}, comment: first}
+
+# auto_ingest off: the pipe never loads anything by itself.
+- kind: Pipe
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", copy_statement: "COPY INTO {{run_}}.PUBLIC.{{run_}} FROM @{{run_}}.PUBLIC.{{run_}}", comment: first}
+
+# Created suspended (a task is never resumed here), on the run's suspended
+# warehouse: it never runs.
+- kind: Task
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", warehouse: "{{run_}}", schedule: {schedule_type: MINUTES_TYPE, minutes: 60}, definition: SELECT 1, comment: first}
+  change: {comment: second}
+  driftFull: true
+
+# The API takes a minutes schedule as SCHEDULE_TYPE (its discriminator
+# mapping), not the MINUTES_TYPE it documents: that is HTTP 400 390142.
+# Created suspended; never resumed, so its condition never runs.
+- kind: Alert
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", warehouse: "{{run_}}", schedule: {schedule_type: SCHEDULE_TYPE, minutes: 60}, condition: SELECT 1, action: SELECT 1, comment: first}
+
+# Disabled service user, no password or key: it can never sign in.
+- kind: User
+  replaceSample: true
+  spec: {name: "{{name_}}", type: SERVICE, disabled: true, comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: UserRoleGrant
+  replaceSample: true
+  spec: {user: "{{run_}}", securable_type: ROLE, securable: {name: "{{run_}}"}}
+
+- kind: AccountRoleGrant
+  replaceSample: true
+  spec: {role: "{{run_}}", securable_type: DATABASE, securable: {name: "{{run_}}"}, privileges: [USAGE]}
+
+- kind: DatabaseRoleGrant
+  skip: "the API's database-role grants calls answer HTTP 400 391918 (needs the caller's default_namespace) although the database is in the path; setting it would change the live-test user"
+  replaceSample: true
+  spec: {database: "{{run_}}", databaseRole: "{{run_}}", securable_type: DATABASE, securable: {name: "{{run_}}"}, privileges: [USAGE]}
+
+- kind: Function
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", arguments: [], return_type: {type: DATATYPE, datatype: NUMBER}, language_config: {language: SQL}, body: "1", comment: first}
+
+- kind: Procedure
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", arguments: [], return_type: {type: DATATYPE, datatype: VARCHAR}, language_config: {language: SQL}, body: "BEGIN RETURN 'ok'; END", comment: first}
+
+# A disabled Git integration: Snowflake checks an AWS gateway URL is
+# reachable when the integration is made (HTTP 400 002157), not a Git prefix.
+- kind: ApiIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", api_hook: {type: GIT}, api_allowed_prefixes: ["https://github.com/hfl-live-nonexistent"], enabled: false, comment: first}
+  change: {comment: second}
+  driftFull: true
+
+- kind: NotificationIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", enabled: false, notification_hook: {type: EMAIL}, comment: first}
+
+- kind: CatalogIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", catalog: {catalog_source: OBJECT_STORE}, table_format: ICEBERG, enabled: false, comment: first}
+
+# A made-up bucket and role: creating the volume does not touch storage.
+- kind: ExternalVolume
+  replaceSample: true
+  spec: {name: "{{name_}}", storage_locations: [{name: hfl-live, storage_provider: S3, storage_base_url: "s3://hfl-live-nonexistent/", storage_aws_role_arn: "arn:aws:iam::123456789012:role/hfl-live"}], allow_writes: false, comment: first}
+
+- kind: ImageRepository
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}"}
+
+- kind: Notebook
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", query_warehouse: "{{run_}}", comment: first}
+
+- kind: Streamlit
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", query_warehouse: "{{run_}}", main_file: streamlit_app.py, comment: first}
+
+- kind: CodeBundle
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", from_location: "@{{run_}}.PUBLIC.{{run_}}", comment: first}
+
+# DOWNSTREAM lag and ON_SCHEDULE: nothing ever asks it to refresh, and the
+# run's warehouse does not auto-resume, so it never computes.
+- kind: DynamicTable
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", target_lag: {type: DOWNSTREAM}, initialize: ON_SCHEDULE, warehouse: "{{run_}}", query: "SELECT ID FROM {{run_}}.PUBLIC.{{run_}}", comment: first}
+
+- kind: View
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", columns: [{name: ID}], query: "SELECT ID FROM {{run_}}.PUBLIC.{{run_}}", comment: first}
+
+# --- SQL kinds (the SQL API, /api/v2/statements). Objects in the run's
+# database go with it; account-level ones are dropped by their kind.
+- kind: FileFormat
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", type: CSV, field_delimiter: ",", skip_header: 1, comment: first}
+  change: {comment: second}
+
+- kind: MaskingPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", argument: [{name: VAL, type: VARCHAR}], return_data_type: VARCHAR, body: "CASE WHEN CURRENT_ROLE() IN ('ACCOUNTADMIN') THEN VAL ELSE '*****' END", comment: first}
+  change: {comment: second}
+
+- kind: RowAccessPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", argument: [{name: REGION, type: VARCHAR}], body: "REGION = 'EU'", comment: first}
+  change: {comment: second}
+
+- kind: ProjectionPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", body: "PROJECTION_CONSTRAINT(ALLOW => false)", comment: first}
+  change: {comment: second}
+
+# Policy objects only; each is set only on a disabled user made for its
+# attachment kind below, never on the account or the live-test user.
+- kind: SessionPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", session_idle_timeout_mins: 30, comment: first}
+  change: {comment: second}
+
+- kind: AuthenticationPolicy
+  replaceSample: true
+  spec: {database: "{{run_}}", schema: PUBLIC, name: "{{name_}}", authentication_methods: [PASSWORD], comment: first}
+  change: {comment: second}
+
+# A share with no consumer account, and a share made for the grant kind.
+- kind: Share
+  replaceSample: true
+  spec: {name: "{{name_}}", comment: first}
+  change: {comment: second}
+
+- kind: GrantPrivilegesToShare
+  before:
+  - {method: POST, path: /api/v2/statements, body: {statement: "CREATE SHARE {{name_}}", timeout: 60}}
+  after:
+  - {method: POST, path: /api/v2/statements, body: {statement: "DROP SHARE IF EXISTS {{name_}}", timeout: 60}}
+  replaceSample: true
+  spec: {privileges: [USAGE], object_type: DATABASE, object_name: "{{run_}}", to_share: "{{name_}}"}
+
+# A table made for the kind, owned by the run's role, then given back.
+- kind: GrantOwnership
+  before:
+  - {method: POST, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables", body: {name: "{{name_}}", columns: [{name: ID, datatype: NUMBER}]}}
+  replaceSample: true
+  spec: {object_type: TABLE, object_name: "{{run_}}.PUBLIC.{{name_}}", account_role_name: "{{run_}}", revertOwnershipToRole: ACCOUNTADMIN}
+
+# The run's database's Time Travel retention (a parameter of the database).
+- kind: ObjectParameter
+  replaceSample: true
+  spec: {key: DATA_RETENTION_TIME_IN_DAYS, value: 1, object_type: DATABASE, object_name: "{{run_}}"}
+  change: {value: 2}
+  drift: 3
+
+# A masking policy on a column of a table, both made for the kind.
+- kind: TableColumnMaskingPolicyApplication
+  before:
+  - {method: POST, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/tables", body: {name: "{{name_}}", columns: [{name: EMAIL, datatype: VARCHAR}]}}
+  - {method: POST, path: /api/v2/statements, body: {statement: "CREATE MASKING POLICY {{run_}}.PUBLIC.{{name_}} AS (VAL VARCHAR) RETURNS VARCHAR -> '*****'", timeout: 60}}
+  replaceSample: true
+  spec: {table: "{{run_}}.PUBLIC.{{name_}}", column: EMAIL, masking_policy: "{{run_}}.PUBLIC.{{name_}}"}
+
+# A semantic view over the run's table.
+- kind: SemanticView
+  replaceSample: true
+  spec:
+    database: "{{run_}}"
+    schema: PUBLIC
+    name: "{{name_}}"
+    tables: [{table_alias: T, table_name: "{{run_}}.PUBLIC.{{run_}}", primary_key: [ID]}]
+    dimensions: [{qualified_expression_name: T.ID_DIM, sql_expression: T.ID}]
+    metrics: [{semantic_expression: {qualified_expression_name: T.ID_COUNT, sql_expression: COUNT(T.ID)}}]
+    comment: first
+  change: {comment: second}
+
+# Not assigned to the account or a warehouse: it watches nothing.
+- kind: ResourceMonitor
+  replaceSample: true
+  spec: {name: "{{name_}}", credit_quota: 1, frequency: MONTHLY, start_timestamp: IMMEDIATELY, suspend_trigger: 90}
+  change: {credit_quota: 2}
+  drift: 3
+
+# Security and API integrations: disabled, pointing at made-up endpoints
+# (hfl-live.example never resolves; the GitHub prefix names no account).
+- kind: ApiAuthenticationIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", enabled: false, oauth_client_id: hfl-live, oauth_client_secret: not-a-real-secret, oauth_grant: CLIENT_CREDENTIALS, oauth_token_endpoint: "https://hfl-live.example/token", comment: first}
+  change: {comment: second}
+
+- kind: ApiIntegrationGitRepositoryGithubApp
+  replaceSample: true
+  spec: {name: "{{name_}}", api_allowed_prefixes: ["https://github.com/hfl-live-nonexistent"], enabled: false, comment: first}
+  change: {comment: second}
+
+- kind: ApiIntegrationGitRepositoryOauth2
+  replaceSample: true
+  spec: {name: "{{name_}}", api_allowed_prefixes: ["https://git.hfl-live.example/"], enabled: false, oauth_authorization_endpoint: "https://git.hfl-live.example/oauth/authorize", oauth_token_endpoint: "https://git.hfl-live.example/oauth/token", oauth_client_id: hfl-live, oauth_client_secret: not-a-real-secret, comment: first}
+  change: {comment: second}
+
+- kind: ExternalOauthIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", enabled: false, external_oauth_type: CUSTOM, external_oauth_issuer: "https://hfl-live.example/", external_oauth_token_user_mapping_claim: [sub], external_oauth_snowflake_user_mapping_attribute: LOGIN_NAME, external_oauth_jws_keys_url: ["https://hfl-live.example/keys"], comment: first}
+  change: {comment: second}
+
+- kind: OauthIntegrationForCustomClients
+  replaceSample: true
+  spec: {name: "{{name_}}", oauth_client_type: CONFIDENTIAL, oauth_redirect_uri: "https://hfl-live.example/callback", enabled: false, comment: first}
+  change: {comment: second}
+
+- kind: OauthIntegrationForPartnerApplications
+  replaceSample: true
+  spec: {name: "{{name_}}", oauth_client: TABLEAU_DESKTOP, enabled: false, comment: first}
+  change: {comment: second}
+
+# A self-signed certificate whose private key was thrown away.
+- kind: Saml2Integration
+  replaceSample: true
+  spec: {name: "{{name_}}", saml2_issuer: "https://hfl-live.example/", saml2_sso_url: "https://hfl-live.example/sso", saml2_provider: CUSTOM, saml2_x509_cert: "MIIDFzCCAf+gAwIBAgIUHh8FsGcD54dRg6SJsV2jc3LDXr8wDQYJKoZIhvcNAQELBQAwGzEZMBcGA1UEAwwQaGZsLWxpdmUuZXhhbXBsZTAeFw0yNjExMjIxOTU0MTdaFw0zNjExMTkxOTU0MTdaMBsxGTAXBgNVBAMMEGhmbC1saXZlLmV4YW1wbGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC4ODinf52pMCRO3N/zu+fgW2HcMilxsjHgksIYymkRCrcatV79FK6fpSpa5m6dSnvGiA21V4fAGitd76lZ0WG97lKzovIBe3elzSVPkPJ+pqzsKoma5SW90SNZlS6Iknfk7Gt1mWx+1cWp2QjpD8dU7CzBiMM/J6lsTm+K2+OL54TnTGse6Pl9AH2VDMyJlW96quFlZEwymhy/sldQQQ7G+RjLTJF2+HGfsfDHFYJq7gN4t1ByFDr8XaEULNG6v9xaiI9wZdD0oBDqTyxs7Pih85qVGTtbUpYlVwXzgWZ7/ShlXhGAzupi6B3wU3qboGhHNwY6e9saoZBdQk80Pxy/AgMBAAGjUzBRMB0GA1UdDgQWBBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAfBgNVHSMEGDAWgBQ7nS9Q9eISKEvO1nTQGsl4iPGPJDAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQASn07yO0/H7rSSXixX6x9rx7/4ULkHKb+kpGofcgHzOJgK7ijBIfphov65ZpimOBH2W9dYaDhv4FXSHwwRXFPD3R89vw1eNg0qKzaUGFFx7Bok/IFm1VdNxwOkV+MQFZIb72KzMp2CTcW0/rPj2X17+xPxFay6V7kyyJQF+gIrPrzzhaBLE2X4u56rZUJ/3xPUNqTxA4DjxvC2UIOTdSZc5NutMI/oTn5p4S4qAm9YiuvkDcjjGCxs8G403jtYVTCqBdqjOQVvTMQRBJ9mKLhB5DNzQa5y0rhhyx9wiGpD9D8HgTOrKl19uhGvS0HBnF+Pmp7Dr01t6xMoYWQsAibL", enabled: false, comment: first}
+  change: {comment: second}
+
+# A made-up bucket and role: creating the integration does not touch storage.
+- kind: StorageIntegration
+  replaceSample: true
+  spec: {name: "{{name_}}", storage_provider: S3, storage_aws_role_arn: "arn:aws:iam::123456789012:role/hfl-live", enabled: false, storage_allowed_locations: ["s3://hfl-live-nonexistent/"], comment: first}
+  change: {comment: second}
+
+# Attachments to a disabled user (no password or key) made for each kind,
+# dropped after it: never the account or the live-test user.
+- kind: UserPasswordPolicyAttachment
+  before:
+  - {method: POST, path: "/api/v2/databases/{{run_}}/schemas/PUBLIC/password-policies", body: {name: "{{name_}}"}}
+  - {method: POST, path: /api/v2/users, body: {name: "{{name_}}", disabled: true, comment: "krm live test; deleted after the kind"}}
+  after:
+  - {method: DELETE, path: "/api/v2/users/{{name_}}", ok: [404]}
+  replaceSample: true
+  spec: {user_name: "{{name_}}", password_policy_name: "{{run_}}.PUBLIC.{{name_}}"}
+
+- kind: UserSessionPolicyAttachment
+  before:
+  - {method: POST, path: /api/v2/statements, body: {statement: "CREATE SESSION POLICY {{run_}}.PUBLIC.{{name_}} SESSION_IDLE_TIMEOUT_MINS = 30", timeout: 60}}
+  - {method: POST, path: /api/v2/users, body: {name: "{{name_}}", disabled: true, comment: "krm live test; deleted after the kind"}}
+  after:
+  - {method: DELETE, path: "/api/v2/users/{{name_}}", ok: [404]}
+  replaceSample: true
+  spec: {user_name: "{{name_}}", session_policy_name: "{{run_}}.PUBLIC.{{name_}}"}
+
+- kind: UserAuthenticationPolicyAttachment
+  before:
+  - {method: POST, path: /api/v2/statements, body: {statement: "CREATE AUTHENTICATION POLICY {{run_}}.PUBLIC.{{name_}} AUTHENTICATION_METHODS = ('PASSWORD')", timeout: 60}}
+  - {method: POST, path: /api/v2/users, body: {name: "{{name_}}", disabled: true, comment: "krm live test; deleted after the kind"}}
+  after:
+  - {method: DELETE, path: "/api/v2/users/{{name_}}", ok: [404]}
+  replaceSample: true
+  spec: {user_name: "{{name_}}", authentication_policy_name: "{{run_}}.PUBLIC.{{name_}}"}
+
+- kind: NetworkPolicyAttachment
+  before:
+  - {method: POST, path: /api/v2/network-policies, body: {name: "{{name_}}", allowed_ip_list: ["192.0.2.0/24"]}}
+  - {method: POST, path: /api/v2/users, body: {name: "{{name_}}", disabled: true, comment: "krm live test; deleted after the kind"}}
+  after:
+  - {method: DELETE, path: "/api/v2/users/{{name_}}", ok: [404]}
+  - {method: DELETE, path: "/api/v2/network-policies/{{name_}}", ok: [404]}
+  replaceSample: true
+  spec: {user: "{{name_}}", network_policy_name: "{{name_}}"}
+
+# A throwaway RSA public key (its private half was never kept).
+- kind: UserPublicKeySet
+  before:
+  - {method: POST, path: /api/v2/users, body: {name: "{{name_}}", disabled: true, comment: "krm live test; deleted after the kind"}}
+  after:
+  - {method: DELETE, path: "/api/v2/users/{{name_}}", ok: [404]}
+  replaceSample: true
+  spec: {name: "{{name_}}", rsa_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuDg4p3+dqTAkTtzf87vn4Fth3DIpcbIx4JLCGMppEQq3GrVe/RSun6UqWuZunUp7xogNtVeHwBorXe+pWdFhve5Ss6LyAXt3pc0lT5Dyfqas7CqJmuUlvdEjWZUuiJJ35OxrdZlsftXFqdkI6Q/HVOwswYjDPyepbE5vitvji+eE50xrHuj5fQB9lQzMiZVveqrhZWRMMpocv7JXUEEOxvkYy0yRdvhxn7HwxxWCau4DeLdQchQ6/F2hFCzRur/cWoiPcGXQ9KAQ6k8sbOz4ofOalRk7W1KWJVcF84Fme/0oZV4RgM7qYugd8FN6m6BoRzcGOnvbGqGQXUJPND8cvwIDAQAB"}
+
+- kind: IcebergTable
+  skip: "needs an external volume on a real S3/GCS/Azure bucket: creating the table writes Iceberg metadata to it"
+
+- kind: CortexSearchService
+  skip: "creating one builds its search index on a warehouse right away: credits on a trial"
+
+- kind: ComputePool
+  skip: "Snowpark Container Services compute pools bill by the node-hour from creation: credits on a trial"
+
+- kind: Service
+  skip: "runs on a compute pool (ComputePool's reason), and needs an image in a repository"
+
+- kind: Account
+  skip: "creates a whole Snowflake account (ORGADMIN, billed on its own; a drop keeps it restorable for 90 days); live runs must not create or change accounts"
+
+- kind: ManagedAccount
+  skip: "creates a reader account, a separate Snowflake account whose compute is billed to this one; live runs must not create accounts"
+
+- kind: AccountParameter
+  skip: "an account-wide parameter; live runs never change the account's settings"
+
+- kind: AccountAuthenticationPolicyAttachment
+  skip: "sets an authentication policy on the whole account, which could lock the live-test user out; live runs never set policies on the account"
+
+- kind: AccountPasswordPolicyAttachment
+  skip: "sets a password policy on the whole account; live runs never set policies on the account"
+
+- kind: AccountSessionPolicyAttachment
+  skip: "sets a session policy on the whole account; live runs never set policies on the account"
+
+- kind: UserProgrammaticAccessToken
+  skip: "mints a programmatic access token; its secret would pass through the run"
+
+- kind: ApiIntegrationGitRepositoryPrivateLink
+  skip: "needs private connectivity (Business Critical edition); the trial is Enterprise"
+
+- kind: ApiIntegrationExternalMcpDynamicClient
+  skip: "not yet tried: external MCP server integrations are new; whether the trial accepts one with a made-up server is unknown"
+
+- kind: ApiIntegrationExternalMcpOauth2
+  skip: "not yet tried: external MCP server integrations are new; whether the trial accepts one with a made-up server is unknown"
+
+- kind: ExternalAccessIntegration
+  skip: "not yet tried: whether a trial account may make an external access integration (Snowflake limits external network access on trials); it also needs an egress network rule"
+
+- kind: ExternalFunction
+  skip: "needs a reachable proxy service (an AWS API Gateway, Azure API Management or Google API Gateway) and an API integration for it"
+
+- kind: ExternalTable
+  skip: "needs an external stage on outside storage holding the files"
+
+- kind: GitRepository
+  skip: "not yet tried: creating one fetches the origin repository through an enabled API integration; the run's integrations stay disabled"
+
+- kind: GrantApplicationRole
+  skip: "needs a Snowflake Native App installed in the account"
+
+- kind: HybridTable
+  skip: "hybrid tables are not available in trial accounts"
+
+- kind: IcebergTableFromAwsGlue
+  skip: "needs an external volume on a real bucket and an AWS Glue catalog integration"
+
+- kind: IcebergTableFromDeltaFiles
+  skip: "needs an external volume on a real bucket holding Delta files"
+
+- kind: IcebergTableFromFiles
+  skip: "needs an external volume on a real bucket holding Iceberg metadata"
+
+- kind: IcebergTableFromRest
+  skip: "needs an external volume on a real bucket and a reachable Iceberg REST catalog"
+
+- kind: CortexAgent
+  skip: "not yet tried: whether a Cortex agent can be made in the trial (Cortex on Google Cloud regions); making one runs nothing"
+
+- kind: IntelligenceCortexAgentAttachment
+  skip: "adds an agent to the account's Snowflake Intelligence object, which every user of the account sees; off limits"
+
+- kind: McpServer
+  skip: "needs a Cortex Search service or another tool to serve (CortexSearchService is skipped: credits)"
+
+- kind: JobService
+  skip: "runs on a compute pool (ComputePool's reason), and needs an image in a repository"
+
+- kind: Listing
+  skip: "needs the account to accept the Snowflake Marketplace provider terms (an account-wide step) and a share with data"
+
+- kind: MaterializedView
+  skip: "Snowflake's serverless compute maintains a materialized view: credits on a trial"
+
+- kind: OpenflowDeploymentSnowflakeManaged
+  skip: "an Openflow deployment runs compute in Snowpark Container Services: credits on a trial"
+
+- kind: OpenflowDeploymentByoc
+  skip: "an Openflow BYOC deployment runs in the customer's own cloud account; needs a real AWS account"
+
+- kind: OpenflowRuntime
+  skip: "runs on an Openflow deployment (OpenflowDeploymentSnowflakeManaged's reason)"
+
+- kind: OpenflowConnector
+  skip: "runs on an Openflow runtime (OpenflowRuntime's reason)"
+
+- kind: PostgresInstance
+  skip: "a Snowflake Postgres instance bills compute and storage from creation: credits on a trial"
+
+- kind: PostgresMirror
+  skip: "needs a Snowflake Postgres instance (PostgresInstance's reason)"
+
+- kind: FailoverGroup
+  skip: "needs a second account in the organization to replicate to, and failover needs Business Critical edition; live runs must not create accounts"
+
+- kind: ReplicationGroup
+  skip: "needs a second account in the organization to replicate to; live runs must not create accounts"
+
+- kind: ReplicationGroupSecondary
+  skip: "needs a primary replication group in another account of the organization"
+
+- kind: PrimaryConnection
+  skip: "client redirect needs Business Critical edition, and a second account for its secondary"
+
+- kind: SecondaryConnection
+  skip: "needs a primary connection in another account of the organization"
+
+- kind: SecondaryDatabase
+  skip: "needs a primary database replicated from another account of the organization"
+
+- kind: SharedDatabase
+  skip: "needs a share from another account"
+
+- kind: ScimIntegration
+  skip: "needs the account-wide GENERIC_SCIM_PROVISIONER role made and granted to ACCOUNTADMIN; live runs do not add account-wide roles"
+
+- kind: BackupPolicy
+  skip: "not yet tried: backups are new; whether the trial takes a backup policy is unknown, and a backup set using it would store data"
+
+- kind: StorageLifecyclePolicy
+  skip: "not yet tried: storage lifecycle policies are new; whether the trial takes one is unknown"
+
+- kind: TableStorageLifecyclePolicyAttachment
+  skip: "needs a storage lifecycle policy (StorageLifecyclePolicy is not yet tried), and runs on a warehouse: credits"
+
+- kind: WarehouseAdaptive
+  skip: "not yet tried: whether a new adaptive warehouse runs, and so spends credits, before any query"
+
+- kind: WarehouseInteractive
+  skip: "not yet tried: an interactive warehouse serves interactive tables and bills while it runs; whether a new one starts running is unknown"
+
+- kind: TagAssociation
+  skip: "its read is a SELECT (SYSTEM$GET_TAG), which needs a running warehouse: credits on a trial (the run's warehouse never resumes)"
+
+- kind: TableConstraint
+  skip: "its read is a SELECT, which needs a running warehouse: credits on a trial (the run's warehouse never resumes)"
+
+- kind: CurrentAccount
+  skip: "the account's own parameters, resource monitor and policies; live runs never change the account's settings"
+
+- kind: CurrentOrganizationAccount
+  skip: "the organization account's settings (it needs a connection to the organization account, which the trial is not); live runs never change an account's settings"

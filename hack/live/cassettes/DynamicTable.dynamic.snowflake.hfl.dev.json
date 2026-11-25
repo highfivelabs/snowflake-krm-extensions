@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:21Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/dynamic-tables",
+      "body": "{\"comment\":\"first\",\"initialize\":\"ON_SCHEDULE\",\"name\":\"{{name_}}\",\"query\":\"SELECT ID FROM {{run_}}.PUBLIC.{{run_}}\",\"target_lag\":{\"type\":\"DOWNSTREAM\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Dynamic table {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/dynamic-tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"kind\" : \"PERMANENT\",\n  \"columns\" : [ {\n    \"name\" : \"ID\",\n    \"datatype\" : \"NUMBER(38,0)\",\n    \"comment\" : null\n  } ],\n  \"target_lag\" : {\n    \"type\" : \"DOWNSTREAM\"\n  },\n  \"refresh_mode\" : \"ADAPTIVE\",\n  \"initialize\" : \"ON_SCHEDULE\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"initialization_warehouse\" : null,\n  \"cluster_by\" : null,\n  \"cluster_by_raw\" : null,\n  \"query\" : \"SELECT ID FROM {{run_}}.PUBLIC.{{run_}}\",\n  \"frozen_where\" : null,\n  \"backfill_from\" : null,\n  \"start_at\" : null,\n  \"data_retention_time_in_days\" : 1,\n  \"max_data_extension_time_in_days\" : 14,\n  \"comment\" : \"first\",\n  \"default_ddl_collation\" : \"\",\n  \"data_metric_schedule\" : {\n    \"schedule_type\" : \"MINUTES\",\n    \"minutes\" : 60\n  },\n  \"log_level\" : \"OFF\",\n  \"row_timestamp\" : false,\n  \"created_on\" : \"2026-11-20T23:57:20.359+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"rows\" : 0,\n  \"bytes\" : 0,\n  \"scheduling_state\" : \"RUNNING\",\n  \"automatic_clustering\" : false,\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"budget\" : null,\n  \"scheduler\" : null\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/dynamic-tables/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/dynamic-tables/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\ndynamic table '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on table {{run_}}.public.{{name_}}.\",\"request_id\":\"83e9404d-3763-44ba-b865-82ee08ce26a2\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

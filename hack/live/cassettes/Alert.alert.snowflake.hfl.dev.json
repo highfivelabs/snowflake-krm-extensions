@@ -1,0 +1,38 @@
+{
+  "recorded": "2026-11-20T23:57:03Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/alerts",
+      "body": "{\"action\":\"SELECT 1\",\"comment\":\"first\",\"condition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"SCHEDULE_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Alert {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/alerts/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"comment\" : \"first\",\n  \"schedule\" : {\n    \"schedule_type\" : \"SCHEDULE_TYPE\",\n    \"minutes\" : 60\n  },\n  \"warehouse\" : \"{{RUN_}}\",\n  \"config\" : { },\n  \"condition\" : \"SELECT 1\",\n  \"action\" : \"SELECT 1\",\n  \"runbook\" : null,\n  \"suspend_alert_after_num_failures\" : null,\n  \"template\" : null,\n  \"measurement\" : null,\n  \"evaluation\" : null,\n  \"created_on\" : \"2026-11-20T23:57:02.274+00:00\",\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : \"ROLE\",\n  \"state\" : \"suspended\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/alerts/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/alerts/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\nalert '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on alert {{run_}}.public.{{name_}}.\",\"request_id\":\"63fef80e-9018-4cd2-aef9-67b600e8f88d\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

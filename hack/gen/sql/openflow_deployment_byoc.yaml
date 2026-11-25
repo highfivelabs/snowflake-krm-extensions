@@ -1,0 +1,41 @@
+kind: OpenflowDeploymentByoc
+terraform: [snowflake_openflow_deployment_byoc]
+scope: account
+group: openflow
+fields:
+  vpc_type: {type: string, required: true, enum: [MANAGED, PROVIDED]}
+  custom_ingress_hostname: {type: string}
+  use_private_link: {type: boolean}
+  use_user_auth_over_privatelink: {type: boolean}
+  display_name: {type: string}
+  comment: {type: string}
+  event_table: {type: namestring}
+  status: {type: string, output: true}
+create: CREATE OPENFLOW DEPLOYMENT {@id} DEPLOYMENT_TYPE = 'BYOC' VPC_TYPE = {vpc_type}[ USE_PRIVATE_LINK = {use_private_link}][ USE_USER_AUTH_OVER_PRIVATELINK = {use_user_auth_over_privatelink}][ CUSTOM_INGRESS_HOSTNAME = {custom_ingress_hostname}][ DISPLAY_NAME = {display_name}][ COMMENT = {comment}][ EVENT_TABLE = {event_table}]
+read:
+- statement: SHOW OPENFLOW DEPLOYMENTS LIKE {@like}
+  match: {name: "{name}", type: BYOC}
+  columns: {status: status, vpc_type: vpc_type, custom_ingress_hostname: custom_ingress_hostname, use_private_link: use_private_link, use_user_auth_over_privatelink: use_user_auth_over_private_link, display_name: display_name, comment: comment}
+alter:
+  display_name: ALTER OPENFLOW DEPLOYMENT {@id} SET DISPLAY_NAME = {display_name}
+  comment: ALTER OPENFLOW DEPLOYMENT {@id} SET COMMENT = {comment}
+  event_table: ALTER OPENFLOW DEPLOYMENT {@id} SET EVENT_TABLE = {event_table}
+unset:
+  display_name: ALTER OPENFLOW DEPLOYMENT {@id} UNSET DISPLAY_NAME
+  comment: ALTER OPENFLOW DEPLOYMENT {@id} UNSET COMMENT
+  event_table: ALTER OPENFLOW DEPLOYMENT {@id} UNSET EVENT_TABLE
+delete: DROP OPENFLOW DEPLOYMENT IF EXISTS {@id}
+settle:
+  field: status
+  ready: [INACTIVE, ACTIVE]
+  failed: [CREATE_FAILED, PROVISIONING_FAILED, UPGRADE_FAILED, MIGRATION_FAILED, ROLLBACK_FAILED, DELETE_FAILED, TERMINATE_FAILED, DELETED, TERMINATED]
+  busy: [CREATING, PROVISIONING]
+  teardown:
+  - when: [DELETING, TERMINATING]
+  - run: ALTER OPENFLOW DEPLOYMENT IF EXISTS {@id} TERMINATE
+  gone: [DELETED, TERMINATED]
+  timeout: 30m
+sample:
+  name: example_byoc_deployment
+  vpc_type: MANAGED
+  comment: example-comment

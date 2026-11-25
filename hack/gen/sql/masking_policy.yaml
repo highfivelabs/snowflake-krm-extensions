@@ -1,0 +1,30 @@
+kind: MaskingPolicy
+terraform: [snowflake_masking_policy]
+scope: schema
+fields:
+  argument: {type: args, required: true}
+  return_data_type: {type: datatype, required: true}
+  body: {type: expression, required: true}
+  comment: {type: string}
+  exempt_other_policies: {type: boolean}
+create: CREATE MASKING POLICY {@id} AS ({argument}) RETURNS {return_data_type} -> {body}[ COMMENT = {comment}][ EXEMPT_OTHER_POLICIES = {exempt_other_policies}]
+read:
+- statement: SHOW MASKING POLICIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+- statement: DESCRIBE MASKING POLICY {@id}
+  columns: {body: body}
+alter:
+  body: ALTER MASKING POLICY {@id} SET BODY -> {body}
+  comment: ALTER MASKING POLICY {@id} SET COMMENT = {comment}
+unset:
+  comment: ALTER MASKING POLICY {@id} UNSET COMMENT
+delete: DROP MASKING POLICY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_policy
+  argument: [{name: val, type: VARCHAR}]
+  return_data_type: VARCHAR
+  body: "CASE WHEN CURRENT_ROLE() IN ('ANALYST') THEN val ELSE '*****' END"
+  comment: example-comment

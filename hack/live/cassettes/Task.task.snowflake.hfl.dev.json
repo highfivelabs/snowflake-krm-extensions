@@ -1,0 +1,97 @@
+{
+  "recorded": "2026-11-20T23:57:02Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks",
+      "body": "{\"comment\":\"first\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Task {{NAME_}} successfully created.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"first\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"first\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"comment\":\"second\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"second\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"second\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"allow_overlapping_execution\":false,\"comment\":\"hfl-live-drift\",\"condition\":null,\"config\":{},\"created_on\":\"2026-11-20T23:57:00.007+00:00\",\"database_name\":\"{{RUN_}}\",\"definition\":\"SELECT 1\",\"error_integration\":null,\"execute_as_user\":null,\"finalize\":null,\"id\":\"01c88c3d-3c53-ec41-0000-000000000441\",\"last_committed_on\":null,\"last_suspended_on\":null,\"name\":\"{{NAME_}}\",\"overlap_policy\":\"NO_OVERLAP\",\"owner\":\"ACCOUNTADMIN\",\"owner_role_type\":null,\"predecessors\":[],\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\",\"seconds\":0},\"schema_name\":\"PUBLIC\",\"serverless_task_max_statement_size\":null,\"serverless_task_min_statement_size\":null,\"session_parameters\":{},\"state\":\"suspended\",\"success_integration\":null,\"suspend_task_after_num_failures\":null,\"target_completion_interval\":null,\"task_auto_retry_attempts\":null,\"task_relations\":\"{\\\"Predecessors\\\":[]}\",\"user_task_managed_initial_warehouse_size\":null,\"user_task_minimum_trigger_interval_in_seconds\":null,\"user_task_timeout_ms\":null,\"warehouse\":\"{{RUN_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"hfl-live-drift\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "body": "{\"comment\":\"second\",\"definition\":\"SELECT 1\",\"name\":\"{{name_}}\",\"schedule\":{\"minutes\":60,\"schedule_type\":\"MINUTES_TYPE\"},\"warehouse\":\"{{run_}}\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"name\" : \"{{NAME_}}\",\n  \"warehouse\" : \"{{RUN_}}\",\n  \"schedule\" : {\n    \"schedule_type\" : \"MINUTES_TYPE\",\n    \"minutes\" : 60,\n    \"seconds\" : 0\n  },\n  \"comment\" : \"second\",\n  \"finalize\" : null,\n  \"task_auto_retry_attempts\" : null,\n  \"config\" : { },\n  \"session_parameters\" : { },\n  \"definition\" : \"SELECT 1\",\n  \"predecessors\" : [ ],\n  \"task_relations\" : \"{\\\"Predecessors\\\":[]}\",\n  \"user_task_managed_initial_warehouse_size\" : null,\n  \"target_completion_interval\" : null,\n  \"serverless_task_min_statement_size\" : null,\n  \"serverless_task_max_statement_size\" : null,\n  \"user_task_timeout_ms\" : null,\n  \"suspend_task_after_num_failures\" : null,\n  \"user_task_minimum_trigger_interval_in_seconds\" : null,\n  \"condition\" : null,\n  \"allow_overlapping_execution\" : false,\n  \"error_integration\" : null,\n  \"success_integration\" : null,\n  \"overlap_policy\" : \"NO_OVERLAP\",\n  \"execute_as_user\" : null,\n  \"created_on\" : \"2026-11-20T23:57:00.007+00:00\",\n  \"id\" : \"01c88c3d-3c53-ec41-0000-000000000441\",\n  \"owner\" : \"ACCOUNTADMIN\",\n  \"owner_role_type\" : null,\n  \"state\" : \"suspended\",\n  \"last_committed_on\" : null,\n  \"last_suspended_on\" : null,\n  \"database_name\" : \"{{RUN_}}\",\n  \"schema_name\" : \"PUBLIC\"\n}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"{{NAME_}} successfully dropped.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{{run_}}/schemas/PUBLIC/tasks/{{name_}}",
+      "status": 404,
+      "contentType": "application/json",
+      "response": "{\"code\":\"002003\",\"message\":\"\\ntask '{{run_}}.public.{{name_}}' does not exist or not authorized. your primary role accountadmin must have at least one privilege granted on task {{run_}}.public.{{name_}}.\",\"request_id\":\"6ead9b09-8d76-47dd-a040-09fa12e6e305\",\"error_code\":\"002003\"}"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+kind: UserAuthenticationPolicyAttachment
+terraform: [snowflake_user_authentication_policy_attachment]
+mode: set
+group: user
+fields:
+  user_name: {type: identifier, required: true}
+  authentication_policy_name: {type: name, required: true}
+create: ALTER USER {user_name} SET AUTHENTICATION POLICY {authentication_policy_name}
+read:
+- statement: SHOW AUTHENTICATION POLICIES ON USER {user_name}
+  columns: {authentication_policy_name: database_name.schema_name.name}
+delete: ALTER USER {user_name} UNSET AUTHENTICATION POLICY
+sample:
+  user_name: example_user
+  authentication_policy_name: example_db.example_schema.example_policy

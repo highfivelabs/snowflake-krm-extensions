@@ -1,0 +1,28 @@
+kind: GitRepository
+terraform: [snowflake_git_repository]
+scope: schema
+fields:
+  origin: {type: string, required: true}
+  api_integration: {type: identifier, required: true}
+  git_credentials: {type: name}
+  comment: {type: string}
+create: CREATE GIT REPOSITORY {@id} ORIGIN = {origin} API_INTEGRATION = {api_integration}[ GIT_CREDENTIALS = {git_credentials}][ COMMENT = {comment}]
+read:
+- statement: SHOW GIT REPOSITORIES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {origin: origin, api_integration: api_integration, git_credentials: git_credentials, comment: comment}
+alter:
+  api_integration: ALTER GIT REPOSITORY {@id} SET API_INTEGRATION = {api_integration}
+  git_credentials: ALTER GIT REPOSITORY {@id} SET GIT_CREDENTIALS = {git_credentials}
+  comment: ALTER GIT REPOSITORY {@id} SET COMMENT = {comment}
+unset:
+  git_credentials: ALTER GIT REPOSITORY {@id} UNSET GIT_CREDENTIALS
+  comment: ALTER GIT REPOSITORY {@id} UNSET COMMENT
+delete: DROP GIT REPOSITORY IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_repo
+  origin: "https://github.com/example-org/example-repo.git"
+  api_integration: example_api_integration
+  comment: example-comment

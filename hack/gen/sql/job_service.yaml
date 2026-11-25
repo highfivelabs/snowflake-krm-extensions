@@ -1,0 +1,36 @@
+kind: JobService
+terraform: [snowflake_job_service]
+scope: schema
+group: job
+fields:
+  compute_pool: {type: identifier, required: true}
+  query_warehouse: {type: identifier}
+  comment: {type: string}
+  external_access_integrations: {type: identifiers}
+  from_specification:
+    type: object
+    required: true
+    item:
+      template: "[FROM SPECIFICATION {text}][FROM {stage} SPECIFICATION_FILE = {file}]"
+      fields:
+        text: {type: dollarstring}
+        stage: {type: string}
+        file: {type: string}
+create: EXECUTE JOB SERVICE IN COMPUTE POOL {compute_pool} NAME = {@id} ASYNC = TRUE[ QUERY_WAREHOUSE = {query_warehouse}][ COMMENT = {comment}][ EXTERNAL_ACCESS_INTEGRATIONS = ({external_access_integrations})] {from_specification}
+read:
+- statement: SHOW JOB SERVICES LIKE {@like} IN SCHEMA {@parent}
+  match: {name: "{name}", database_name: "{database}", schema_name: "{schema}"}
+  columns: {comment: comment}
+delete: DROP SERVICE IF EXISTS {@id}
+sample:
+  database: example_db
+  schema: example_schema
+  name: example_job
+  compute_pool: example_pool
+  from_specification:
+    text: |
+      spec:
+        containers:
+        - name: main
+          image: /example_db/example_schema/example_repo/example:latest
+  comment: example-comment

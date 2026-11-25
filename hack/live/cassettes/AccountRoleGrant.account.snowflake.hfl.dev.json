@@ -1,0 +1,39 @@
+{
+  "recorded": "2026-11-20T23:57:07Z",
+  "target": "Snowflake trial",
+  "vars": {
+    "table": "{{RUN_}}"
+  },
+  "interactions": [
+    {
+      "method": "GET",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ ]"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "body": "{\"privileges\":[\"USAGE\"],\"securable\":{\"name\":\"{{run_}}\"},\"securable_type\":\"DATABASE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully.\"\n}"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/roles/{{run_}}/grants",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "[ {\n  \"securable\" : {\n    \"database\" : null,\n    \"schema\" : null,\n    \"service\" : null,\n    \"name\" : \"{{RUN_}}\"\n  },\n  \"containing_scope\" : null,\n  \"securable_type\" : \"DATABASE\",\n  \"grant_option\" : false,\n  \"privileges\" : [ \"USAGE\" ],\n  \"created_on\" : \"2026-11-20T23:57:06.826+00:00\",\n  \"granted_by\" : \"ACCOUNTADMIN\"\n} ]"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/roles/{{run_}}/grants:revoke",
+      "body": "{\"privileges\":[\"USAGE\"],\"securable\":{\"name\":\"{{run_}}\"},\"securable_type\":\"DATABASE\"}",
+      "status": 200,
+      "contentType": "application/json",
+      "response": "{\n  \"status\" : \"Statement executed successfully. 1 objects affected.\"\n}"
+    }
+  ]
+}
