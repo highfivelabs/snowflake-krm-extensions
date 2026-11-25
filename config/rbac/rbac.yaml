@@ -1,0 +1,226 @@
+# Copyright 2026 High Five Labs
+# SPDX-License-Identifier: Apache-2.0
+# The manager reads Connections and their Secrets in every namespace it
+# reconciles; narrow the binding per namespace if that is too broad.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: manager
+  namespace: snowflake-krm-extensions-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: snowflake-krm-extensions-manager
+rules:
+- apiGroups: &id001
+  - account.snowflake.hfl.dev
+  - alert.snowflake.hfl.dev
+  - api.snowflake.hfl.dev
+  - catalog.snowflake.hfl.dev
+  - code.snowflake.hfl.dev
+  - compute.snowflake.hfl.dev
+  - cortex.snowflake.hfl.dev
+  - database.snowflake.hfl.dev
+  - dynamic.snowflake.hfl.dev
+  - external.snowflake.hfl.dev
+  - function.snowflake.hfl.dev
+  - iceberg.snowflake.hfl.dev
+  - image.snowflake.hfl.dev
+  - network.snowflake.hfl.dev
+  - notebook.snowflake.hfl.dev
+  - notification.snowflake.hfl.dev
+  - password.snowflake.hfl.dev
+  - pipe.snowflake.hfl.dev
+  - procedure.snowflake.hfl.dev
+  - schema.snowflake.hfl.dev
+  - secret.snowflake.hfl.dev
+  - sequence.snowflake.hfl.dev
+  - service.snowflake.hfl.dev
+  - stage.snowflake.hfl.dev
+  - stream.snowflake.hfl.dev
+  - streamlit.snowflake.hfl.dev
+  - table.snowflake.hfl.dev
+  - tag.snowflake.hfl.dev
+  - task.snowflake.hfl.dev
+  - user.snowflake.hfl.dev
+  - view.snowflake.hfl.dev
+  - warehouse.snowflake.hfl.dev
+  resources:
+  - accountrolegrants
+  - accountroles
+  - alerts
+  - apiintegrations
+  - catalogintegrations
+  - codebundles
+  - computepools
+  - cortexsearchservices
+  - databaserolegrants
+  - databaseroles
+  - databases
+  - dynamictables
+  - externalvolumes
+  - functions
+  - icebergtables
+  - imagerepositories
+  - networkpolicies
+  - networkrules
+  - notebooks
+  - notificationintegrations
+  - passwordpolicies
+  - pipes
+  - procedures
+  - schemas
+  - secrets
+  - sequences
+  - services
+  - stages
+  - streamlits
+  - streams
+  - tables
+  - tags
+  - tasks
+  - userrolegrants
+  - users
+  - views
+  - warehouses
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch
+- apiGroups: *id001
+  resources:
+  - accountrolegrants/status
+  - accountroles/status
+  - alerts/status
+  - apiintegrations/status
+  - catalogintegrations/status
+  - codebundles/status
+  - computepools/status
+  - cortexsearchservices/status
+  - databaserolegrants/status
+  - databaseroles/status
+  - databases/status
+  - dynamictables/status
+  - externalvolumes/status
+  - functions/status
+  - icebergtables/status
+  - imagerepositories/status
+  - networkpolicies/status
+  - networkrules/status
+  - notebooks/status
+  - notificationintegrations/status
+  - passwordpolicies/status
+  - pipes/status
+  - procedures/status
+  - schemas/status
+  - secrets/status
+  - sequences/status
+  - services/status
+  - stages/status
+  - streamlits/status
+  - streams/status
+  - tables/status
+  - tags/status
+  - tasks/status
+  - userrolegrants/status
+  - users/status
+  - views/status
+  - warehouses/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups: *id001
+  resources:
+  - accountrolegrants/finalizers
+  - accountroles/finalizers
+  - alerts/finalizers
+  - apiintegrations/finalizers
+  - catalogintegrations/finalizers
+  - codebundles/finalizers
+  - computepools/finalizers
+  - cortexsearchservices/finalizers
+  - databaserolegrants/finalizers
+  - databaseroles/finalizers
+  - databases/finalizers
+  - dynamictables/finalizers
+  - externalvolumes/finalizers
+  - functions/finalizers
+  - icebergtables/finalizers
+  - imagerepositories/finalizers
+  - networkpolicies/finalizers
+  - networkrules/finalizers
+  - notebooks/finalizers
+  - notificationintegrations/finalizers
+  - passwordpolicies/finalizers
+  - pipes/finalizers
+  - procedures/finalizers
+  - schemas/finalizers
+  - secrets/finalizers
+  - sequences/finalizers
+  - services/finalizers
+  - stages/finalizers
+  - streamlits/finalizers
+  - streams/finalizers
+  - tables/finalizers
+  - tags/finalizers
+  - tasks/finalizers
+  - userrolegrants/finalizers
+  - users/finalizers
+  - views/finalizers
+  - warehouses/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - core.snowflake.hfl.dev
+  resources:
+  - connections
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ''
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ''
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: snowflake-krm-extensions-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: snowflake-krm-extensions-manager
+subjects:
+- kind: ServiceAccount
+  name: manager
+  namespace: snowflake-krm-extensions-system
