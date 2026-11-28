@@ -1589,6 +1589,7 @@ kinds:
   serverFields:
     created_on: '2000-01-01T00:00:00Z'
     database_name: example-database-name
+    id: example-id
     last_committed_on: '2000-01-01T00:00:00Z'
     last_suspended_on: '2000-01-01T00:00:00Z'
     owner: example-owner

@@ -1,0 +1,13 @@
+service,resources_total,resources_official,resources_ours_beyond,pct_covered
+accounts,1,0,1,100.0
+api-integrations,1,0,1,100.0
+catalog-integrations,1,0,1,100.0
+compute-pools,1,0,1,100.0
+databases,29,0,26,89.7
+external-volumes,1,0,1,100.0
+managed-accounts,1,0,1,100.0
+network-policies,1,0,1,100.0
+notification-integrations,1,0,1,100.0
+roles,2,0,2,100.0
+users,2,0,2,100.0
+warehouses,1,0,1,100.0
