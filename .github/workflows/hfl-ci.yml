@@ -32,5 +32,5 @@ jobs:
       free-disk: false
       timeout-minutes: 30
       sibling-repo: "krm-rest-runtime"
-      sibling-ref: "fad382d05df5a1b0a7c339f174ecd6a3abb06721"
+      sibling-ref: "22f47e6fcbc884902130c167015b22a5b4e6d654"
       licenses-packages: "./..."
